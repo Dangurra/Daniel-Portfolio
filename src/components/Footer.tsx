@@ -17,7 +17,7 @@ const SITE_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="flex w-full flex-col items-center gap-10 border-t border-border-section px-6 pb-6 pt-8 md:gap-[53px] md:px-14 md:pt-8">
+    <footer className="mx-auto flex w-full max-w-[1512px] flex-col items-center gap-10 border-t border-border-section px-6 pb-6 pt-8 md:gap-[53px] md:px-14 md:pt-8">
       <div className="bg-brand-highlight">
         <Image
           src="/images/icons/ui/portfolio-signature.svg"

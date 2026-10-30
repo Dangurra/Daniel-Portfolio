@@ -102,7 +102,7 @@ export const projects: Project[] = [
     liveUrl: "https://poseidonaerospace.com",
     gallery: [
       {
-        title: "Website",
+        title: "Website Design",
         images: [1, 2, 3, 4, 5].map((n) => ({
           laptop: img(`poseidon/laptop/poseidon_web_${n}-laptop.webp`),
           mobile: img(`poseidon/mobile/poseidon_web_${n}-mobile.webp`),
@@ -110,13 +110,18 @@ export const projects: Project[] = [
         })),
       },
       {
-        title: "Brand & icons",
+        title: "Poseidon Aerospace Icons",
         images: [
           {
             laptop: img("poseidon/laptop/poseidon_icons-laptop.webp"),
             mobile: img("poseidon/mobile/poseidon_icons-mobile.webp"),
             alt: "Poseidon icon set",
           },
+        ],
+      },
+      {
+        title: "Recognition: Framer's Best Websites",
+        images: [
           {
             laptop: img("poseidon/laptop/poseidon_framer-laptop.webp"),
             mobile: img("poseidon/mobile/poseidon_framer-mobile.webp"),
@@ -304,4 +309,21 @@ export function getProject(slug: string) {
 
 export function getOtherProjects(slug: string) {
   return projects.filter((p) => p.slug !== slug);
+}
+
+// Matches the Figma "Selected work" order, which differs from the
+// definition order above.
+const HOME_ORDER = [
+  "plaid-again",
+  "poseidon",
+  "tex-software",
+  "albacore",
+  "samba-nova",
+  "braze",
+];
+
+export function getHomeOrderedProjects() {
+  return HOME_ORDER.map((slug) => getProject(slug)).filter(
+    (p): p is Project => p !== undefined
+  );
 }

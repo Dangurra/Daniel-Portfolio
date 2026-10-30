@@ -20,11 +20,12 @@ export default function ContactPage() {
         <IconLink href="/">Go Home</IconLink>
         <div className="flex flex-col gap-4">
           <h1 className="max-w-[1080px] font-heading text-[40px] leading-[1.15] text-text-primary md:text-[58px]">
-            Let&apos;s talk about what you&apos;re building.
+            Let&apos;s get in touch.
           </h1>
           <p className="max-w-[660px] font-sans text-[16px] leading-[26px] text-text-secondary">
-            Tell me a bit about the project and I&apos;ll get back to you within a couple of
-            days.
+            Have a project in mind, or are you hiring? I&apos;m open to full-time design roles
+            and creative collaborations. Tell me what you&apos;re working on, I&apos;d love to
+            hear from you.
           </p>
         </div>
       </div>

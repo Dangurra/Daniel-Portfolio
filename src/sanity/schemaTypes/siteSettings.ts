@@ -9,8 +9,16 @@ export const siteSettings = defineType({
     defineField({ name: "tagline", title: "Hero headline", type: "text", rows: 2 }),
     defineField({ name: "specialties", title: "Specialties line", type: "string" }),
     defineField({ name: "bio", title: "Hero bio", type: "text", rows: 4 }),
-    defineField({ name: "aboutIntro", title: "About page introduction", type: "text", rows: 8 }),
+    defineField({ name: "aboutSubhead", title: "About page subhead", type: "string" }),
+    defineField({
+      name: "aboutIntroParagraphs",
+      title: "About page introduction paragraphs",
+      type: "array",
+      of: [{ type: "text", rows: 3 }],
+    }),
+    defineField({ name: "toolsIntro", title: "Toolkit section intro", type: "text", rows: 2 }),
     defineField({ name: "avatar", title: "Portrait", type: "image", options: { hotspot: true } }),
+    defineField({ name: "signature", title: "Signature mark", type: "image" }),
     defineField({
       name: "toolCategories",
       title: "Tool categories",

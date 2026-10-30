@@ -7,39 +7,65 @@ import { AvailabilityBadge } from "@/components/ui/Badge";
 import { Button, IconLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { hero } from "@/lib/site-data";
-import { projects } from "@/lib/projects-data";
+import { getHomeOrderedProjects } from "@/lib/projects-data";
 
-const COMPANIES = [
+const COMPANIES_ROW_1 = [
   { name: "SambaNova", wordmark: "/images/about/logos/sambanova-logo.webp" },
   { name: "Poseidon", wordmark: "/images/about/logos/poseidon-logo.webp" },
   { name: "Tex Software", wordmark: null },
+];
+
+const COMPANIES_ROW_2 = [
   { name: "Albacore", wordmark: "/images/about/logos/albacore-logo.webp" },
   { name: "Plaid Again", wordmark: "/images/about/logos/plaid-again-logo.webp" },
   { name: "Tara Mind", wordmark: null },
   { name: "ConnexPay", wordmark: null },
 ];
 
-const OTHER_WORK = [
-  "plan-it-mockup",
-  "buddy-phones",
-  "buddy-dna-packaging",
-  "teros-mockup",
-  "landscape-photography",
-  "privacy-poster",
-  "come-together-red",
-  "orange-landscape-illustration",
-  "screwdriver-cad",
-  "sambanova-illustration",
-  "graphic-design-wizard",
-  "come-together-green",
-  "monsoon-beer-packaging",
-  "monsoon-beer-packaging-1",
-  "buddy-cad-model",
-  "paint-bottle-organizer",
-  "buddy-finished-render",
-  "cap-illustration",
-  "long-cad-object",
-].map((slug) => `/images/home/other-work/${slug}.webp`);
+const OTHER_WORK_RAILS = [
+  {
+    heightClass: "h-[220px] md:h-[340px]",
+    images: [
+      "plan-it-mockup",
+      "buddy-phones",
+      "buddy-dna-packaging",
+      "teros-mockup",
+      "landscape-photography",
+    ],
+  },
+  {
+    heightClass: "h-[240px] md:h-[380px]",
+    images: [
+      "privacy-poster",
+      "come-together-red",
+      "orange-landscape-illustration",
+      "screwdriver-cad",
+      "sambanova-illustration",
+    ],
+  },
+  {
+    heightClass: "h-[200px] md:h-[320px]",
+    images: [
+      "graphic-design-wizard",
+      "come-together-green",
+      "monsoon-beer-packaging",
+      "monsoon-beer-packaging-1",
+    ],
+  },
+  {
+    heightClass: "h-[190px] md:h-[300px]",
+    images: [
+      "buddy-cad-model",
+      "paint-bottle-organizer",
+      "buddy-finished-render",
+      "cap-illustration",
+      "long-cad-object",
+    ],
+  },
+].map((rail) => ({
+  ...rail,
+  images: rail.images.map((slug) => `/images/home/other-work/${slug}.webp`),
+}));
 
 export default function Home() {
   return (
@@ -77,7 +103,7 @@ export default function Home() {
           </div>
         </div>
         <Reveal targets=":scope > a" stagger={0.1} className="flex flex-col gap-6">
-          {projects.map((project) => (
+          {getHomeOrderedProjects().map((project) => (
             <ProjectRow key={project.slug} project={project} />
           ))}
         </Reveal>
@@ -87,24 +113,35 @@ export default function Home() {
         <h2 className="font-heading text-[28px] text-text-primary md:text-[40px]">
           Companies &amp; clients
         </h2>
-        <Reveal
-          targets=":scope > div"
-          stagger={0.05}
-          y={14}
-          className="grid grid-cols-2 border border-border-section md:grid-cols-4"
-        >
-          {COMPANIES.map((c) => (
-            <div
-              key={c.name}
-              className="flex h-[90px] items-center justify-center border border-border-section md:h-[120px]"
-            >
-              {c.wordmark ? (
-                <Image src={c.wordmark} alt={c.name} width={144} height={30} className="object-contain" />
-              ) : (
-                <span className="font-sans text-[14px] text-text-muted">{c.name}</span>
-              )}
-            </div>
-          ))}
+        <Reveal targets=":scope > div" stagger={0.04} y={14} className="flex flex-col">
+          <div className="grid grid-cols-2 border border-border-section md:grid-cols-3">
+            {COMPANIES_ROW_1.map((c) => (
+              <div
+                key={c.name}
+                className="flex h-[90px] items-center justify-center border border-border-section md:h-[120px]"
+              >
+                {c.wordmark ? (
+                  <Image src={c.wordmark} alt={c.name} width={144} height={30} className="object-contain" />
+                ) : (
+                  <span className="font-sans text-[14px] text-text-muted">{c.name}</span>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-2 border-x border-b border-border-section md:grid-cols-4">
+            {COMPANIES_ROW_2.map((c) => (
+              <div
+                key={c.name}
+                className="flex h-[90px] items-center justify-center border border-border-section md:h-[120px]"
+              >
+                {c.wordmark ? (
+                  <Image src={c.wordmark} alt={c.name} width={144} height={30} className="object-contain" />
+                ) : (
+                  <span className="font-sans text-[14px] text-text-muted">{c.name}</span>
+                )}
+              </div>
+            ))}
+          </div>
         </Reveal>
         <div className="flex items-center justify-between">
           <p className="font-sans text-[12px] text-text-muted">
@@ -124,21 +161,26 @@ export default function Home() {
             A glimpse of my other work.
           </h2>
         </div>
-        <Reveal
-          targets=":scope > div"
-          stagger={0.04}
-          y={16}
-          className="flex gap-3 overflow-x-auto px-6 pb-2 md:px-14 [&::-webkit-scrollbar]:hidden"
-        >
-          {OTHER_WORK.map((src) => (
-            <div
-              key={src}
-              className="relative h-[220px] w-[260px] shrink-0 overflow-hidden md:h-[320px] md:w-[400px]"
+        <div className="flex flex-col gap-1">
+          {OTHER_WORK_RAILS.map((rail, railIndex) => (
+            <Reveal
+              key={railIndex}
+              targets=":scope > div"
+              stagger={0.04}
+              y={16}
+              className="flex gap-1 overflow-x-auto px-6 md:px-14 [&::-webkit-scrollbar]:hidden"
             >
-              <Image src={src} alt="" fill sizes="400px" className="object-cover" />
-            </div>
+              {rail.images.map((src) => (
+                <div
+                  key={src}
+                  className={`relative aspect-[4/3] shrink-0 overflow-hidden ${rail.heightClass}`}
+                >
+                  <Image src={src} alt="" fill sizes="500px" className="object-cover" />
+                </div>
+              ))}
+            </Reveal>
           ))}
-        </Reveal>
+        </div>
       </section>
 
       <ContactEnding />

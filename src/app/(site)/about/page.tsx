@@ -6,7 +6,15 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 import { Reveal } from "@/components/Reveal";
 import { Button, IconLink } from "@/components/ui/Button";
 import { ToolTile } from "@/components/ToolPill";
-import { aboutIntro, experience, faq, toolCategories } from "@/lib/site-data";
+import {
+  aboutHeadline,
+  aboutIntroParagraphs,
+  aboutSubhead,
+  experience,
+  faq,
+  toolCategories,
+  toolsIntro,
+} from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "About Me — Daniel Gur",
@@ -22,7 +30,7 @@ export default function AboutPage() {
       >
         <IconLink href="/">Go Home</IconLink>
         <h1 className="max-w-[1187px] font-heading text-[36px] leading-[1.15] text-text-primary md:text-[58px]">
-          About Me
+          {aboutHeadline}
         </h1>
       </Reveal>
 
@@ -33,11 +41,19 @@ export default function AboutPage() {
       >
         <div className="flex flex-1 flex-col gap-6">
           <h2 className="font-heading text-[28px] text-text-primary md:text-[32px]">
-            Hi, I&apos;m Daniel.
+            {aboutSubhead}
           </h2>
-          <p className="max-w-[651px] font-sans text-[16px] leading-[26px] text-text-secondary">
-            {aboutIntro}
-          </p>
+          <div className="flex max-w-[651px] flex-col gap-4 font-sans text-[16px] leading-[26px] text-text-secondary">
+            {aboutIntroParagraphs.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+          <Image
+            src="/images/about/daniel-signature.svg"
+            alt=""
+            width={54}
+            height={49}
+          />
           <div className="flex items-center gap-7">
             <Button href="/contact">Contact Me</Button>
             <a
@@ -60,7 +76,14 @@ export default function AboutPage() {
       </Reveal>
 
       <section className="flex w-full flex-col gap-8 border-t border-border-section px-6 py-12 md:gap-10 md:px-14 md:py-16">
-        <h2 className="font-heading text-[28px] text-text-primary md:text-[32px]">My Toolkit</h2>
+        <div className="flex flex-col gap-3">
+          <h2 className="font-heading text-[28px] text-text-primary md:text-[32px]">
+            My Tool Kit
+          </h2>
+          <p className="max-w-[700px] font-sans text-[16px] leading-[26px] text-text-secondary">
+            {toolsIntro}
+          </p>
+        </div>
         <div className="flex flex-col gap-10">
           {toolCategories.map((cat) => (
             <Reveal
@@ -88,29 +111,30 @@ export default function AboutPage() {
           targets=":scope > div"
           stagger={0.06}
           y={14}
-          className="flex flex-col divide-y divide-border-section border-t border-border-section"
+          className="flex flex-col gap-6"
         >
           {experience.map((role) => (
-            <div
-              key={role.company}
-              className="flex flex-col gap-4 py-6 md:flex-row md:items-center md:gap-8"
-            >
-              <div className="flex h-[80px] w-full items-center justify-center bg-[#f7f7f7] md:h-[108px] md:w-[180px]">
+            <div key={role.company} className="flex flex-col gap-6 md:flex-row">
+              <div className="flex h-[108px] w-full items-center justify-center border border-[#e0e0e0] md:w-[260px]">
                 <Image
                   src={role.logo}
                   alt={role.company}
-                  width={120}
-                  height={32}
+                  width={150}
+                  height={38}
                   className="object-contain"
                 />
               </div>
-              <div className="flex flex-1 flex-col gap-2">
-                <div className="flex items-baseline justify-between">
+              <div className="flex flex-1 flex-col gap-3">
+                <div className="flex items-baseline justify-between gap-4">
                   <h3 className="font-heading text-[20px] text-text-primary">{role.title}</h3>
-                  <span className="font-sans text-[13px] text-text-muted">{role.date}</span>
+                  <span className="shrink-0 bg-brand-highlight px-2 py-[2px] font-sans text-[13px] text-text-secondary">
+                    {role.date}
+                  </span>
                 </div>
-                <p className="font-sans text-[14px] text-text-muted">{role.company}</p>
-                <p className="font-sans text-[14px] leading-[22px] text-text-secondary">
+                <p className="font-sans text-[13px] font-semibold text-text-primary">
+                  {role.company}
+                </p>
+                <p className="font-sans text-[13px] leading-[1.6] text-text-secondary">
                   {role.description}
                 </p>
               </div>
@@ -124,9 +148,14 @@ export default function AboutPage() {
         targets=":scope > *"
         className="flex w-full flex-col gap-8 border-t border-border-section px-6 py-12 md:gap-10 md:px-14 md:py-16"
       >
-        <h2 className="font-heading text-[28px] text-text-primary md:text-[32px]">
-          Common Questions
-        </h2>
+        <div className="flex flex-col gap-3">
+          <h2 className="font-heading text-[28px] text-text-primary md:text-[32px]">
+            Common Questions
+          </h2>
+          <p className="max-w-[700px] font-sans text-[16px] leading-[26px] text-text-secondary">
+            A few quick answers about the work, collaboration, and how to reach me.
+          </p>
+        </div>
         <FaqAccordion items={faq} />
       </Reveal>
 

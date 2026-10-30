@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const NAV_ITEMS = [
@@ -11,9 +12,10 @@ const NAV_ITEMS = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
-    <header className="w-full">
+    <header className="mx-auto w-full max-w-[1512px]">
       <div className="hidden w-full items-center gap-8 px-14 py-8 md:flex">
         <Link href="/" className="shrink-0 bg-brand-highlight px-0 py-0">
           <span className="font-mono text-[24px] leading-none text-text-primary">
@@ -22,15 +24,22 @@ export function Header() {
         </Link>
         <div className="h-px flex-1 bg-surface-default-base" />
         <nav className="flex shrink-0 items-center gap-8">
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="font-mono text-[16px] text-foreground-primary hover:opacity-70"
-            >
-              [ {item.label} ]
-            </Link>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const active = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={
+                  active
+                    ? "bg-surface-action px-2 py-1 font-mono text-[16px] text-foreground-on-color"
+                    : "font-mono text-[16px] text-foreground-primary hover:opacity-70"
+                }
+              >
+                [ {item.label} ]
+              </Link>
+            );
+          })}
         </nav>
       </div>
 

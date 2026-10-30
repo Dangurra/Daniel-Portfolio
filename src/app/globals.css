@@ -2,25 +2,58 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #111111;
+
+  /* Figma design tokens */
+  --color-text-primary: #111111;
+  --color-text-secondary: #666666;
+  --color-text-muted: #666666;
+  --color-text-supporting: #444444;
+  --color-text-light: #cccccc;
+  --color-text-quiet-alt: #666666;
+  --color-text-on-color: #ffffff;
+  --color-text-link: #242424;
+  --color-foreground-primary: #111111;
+  --color-foreground-supporting: #444444;
+  --color-foreground-on-color: #ffffff;
+  --color-foreground-link: #242424;
+  --color-brand-highlight: #e8ff00;
+  --color-surface-default-base: #d9d9d9;
+  --color-surface-action: #0b0dff;
+  --color-surface-contact: #083aff;
+  --color-border-default: #d9d9d9;
+  --color-border-section: #ebebeb;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-supporting: var(--color-text-supporting);
+  --color-text-light: var(--color-text-light);
+  --color-text-quiet-alt: var(--color-text-quiet-alt);
+  --color-text-on-color: var(--color-text-on-color);
+  --color-text-link: var(--color-text-link);
+  --color-foreground-primary: var(--color-foreground-primary);
+  --color-foreground-supporting: var(--color-foreground-supporting);
+  --color-foreground-on-color: var(--color-foreground-on-color);
+  --color-foreground-link: var(--color-foreground-link);
+  --color-brand-highlight: var(--color-brand-highlight);
+  --color-surface-default-base: var(--color-surface-default-base);
+  --color-surface-action: var(--color-surface-action);
+  --color-surface-contact: var(--color-surface-contact);
+  --color-border-default: var(--color-border-default);
+  --color-border-section: var(--color-border-section);
+
+  --font-sans: var(--font-manrope);
+  --font-heading: var(--font-lora);
+  --font-mono: var(--font-geist-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

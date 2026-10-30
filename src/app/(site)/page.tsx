@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { ContactEnding } from "@/components/ContactEnding";
+import { MarqueeRow } from "@/components/MarqueeRow";
 import { ProjectRow } from "@/components/ProjectCard";
 import { Reveal } from "@/components/Reveal";
 import { AvailabilityBadge } from "@/components/ui/Badge";
@@ -161,24 +162,15 @@ export default function Home() {
             A glimpse of my other work.
           </h2>
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-3">
           {OTHER_WORK_RAILS.map((rail, railIndex) => (
-            <Reveal
+            <MarqueeRow
               key={railIndex}
-              targets=":scope > div"
-              stagger={0.04}
-              y={16}
-              className="flex gap-1 overflow-x-auto px-6 md:px-14 [&::-webkit-scrollbar]:hidden"
-            >
-              {rail.images.map((src) => (
-                <div
-                  key={src}
-                  className={`relative aspect-[4/3] shrink-0 overflow-hidden ${rail.heightClass}`}
-                >
-                  <Image src={src} alt="" fill sizes="500px" className="object-cover" />
-                </div>
-              ))}
-            </Reveal>
+              images={rail.images}
+              heightClass={rail.heightClass}
+              direction={railIndex % 2 === 0 ? "left" : "right"}
+              speed={railIndex % 2 === 0 ? 36 : 44}
+            />
           ))}
         </div>
       </section>

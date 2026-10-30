@@ -5,8 +5,9 @@ import type { Metadata } from "next";
 import { ContactEnding } from "@/components/ContactEnding";
 import { OtherProjects } from "@/components/OtherProjects";
 import { Reveal } from "@/components/Reveal";
+import { RichText } from "@/components/RichText";
+import { ToolPill } from "@/components/ToolPill";
 import { Button, IconLink } from "@/components/ui/Button";
-import { Tag } from "@/components/ui/Badge";
 import { getOtherProjects, getProject, projects } from "@/lib/projects-data";
 
 export function generateStaticParams() {
@@ -95,9 +96,7 @@ export default async function ProjectPage({
   );
 }
 
-function StandardProjectBody({ project }: { project: ReturnType<typeof getProject> }) {
-  if (!project) return null;
-
+function StandardProjectBody({ project }: { project: NonNullable<ReturnType<typeof getProject>> }) {
   return (
     <>
       <Reveal as="section" y={24} className="w-full px-6 md:px-14">
@@ -110,34 +109,65 @@ function StandardProjectBody({ project }: { project: ReturnType<typeof getProjec
         y={18}
         className="flex w-full flex-col gap-10 border-t border-border-section px-6 py-12 md:flex-row md:gap-16 md:px-14 md:py-16"
       >
-        <div className="flex flex-1 flex-col gap-4">
-          <h2 className="font-heading text-[26px] text-text-primary md:text-[32px]">
-            About the project
-          </h2>
-          <p className="max-w-[760px] font-sans text-[16px] leading-[26px] text-text-secondary">
-            {project.body}
-          </p>
+        <div className="flex flex-1 flex-col gap-14">
+          {project.sections.map((section) => (
+            <div key={section.title} className="flex flex-col gap-4">
+              {section.title && (
+                <h2 className="font-heading text-[28px] text-text-primary md:text-[34px]">
+                  {section.title}
+                </h2>
+              )}
+              <div className="flex max-w-[760px] flex-col gap-4 font-sans text-[15px] leading-[1.55] text-text-secondary">
+                {section.paragraphs.map((p, i) => (
+                  <p key={i}>
+                    <RichText text={p} />
+                  </p>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
-        <div className="flex w-full flex-col gap-8 md:w-[398px]">
-          <div className="flex flex-col gap-3">
-            <p className="font-mono text-[12px] uppercase text-text-muted">Tools</p>
-            <div className="flex flex-wrap gap-2">
+        <div className="flex w-full shrink-0 flex-col gap-5 border-t border-border-section pt-8 md:w-[398px] md:border-t-0 md:border-l md:pl-[86px] md:pt-0">
+          <div className="flex flex-col gap-[6px]">
+            <div className="flex items-center justify-between">
+              <p className="font-sans text-[18px] font-semibold text-text-primary">Tools</p>
+              <p className="font-sans text-[10px] font-medium uppercase tracking-wide text-text-muted">
+                {project.tools.length} Tools
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-[10px]">
               {project.tools.map((tool) => (
-                <Tag key={tool} label={tool} />
+                <ToolPill key={tool.name} name={tool.name} icon={tool.icon} />
               ))}
             </div>
           </div>
-          <div className="flex flex-col gap-1">
-            <p className="font-mono text-[12px] uppercase text-text-muted">Company</p>
-            <p className="font-sans text-[15px] text-text-primary">{project.company}</p>
-          </div>
-          <div className="flex flex-col gap-1">
-            <p className="font-mono text-[12px] uppercase text-text-muted">Year</p>
-            <p className="font-sans text-[15px] text-text-primary">{project.period}</p>
-          </div>
+          {project.skills && (
+            <div className="flex flex-col gap-[6px]">
+              <p className="font-sans text-[11px] text-text-secondary">Skills</p>
+              <p className="font-sans text-[14px] text-text-primary">{project.skills}</p>
+            </div>
+          )}
+          {project.timeline && (
+            <div className="flex flex-col gap-[6px]">
+              <p className="font-sans text-[11px] text-text-secondary">Timeline</p>
+              <p className="font-sans text-[14px] text-text-primary">{project.timeline}</p>
+            </div>
+          )}
+          {project.role && (
+            <div className="flex flex-col gap-[6px]">
+              <p className="font-sans text-[11px] text-text-secondary">Role</p>
+              <p className="font-sans text-[14px] text-text-primary">{project.role}</p>
+            </div>
+          )}
+          {project.collaborators && (
+            <div className="flex flex-col gap-[6px]">
+              <p className="font-sans text-[11px] text-text-secondary">Collaborators</p>
+              <p className="font-sans text-[14px] text-text-primary">{project.collaborators}</p>
+            </div>
+          )}
           {project.liveUrl && (
-            <Button href={project.liveUrl} external>
-              {project.type === "game" ? "Play on itch.io" : "Visit live site"}
+            <Button href={project.liveUrl} external className="w-full">
+              {project.visitLabel}
             </Button>
           )}
         </div>
@@ -188,9 +218,7 @@ function GameShell({ project }: { project: NonNullable<ReturnType<typeof getProj
   );
 }
 
-function LockedProjectBody({ project }: { project: ReturnType<typeof getProject> }) {
-  if (!project) return null;
-
+function LockedProjectBody({ project }: { project: NonNullable<ReturnType<typeof getProject>> }) {
   return (
     <section className="w-full px-6 py-12 md:px-14 md:py-16">
       <div className="relative flex h-[420px] w-full flex-col items-center justify-center gap-4 overflow-hidden border border-border-section md:h-[620px]">
@@ -212,7 +240,7 @@ function LockedProjectBody({ project }: { project: ReturnType<typeof getProject>
             Private — under contract
           </p>
           <p className="max-w-[380px] font-sans text-[14px] text-text-secondary">
-            {project.body}
+            {project.sections[0]?.paragraphs[0]}
           </p>
         </div>
       </div>

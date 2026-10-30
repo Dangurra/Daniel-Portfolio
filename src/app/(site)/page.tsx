@@ -75,7 +75,7 @@ export default function Home() {
         y={20}
         className="flex w-full flex-col gap-6 px-6 pb-16 pt-12 md:gap-10 md:px-14 md:pb-24 md:pt-16"
       >
-        <div className="flex flex-col gap-5 md:gap-6">
+        <div className="flex flex-col items-start gap-5 md:gap-6">
           <AvailabilityBadge />
           <h1 className="max-w-[1187px] font-heading text-[36px] leading-[1.15] text-text-primary md:text-[58px]">
             {hero.tagline}

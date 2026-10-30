@@ -1,7 +1,13 @@
+"use client";
+
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 
 import { Icon, type IconName } from "./Icon";
+
+gsap.registerPlugin(useGSAP);
 
 type ButtonProps = {
   children: ReactNode;
@@ -20,6 +26,41 @@ const VARIANT_CLASSES: Record<NonNullable<ButtonProps["variant"]>, string> = {
   secondary: "bg-transparent text-foreground-primary border-border-default",
 };
 
+function useButtonMotion(iconRef: React.RefObject<HTMLSpanElement | null>) {
+  const rootRef = useRef<HTMLElement | null>(null);
+
+  useGSAP(() => {
+    const root = rootRef.current;
+    const icon = iconRef.current;
+    if (!root) return;
+
+    const enter = () => {
+      gsap.to(root, { scale: 1.035, duration: 0.3, ease: "power3.out" });
+      if (icon) gsap.to(icon, { x: 4, duration: 0.3, ease: "power3.out" });
+    };
+    const leave = () => {
+      gsap.to(root, { scale: 1, duration: 0.3, ease: "power3.out" });
+      if (icon) gsap.to(icon, { x: 0, duration: 0.3, ease: "power3.out" });
+    };
+    const down = () => gsap.to(root, { scale: 0.97, duration: 0.15, ease: "power2.out" });
+    const up = () => gsap.to(root, { scale: 1.035, duration: 0.2, ease: "back.out(2)" });
+
+    root.addEventListener("mouseenter", enter);
+    root.addEventListener("mouseleave", leave);
+    root.addEventListener("mousedown", down);
+    root.addEventListener("mouseup", up);
+
+    return () => {
+      root.removeEventListener("mouseenter", enter);
+      root.removeEventListener("mouseleave", leave);
+      root.removeEventListener("mousedown", down);
+      root.removeEventListener("mouseup", up);
+    };
+  });
+
+  return rootRef;
+}
+
 export function Button({
   children,
   href,
@@ -31,35 +72,55 @@ export function Button({
   className = "",
   external = false,
 }: ButtonProps) {
-  const classes = `inline-flex h-12 items-center justify-center gap-2 border px-4 py-[10px] font-mono text-[14px] transition-opacity hover:opacity-85 disabled:opacity-50 ${VARIANT_CLASSES[variant]} ${className}`;
+  const iconRef = useRef<HTMLSpanElement>(null);
+  const rootRef = useButtonMotion(iconRef);
+
+  const classes = `inline-flex h-12 items-center justify-center gap-2 border px-4 py-[10px] font-mono text-[14px] disabled:opacity-50 ${VARIANT_CLASSES[variant]} ${className}`;
 
   const content = (
     <>
       <span>{children}</span>
       {icon && (
-        <Icon
-          name={icon}
-          size={20}
-          tone={iconTone ?? (variant === "primary" ? "light" : "dark")}
-        />
+        <span ref={iconRef} className="inline-flex">
+          <Icon
+            name={icon}
+            size={20}
+            tone={iconTone ?? (variant === "primary" ? "light" : "dark")}
+          />
+        </span>
       )}
     </>
   );
 
   if (href) {
     return external ? (
-      <a href={href} target="_blank" rel="noreferrer" className={classes}>
+      <a
+        ref={rootRef as React.RefObject<HTMLAnchorElement>}
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+        className={classes}
+      >
         {content}
       </a>
     ) : (
-      <Link href={href} className={classes}>
+      <Link
+        ref={rootRef as React.RefObject<HTMLAnchorElement>}
+        href={href}
+        className={classes}
+      >
         {content}
       </Link>
     );
   }
 
   return (
-    <button type={type} disabled={disabled} className={classes}>
+    <button
+      ref={rootRef as React.RefObject<HTMLButtonElement>}
+      type={type}
+      disabled={disabled}
+      className={classes}
+    >
       {content}
     </button>
   );
@@ -76,16 +137,59 @@ export function IconLink({
   external?: boolean;
   className?: string;
 }) {
-  const classes = `inline-flex items-center gap-[6px] font-sans text-[14px] font-medium text-foreground-supporting hover:text-foreground-primary ${className}`;
+  const iconRef = useRef<HTMLSpanElement>(null);
+  const underlineRef = useRef<HTMLSpanElement>(null);
+  const rootRef = useRef<HTMLAnchorElement>(null);
+
+  useGSAP(() => {
+    const root = rootRef.current;
+    const icon = iconRef.current;
+    const underline = underlineRef.current;
+    if (!root) return;
+
+    gsap.set(underline, { scaleX: 0, transformOrigin: "left center" });
+
+    const enter = () => {
+      if (icon) gsap.to(icon, { x: 4, duration: 0.3, ease: "power3.out" });
+      if (underline) gsap.to(underline, { scaleX: 1, duration: 0.3, ease: "power3.out" });
+    };
+    const leave = () => {
+      if (icon) gsap.to(icon, { x: 0, duration: 0.3, ease: "power3.out" });
+      if (underline) gsap.to(underline, { scaleX: 0, duration: 0.25, ease: "power3.in" });
+    };
+
+    root.addEventListener("mouseenter", enter);
+    root.addEventListener("mouseleave", leave);
+    return () => {
+      root.removeEventListener("mouseenter", enter);
+      root.removeEventListener("mouseleave", leave);
+    };
+  });
+
+  const classes = `relative inline-flex w-fit items-center gap-[6px] font-sans text-[14px] font-medium text-foreground-supporting hover:text-foreground-primary ${className}`;
+
+  const content = (
+    <>
+      <span className="relative">
+        {children}
+        <span
+          ref={underlineRef}
+          className="absolute -bottom-[2px] left-0 h-px w-full bg-foreground-primary"
+        />
+      </span>
+      <span ref={iconRef} className="inline-flex">
+        <Icon name="trailing-arrow" size={16} />
+      </span>
+    </>
+  );
+
   return external ? (
-    <a href={href} target="_blank" rel="noreferrer" className={classes}>
-      <span>{children}</span>
-      <Icon name="trailing-arrow" size={16} />
+    <a ref={rootRef} href={href} target="_blank" rel="noreferrer" className={classes}>
+      {content}
     </a>
   ) : (
-    <Link href={href} className={classes}>
-      <span>{children}</span>
-      <Icon name="trailing-arrow" size={16} />
+    <Link ref={rootRef} href={href} className={classes}>
+      {content}
     </Link>
   );
 }

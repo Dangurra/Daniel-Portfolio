@@ -23,8 +23,8 @@ export function ToolPill({ name, icon }: { name: string; icon: string }) {
 export function ToolTile({ name, icon }: { name: string; icon: string }) {
   return (
     <div className="flex w-[96px] flex-col items-center gap-2">
-      <span className="flex size-14 items-center justify-center">
-        <Image src={iconSrc(icon)} alt="" width={56} height={56} className="object-contain" />
+      <span className="flex size-14 items-center justify-center rounded-xl border border-border-default bg-white p-3">
+        <Image src={iconSrc(icon)} alt="" width={32} height={32} className="object-contain" />
       </span>
       <span className="font-sans text-[12px] text-text-secondary">{name}</span>
     </div>

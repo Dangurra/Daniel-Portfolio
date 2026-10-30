@@ -19,7 +19,6 @@ export function MarqueeRow({
   speed?: number;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const tweenRef = useRef<gsap.core.Tween | null>(null);
 
   useGSAP(
     () => {
@@ -31,7 +30,7 @@ export function MarqueeRow({
       const distance = track.scrollWidth / 2;
       const duration = distance / speed;
 
-      tweenRef.current = gsap.fromTo(
+      gsap.fromTo(
         track,
         { x: direction === "left" ? 0 : -distance },
         {
@@ -48,11 +47,7 @@ export function MarqueeRow({
   const doubled = [...images, ...images];
 
   return (
-    <div
-      className="flex w-full gap-3 overflow-hidden"
-      onMouseEnter={() => tweenRef.current?.pause()}
-      onMouseLeave={() => tweenRef.current?.resume()}
-    >
+    <div className="flex w-full gap-3 overflow-hidden">
       <div ref={trackRef} className="flex gap-3 will-change-transform">
         {doubled.map((src, i) => (
           <div

@@ -114,12 +114,17 @@ export default function Home() {
         <h2 className="font-heading text-[28px] text-text-primary md:text-[40px]">
           Companies &amp; clients
         </h2>
-        <Reveal targets=":scope > div" stagger={0.04} y={14} className="flex flex-col">
-          <div className="grid grid-cols-2 border border-border-section md:grid-cols-3">
+        <Reveal
+          targets=":scope > div"
+          stagger={0.04}
+          y={14}
+          className="flex flex-col divide-y divide-border-section border border-border-section"
+        >
+          <div className="grid grid-cols-2 divide-x divide-border-section md:grid-cols-3">
             {COMPANIES_ROW_1.map((c) => (
               <div
                 key={c.name}
-                className="flex h-[90px] items-center justify-center border border-border-section md:h-[120px]"
+                className="flex h-[90px] items-center justify-center md:h-[120px]"
               >
                 {c.wordmark ? (
                   <Image src={c.wordmark} alt={c.name} width={144} height={30} className="object-contain" />
@@ -129,11 +134,11 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-2 border-x border-b border-border-section md:grid-cols-4">
+          <div className="grid grid-cols-2 divide-x divide-border-section md:grid-cols-4">
             {COMPANIES_ROW_2.map((c) => (
               <div
                 key={c.name}
-                className="flex h-[90px] items-center justify-center border border-border-section md:h-[120px]"
+                className="flex h-[90px] items-center justify-center md:h-[120px]"
               >
                 {c.wordmark ? (
                   <Image src={c.wordmark} alt={c.name} width={144} height={30} className="object-contain" />

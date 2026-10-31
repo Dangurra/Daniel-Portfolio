@@ -15,6 +15,8 @@ export type Tool = { name: string; icon: string };
 export type Project = {
   slug: string;
   title: string;
+  /** Overrides `company` as the H1 on the project page itself, when Figma's page title differs from the plain company name. */
+  pageHeading?: string;
   company: string;
   period: string;
   description: string;
@@ -294,7 +296,7 @@ export const projects: Project[] = [
     visitLabel: "Visit live site",
     gallery: [
       {
-        title: "Website",
+        title: "Website Design",
         images: [1, 2].map((n) => ({
           laptop: img(`tex-software/laptop/tex_web_${n}-laptop.webp`),
           mobile: img(`tex-software/mobile/tex_web_${n}-mobile.webp`),
@@ -310,7 +312,7 @@ export const projects: Project[] = [
         })),
       },
       {
-        title: "Persona",
+        title: "Tex: Personas",
         images: [
           {
             laptop: img("tex-software/laptop/tex_persona-laptop.webp"),
@@ -388,7 +390,7 @@ export const projects: Project[] = [
     visitLabel: "Visit live site",
     gallery: [
       {
-        title: "Website",
+        title: "Website Design",
         images: [
           {
             laptop: img("albacore/laptop/albacore_web_1-laptop.webp"),
@@ -408,7 +410,7 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: "Brand collateral",
+        title: "Albacore Marketing",
         images: [
           {
             laptop: img("albacore/laptop/albacore_stickers-laptop.webp"),
@@ -432,6 +434,7 @@ export const projects: Project[] = [
   {
     slug: "braze",
     title: "A 2D platformer about creative block",
+    pageHeading: "Braze - Unity Game",
     company: "Braze",
     period: "Personal project",
     description: "A 2D platformer about creative block, built in Unity",
@@ -472,7 +475,7 @@ export const projects: Project[] = [
     visitLabel: "Visit itch.io site",
     gallery: [
       {
-        title: "Environments",
+        title: "Level Design",
         images: [
           { key: "dusty_field", alt: "The Dusty Field stage" },
           { key: "dank_cave", alt: "The Dank Cave stage" },
@@ -551,4 +554,13 @@ export function getHomeOrderedProjects() {
   return HOME_ORDER.map((slug) => getProject(slug)).filter(
     (p): p is Project => p !== undefined
   );
+}
+
+export function getAdjacentProjects(slug: string) {
+  const ordered = getHomeOrderedProjects();
+  const index = ordered.findIndex((p) => p.slug === slug);
+  if (index === -1) return { previous: null, next: null };
+  const previous = ordered[(index - 1 + ordered.length) % ordered.length];
+  const next = ordered[(index + 1) % ordered.length];
+  return { previous, next };
 }

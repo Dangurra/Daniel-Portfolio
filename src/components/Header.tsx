@@ -46,15 +46,11 @@ export function Header() {
   }, []);
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-50 w-full">
-      <div
-        className="pointer-events-none absolute inset-0 bg-white"
-        style={{
-          maskImage: "linear-gradient(to bottom, black 0%, black 55%, transparent 100%)",
-          WebkitMaskImage:
-            "linear-gradient(to bottom, black 0%, black 55%, transparent 100%)",
-        }}
-      />
+    <header
+      ref={headerRef}
+      className="sticky top-0 z-50 w-full border-b border-border-section"
+    >
+      <div className="pointer-events-none absolute inset-0 bg-white" />
       <div className="relative mx-auto w-full max-w-[1512px]">
         <div className="hidden w-full items-center gap-8 px-14 py-8 md:flex">
           <Link href="/" className="shrink-0 bg-brand-highlight px-0 py-0">

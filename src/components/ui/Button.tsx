@@ -3,7 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Link from "next/link";
-import { useRef, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 
 import { Icon, type IconName } from "./Icon";
 
@@ -26,8 +26,23 @@ const VARIANT_CLASSES: Record<NonNullable<ButtonProps["variant"]>, string> = {
   secondary: "bg-transparent text-foreground-primary border-border-default",
 };
 
-function useButtonMotion(iconRef: React.RefObject<HTMLSpanElement | null>) {
+export function Button({
+  children,
+  href,
+  type = "button",
+  variant = "primary",
+  icon = "trailing-arrow",
+  iconTone,
+  disabled = false,
+  className = "",
+  external = false,
+}: ButtonProps) {
+  const iconRef = useRef<HTMLSpanElement>(null);
   const rootRef = useRef<HTMLElement | null>(null);
+  const [hoverTone, setHoverTone] = useState<"dark" | "light" | null>(null);
+
+  const isPrimary = variant === "primary";
+  const resolvedTone = hoverTone ?? iconTone ?? (isPrimary ? "light" : "dark");
 
   useGSAP(() => {
     const root = rootRef.current;
@@ -37,10 +52,28 @@ function useButtonMotion(iconRef: React.RefObject<HTMLSpanElement | null>) {
     const enter = () => {
       gsap.to(root, { scale: 1.035, duration: 0.3, ease: "power3.out" });
       if (icon) gsap.to(icon, { x: 4, duration: 0.3, ease: "power3.out" });
+      if (isPrimary) {
+        gsap.to(root, {
+          backgroundColor: "#ffffff",
+          color: "#111111",
+          duration: 0.25,
+          ease: "power2.out",
+        });
+        setHoverTone("dark");
+      }
     };
     const leave = () => {
       gsap.to(root, { scale: 1, duration: 0.3, ease: "power3.out" });
       if (icon) gsap.to(icon, { x: 0, duration: 0.3, ease: "power3.out" });
+      if (isPrimary) {
+        gsap.to(root, {
+          backgroundColor: "#0b0dff",
+          color: "#ffffff",
+          duration: 0.25,
+          ease: "power2.out",
+        });
+        setHoverTone("light");
+      }
     };
     const down = () => gsap.to(root, { scale: 0.97, duration: 0.15, ease: "power2.out" });
     const up = () => gsap.to(root, { scale: 1.035, duration: 0.2, ease: "back.out(2)" });
@@ -56,37 +89,16 @@ function useButtonMotion(iconRef: React.RefObject<HTMLSpanElement | null>) {
       root.removeEventListener("mousedown", down);
       root.removeEventListener("mouseup", up);
     };
-  });
+  }, [isPrimary]);
 
-  return rootRef;
-}
-
-export function Button({
-  children,
-  href,
-  type = "button",
-  variant = "primary",
-  icon = "trailing-arrow",
-  iconTone,
-  disabled = false,
-  className = "",
-  external = false,
-}: ButtonProps) {
-  const iconRef = useRef<HTMLSpanElement>(null);
-  const rootRef = useButtonMotion(iconRef);
-
-  const classes = `inline-flex h-12 items-center justify-center gap-2 border px-4 py-[10px] font-mono text-[14px] disabled:opacity-50 ${VARIANT_CLASSES[variant]} ${className}`;
+  const classes = `inline-flex h-10 items-center justify-center gap-2 border px-4 py-2 font-mono text-[14px] disabled:opacity-50 ${VARIANT_CLASSES[variant]} ${className}`;
 
   const content = (
     <>
       <span>{children}</span>
       {icon && (
         <span ref={iconRef} className="inline-flex">
-          <Icon
-            name={icon}
-            size={20}
-            tone={iconTone ?? (variant === "primary" ? "light" : "dark")}
-          />
+          <Icon name={icon} size={18} tone={resolvedTone} />
         </span>
       )}
     </>

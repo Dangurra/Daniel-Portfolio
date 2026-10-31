@@ -3,6 +3,7 @@ import Image from "next/image";
 const ICONS = {
   "trailing-arrow": "/images/icons/ui/trailing-icon.svg",
   "arrow-right": "/images/icons/ui/arrow-right.svg",
+  "arrow-left": "/images/icons/ui/leading-arrow-left.svg",
   private: "/images/icons/ui/private-icon.svg",
   "status-dot": "/images/icons/ui/status-dot.svg",
   download: "/images/icons/ui/download-icon.svg",

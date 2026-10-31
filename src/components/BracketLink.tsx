@@ -50,7 +50,7 @@ export function BracketLink({
       ref={rootRef}
       href={href}
       onClick={onClick}
-      className={`inline-block px-3 py-[6px] font-mono text-[13px] ${
+      className={`inline-block px-[6px] py-[2px] font-mono text-[13px] ${
         active
           ? "bg-surface-action text-foreground-on-color"
           : "text-foreground-primary"

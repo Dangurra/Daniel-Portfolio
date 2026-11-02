@@ -60,12 +60,13 @@ export function Header() {
           </Link>
           <div className="h-px flex-1 bg-surface-default-base" />
           <nav className="flex shrink-0 items-center gap-8">
-            {NAV_ITEMS.map((item) => (
+            {NAV_ITEMS.map((item, i) => (
               <BracketLink
                 key={item.href}
                 href={item.href}
                 label={item.label}
                 active={pathname === item.href}
+                revealDelay={i * 0.08}
               />
             ))}
           </nav>

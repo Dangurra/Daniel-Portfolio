@@ -13,12 +13,14 @@ export function BracketLink({
   active = false,
   onClick,
   className = "",
+  revealDelay = 0,
 }: {
   href: string;
   label: string;
   active?: boolean;
   onClick?: () => void;
   className?: string;
+  revealDelay?: number;
 }) {
   const rootRef = useRef<HTMLAnchorElement>(null);
   const leftRef = useRef<HTMLSpanElement>(null);
@@ -26,7 +28,21 @@ export function BracketLink({
 
   useGSAP(() => {
     const root = rootRef.current;
-    if (!root || active) return;
+    if (!root) return;
+
+    gsap.fromTo(
+      root,
+      { opacity: 0, filter: "blur(10px)" },
+      {
+        opacity: 1,
+        filter: "blur(0px)",
+        duration: 0.7,
+        delay: revealDelay,
+        ease: "power2.out",
+      }
+    );
+
+    if (active) return;
 
     const enter = () => {
       gsap.to(leftRef.current, { x: -3, duration: 0.25, ease: "power3.out" });

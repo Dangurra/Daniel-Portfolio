@@ -115,12 +115,12 @@ export default function AboutPage() {
         >
           {experience.map((role) => (
             <div key={role.company} className="flex flex-col gap-6 md:flex-row">
-              <div className="flex h-[150px] w-full items-center justify-center border border-[#e0e0e0] md:w-[320px]">
+              <div className="flex h-[131px] w-full items-center justify-center border border-[#e0e0e0] md:w-[520px]">
                 <Image
                   src={role.logo}
                   alt={role.company}
-                  width={190}
-                  height={48}
+                  width={220}
+                  height={56}
                   className="object-contain"
                 />
               </div>

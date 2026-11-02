@@ -252,6 +252,7 @@ function LockedProjectBody({ project }: { project: NonNullable<ReturnType<typeof
             alt=""
             width={24}
             height={24}
+            className="brightness-0"
           />
           <p className="font-sans text-[16px] font-medium text-text-primary">
             Private content

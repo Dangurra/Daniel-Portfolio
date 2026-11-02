@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Lora, Manrope } from "next/font/google";
+import { Geist, Lora, Manrope } from "next/font/google";
 import "./globals.css";
 
 import { siteConfig } from "@/lib/site";
@@ -16,7 +16,7 @@ const manrope = Manrope({
 
 // Stand-in for Figma's "Geist Pixel" (not a publicly distributed font) —
 // swap in the real font files under public/fonts if you have them.
-const geistMono = Geist_Mono({
+const geistMono = Geist({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });

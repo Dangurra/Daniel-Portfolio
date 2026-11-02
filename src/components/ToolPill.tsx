@@ -11,11 +11,11 @@ function iconSrc(icon: string) {
 
 export function ToolPill({ name, icon }: { name: string; icon: string }) {
   return (
-    <div className="inline-flex items-center gap-2 rounded-full border border-border-default px-2 py-2 pr-3">
-      <span className="flex size-6 shrink-0 items-center justify-center overflow-hidden rounded-full">
-        <Image src={iconSrc(icon)} alt="" width={20} height={20} className="object-contain" />
+    <div className="inline-flex h-9 items-center gap-[6px] rounded-full border border-[#dddddd] bg-white pl-2 pr-3">
+      <span className="flex size-5 shrink-0 items-center justify-center overflow-hidden rounded-[4px] bg-[#f2f2f2]">
+        <Image src={iconSrc(icon)} alt="" width={14} height={14} className="object-contain" />
       </span>
-      <span className="font-sans text-[14px] text-text-supporting">{name}</span>
+      <span className="font-sans text-[14px] font-semibold text-text-primary">{name}</span>
     </div>
   );
 }

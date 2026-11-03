@@ -23,6 +23,8 @@
   --color-surface-contact: #083aff;
   --color-border-default: #d9d9d9;
   --color-border-section: #ebebeb;
+
+  --font-geist-pixel: "Geist Pixel Variable", monospace;
 }
 
 @theme inline {
@@ -50,10 +52,16 @@
 
   --font-sans: var(--font-manrope);
   --font-heading: var(--font-lora);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-geist-pixel);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/* Geist Pixel's "ELSH" axis switches its glyph shape; Figma's default
+   mono/UI text style is the pixelated "Square" instance (ELSH 1). */
+.font-mono {
+  font-variation-settings: "ELSH" 1;
 }

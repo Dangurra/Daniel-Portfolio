@@ -7,6 +7,7 @@ const ICONS = {
   private: "/images/icons/ui/private-icon.svg",
   "status-dot": "/images/icons/ui/status-dot.svg",
   download: "/images/icons/ui/download-icon.svg",
+  asterisk: "/images/icons/ui/asterisk.svg",
 } as const;
 
 export type IconName = keyof typeof ICONS;

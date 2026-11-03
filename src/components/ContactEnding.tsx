@@ -3,7 +3,7 @@ import { Button } from "./ui/Button";
 
 export function ContactEnding() {
   return (
-    <section className="flex w-full flex-col gap-10 bg-surface-contact px-6 py-14 md:gap-10 md:px-14 md:py-[88px]">
+    <section className="relative left-1/2 right-1/2 -mx-[50vw] flex w-screen flex-col gap-10 bg-surface-contact px-6 py-14 md:gap-10 md:px-14 md:py-[88px]">
       <div className="h-px w-full bg-surface-default-base" />
       <Reveal
         targets=":scope > *"
@@ -24,6 +24,7 @@ export function ContactEnding() {
         <Button
           href="/contact"
           variant="secondary"
+          icon="asterisk"
           iconTone="light"
           className="shrink-0 !text-text-on-color border-border-default"
         >

@@ -89,7 +89,7 @@ export default function Home() {
           </p>
         </div>
         <div className="flex items-center gap-7">
-          <Button href="/contact">Contact Me</Button>
+          <Button href="/contact" icon="asterisk">Contact Me</Button>
           <IconLink href="/about">View About Me</IconLink>
         </div>
       </Reveal>
@@ -167,7 +167,7 @@ export default function Home() {
             A glimpse of my other work.
           </h2>
         </div>
-        <div className="flex flex-col gap-3">
+        <div className="relative left-1/2 right-1/2 -mx-[50vw] flex w-screen flex-col gap-3">
           {OTHER_WORK_RAILS.map((rail, railIndex) => (
             <MarqueeRow
               key={railIndex}

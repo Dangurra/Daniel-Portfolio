@@ -19,6 +19,7 @@ export type ProjectSummary = {
   description: string;
   tags: string[];
   banner: string;
+  bannerAspect: number;
   access: "public" | "private";
 };
 
@@ -69,18 +70,21 @@ export function ProjectRow({ project }: { project: ProjectSummary }) {
       href={`/projects/${project.slug}`}
       className="flex w-full flex-col overflow-hidden border border-border-section md:flex-row"
     >
-      <div className="relative h-[220px] w-full shrink-0 overflow-hidden bg-[#111] md:h-[340px] md:w-[600px]">
+      <div
+        className="relative w-full shrink-0 overflow-hidden bg-[#111] md:w-[840px]"
+        style={{ aspectRatio: project.bannerAspect }}
+      >
         <div ref={imageRef} className="absolute inset-0">
           <Image
             src={project.banner}
             alt={`${project.company} banner`}
             fill
-            sizes="(max-width: 768px) 100vw, 600px"
+            sizes="(max-width: 768px) 100vw, 840px"
             className="object-cover"
           />
         </div>
       </div>
-      <div className="flex flex-1 flex-col gap-4 p-6 md:p-8">
+      <div className="flex w-full flex-col gap-5 p-6 md:w-[560px] md:shrink-0 md:basis-auto md:p-12">
         <div className="flex items-center gap-2 font-mono text-[11px] text-text-muted">
           <span>{project.company}</span>
           <span className="text-text-light">·</span>
@@ -131,7 +135,10 @@ export function ProjectCarouselCard({ project }: { project: ProjectSummary }) {
       href={`/projects/${project.slug}`}
       className="flex w-[300px] shrink-0 flex-col gap-4 md:w-[420px]"
     >
-      <div className="relative h-[200px] w-full overflow-hidden bg-[#111] md:h-[280px]">
+      <div
+        className="relative w-full overflow-hidden bg-[#111]"
+        style={{ aspectRatio: project.bannerAspect }}
+      >
         <div ref={imageRef} className="absolute inset-0">
           <Image
             src={project.banner}

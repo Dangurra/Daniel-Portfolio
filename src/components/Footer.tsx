@@ -36,7 +36,7 @@ export function Footer() {
             className="flex items-center gap-[6px] font-sans text-[14px] text-foreground-link"
           >
             Download résumé
-            <Icon name="trailing-arrow" size={16} />
+            <Icon name="download" size={16} />
           </a>
         </div>
 

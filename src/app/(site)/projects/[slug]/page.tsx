@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
 import { ContactEnding } from "@/components/ContactEnding";
+import { GameEmbed } from "@/components/GameEmbed";
 import { OtherProjects } from "@/components/OtherProjects";
 import { ProjectNav } from "@/components/ProjectNav";
 import { Reveal } from "@/components/Reveal";
@@ -213,23 +214,13 @@ function GameShell({ project }: { project: NonNullable<ReturnType<typeof getProj
       <h2 className="font-heading text-[26px] text-text-primary md:text-[32px]">
         Playable Game (On PC/MAC)
       </h2>
-      <div className="relative flex h-[320px] w-full items-center justify-center overflow-hidden bg-[#151515] md:h-[480px]">
-        <Image
-          src={project.lander.laptop}
-          alt="Braze game artwork"
-          fill
-          className="object-cover opacity-70"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/60" />
-        <a
-          href={project.liveUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="relative z-10 inline-flex h-12 items-center justify-center bg-surface-action px-6 font-mono text-[14px] text-foreground-on-color hover:opacity-85"
-        >
-          Play Braze on itch.io
-        </a>
-      </div>
+      <GameEmbed
+        embedUrl="https://dangurra.itch.io/braze/embed"
+        posterSrc={project.lander.laptop}
+        posterAlt="Braze game artwork"
+        width={960}
+        height={600}
+      />
     </section>
   );
 }

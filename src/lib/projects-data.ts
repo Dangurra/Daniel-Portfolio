@@ -22,6 +22,8 @@ export type Project = {
   description: string;
   tags: string[];
   banner: string;
+  /** Banner's native width/height ratio, so cards lock to it instead of cropping. */
+  bannerAspect: number;
   access: "public" | "private";
   type: ProjectType;
   lander: { laptop: string; mobile: string };
@@ -77,6 +79,7 @@ export const projects: Project[] = [
       "Product designs for full-stack platforms with custom hardware and software for enterprise-grade AI.",
     tags: ["Web design", "Development", "Design systems"],
     banner: img("samba-nova/banner.webp"),
+    bannerAspect: 1800 / 985,
     access: "public",
     type: "standard",
     lander: {
@@ -151,6 +154,7 @@ export const projects: Project[] = [
       "Website design and development for an aerospace company building unmanned aircraft for commercial and defense logistics.",
     tags: ["Web design", "Development", "Design systems"],
     banner: img("poseidon/banner.webp"),
+    bannerAspect: 1800 / 985,
     access: "public",
     type: "standard",
     lander: {
@@ -238,6 +242,7 @@ export const projects: Project[] = [
       "Website design and development for a software company building market-intelligence tools for the heavy-equipment industry.",
     tags: ["Web design", "Development"],
     banner: img("tex-software/banner.webp"),
+    bannerAspect: 1800 / 985,
     access: "public",
     type: "standard",
     lander: {
@@ -332,6 +337,7 @@ export const projects: Project[] = [
       "Website design and development for a YC-backed defense startup building long-range autonomous submarines.",
     tags: ["Web design", "UX/UI", "Design systems", "Marketing"],
     banner: img("albacore/banner.webp"),
+    bannerAspect: 1800 / 985,
     access: "public",
     type: "standard",
     lander: {
@@ -440,6 +446,7 @@ export const projects: Project[] = [
     description: "A 2D platformer about creative block, built in Unity",
     tags: ["Game design", "Unity", "Development"],
     banner: img("braze/banner.webp"),
+    bannerAspect: 1800 / 985,
     access: "public",
     type: "game",
     lander: {
@@ -508,6 +515,7 @@ export const projects: Project[] = [
       "Design Studio working with clients across the medical technology and financial services industries.",
     tags: ["Product design", "Accessibility"],
     banner: img("plaid-again/banner.webp"),
+    bannerAspect: 1800 / 900,
     access: "private",
     type: "locked",
     lander: {

@@ -51,10 +51,13 @@ export function Header() {
       className="sticky top-0 z-50 w-full border-b border-border-section"
     >
       <div className="pointer-events-none absolute inset-0 bg-white" />
-      <div className="relative mx-auto w-full max-w-[1512px]">
+      <div className="relative w-full">
         <div className="hidden w-full items-center gap-8 px-14 py-8 md:flex">
           <Link href="/" className="shrink-0 bg-brand-highlight px-0 py-0">
-            <span className="font-mono text-[24px] leading-none text-text-primary">
+            <span
+              className="font-mono text-[24px] text-text-primary"
+              style={{ fontVariationSettings: '"ELSH" 0', lineHeight: 0.75 }}
+            >
               Daniel Gur
             </span>
           </Link>
@@ -74,7 +77,10 @@ export function Header() {
 
         <div className="flex w-full items-center justify-between px-4 py-[18px] md:hidden">
           <Link href="/" className="bg-brand-highlight">
-            <span className="font-mono text-[18px] leading-none text-text-primary">
+            <span
+              className="font-mono text-[18px] text-text-primary"
+              style={{ fontVariationSettings: '"ELSH" 0', lineHeight: 0.75 }}
+            >
               Daniel Gur
             </span>
           </Link>

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import { Icon } from "./ui/Icon";
+
 type Status = "idle" | "sending" | "sent" | "error";
 
 const fieldClasses =
@@ -63,9 +65,10 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="inline-flex h-12 w-fit items-center justify-center bg-surface-action px-6 font-mono text-[14px] text-foreground-on-color transition-opacity hover:opacity-85 disabled:opacity-50"
+        className="inline-flex h-12 w-fit items-center justify-center gap-2 border border-border-default bg-surface-action px-4 py-[10px] font-mono text-[14px] text-foreground-on-color transition-opacity hover:opacity-85 disabled:opacity-50"
       >
-        {status === "sending" ? "[ Sending... ]" : "[ Send message ]"}
+        <span>{status === "sending" ? "[ Sending... ]" : "[ Send message ]"}</span>
+        <Icon name="asterisk" size={18} tone="light" />
       </button>
       {status === "sent" && (
         <p className="font-sans text-[14px] text-green-600">

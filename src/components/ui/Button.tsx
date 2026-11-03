@@ -91,7 +91,7 @@ export function Button({
     };
   }, [isPrimary]);
 
-  const classes = `inline-flex h-10 items-center justify-center gap-2 border px-4 py-2 font-mono text-[14px] disabled:opacity-50 ${VARIANT_CLASSES[variant]} ${className}`;
+  const classes = `inline-flex h-12 items-center justify-center gap-2 border px-4 py-[10px] font-mono text-[14px] disabled:opacity-50 ${VARIANT_CLASSES[variant]} ${className}`;
 
   const content = (
     <>

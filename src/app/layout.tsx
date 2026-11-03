@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Lora, Manrope } from "next/font/google";
+import { Lora, Manrope } from "next/font/google";
+import "@fontsource-variable/geist-pixel";
 import "./globals.css";
 
 import { siteConfig } from "@/lib/site";
@@ -14,23 +15,24 @@ const manrope = Manrope({
   subsets: ["latin"],
 });
 
-// Stand-in for Figma's "Geist Pixel" (not a publicly distributed font) —
-// swap in the real font files under public/fonts if you have them.
-const geistMono = Geist({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
   title: siteConfig.name,
   description: `Portfolio of ${siteConfig.name} — product designer working across interfaces, websites, 3D, and code.`,
+  icons: {
+    icon: [
+      { url: "/favicons/favicon-16x16.svg", sizes: "16x16", type: "image/svg+xml" },
+      { url: "/favicons/favicon-32x32.svg", sizes: "32x32", type: "image/svg+xml" },
+      { url: "/favicons/favicon-48x48.svg", sizes: "48x48", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${lora.variable} ${manrope.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${lora.variable} ${manrope.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white font-sans text-text-primary">
         {children}

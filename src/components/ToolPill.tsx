@@ -9,7 +9,26 @@ function iconSrc(icon: string) {
   return fs.existsSync(file) ? `/images/icons/tools/${icon}.png` : "/images/icons/tools/tool-icon.png";
 }
 
-export function ToolPill({ name, icon }: { name: string; icon: string }) {
+export function ToolPill({
+  name,
+  icon,
+  size = "sm",
+}: {
+  name: string;
+  icon: string;
+  size?: "sm" | "lg";
+}) {
+  if (size === "lg") {
+    return (
+      <div className="inline-flex h-12 items-center gap-[10px] rounded-full border border-[#dddddd] bg-white py-1 pl-1 pr-4">
+        <span className="flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#f2f2f2]">
+          <Image src={iconSrc(icon)} alt="" width={22} height={22} className="object-contain" />
+        </span>
+        <span className="font-sans text-[16px] font-semibold text-text-primary">{name}</span>
+      </div>
+    );
+  }
+
   return (
     <div className="inline-flex h-9 items-center gap-[6px] rounded-full border border-[#dddddd] bg-white pl-2 pr-3">
       <span className="flex size-5 shrink-0 items-center justify-center overflow-hidden rounded-[4px] bg-[#f2f2f2]">

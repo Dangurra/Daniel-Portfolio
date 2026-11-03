@@ -5,7 +5,8 @@ import { ContactEnding } from "@/components/ContactEnding";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { Reveal } from "@/components/Reveal";
 import { Button, IconLink } from "@/components/ui/Button";
-import { ToolTile } from "@/components/ToolPill";
+import { Icon } from "@/components/ui/Icon";
+import { ToolPill, ToolTile } from "@/components/ToolPill";
 import {
   aboutHeadline,
   aboutIntroParagraphs,
@@ -55,12 +56,13 @@ export default function AboutPage() {
             height={49}
           />
           <div className="flex items-center gap-7">
-            <Button href="/contact">Contact Me</Button>
+            <Button href="/contact" icon="asterisk">Contact Me</Button>
             <a
               href="/resume.pdf"
-              className="font-sans text-[14px] font-medium text-foreground-supporting"
+              className="flex items-center gap-[6px] font-sans text-[14px] font-medium text-foreground-supporting"
             >
               Download résumé
+              <Icon name="download" size={16} />
             </a>
           </div>
         </div>
@@ -93,10 +95,20 @@ export default function AboutPage() {
               y={10}
               className="flex flex-col gap-4"
             >
-              <p className="font-mono text-[12px] uppercase text-text-muted">{cat.category}</p>
-              <div className="flex flex-wrap gap-x-6 gap-y-6 md:gap-x-9">
+              <div className="flex items-center gap-4">
+                <p className="shrink-0 font-mono text-[12px] text-text-muted">
+                  [ {cat.category} ]
+                </p>
+                <div className="h-px flex-1 bg-border-section" />
+              </div>
+              <div className="hidden flex-wrap gap-x-6 gap-y-6 md:flex md:gap-x-9">
                 {cat.tools.map((tool) => (
                   <ToolTile key={tool.name} name={tool.name} icon={tool.icon} />
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-3 md:hidden">
+                {cat.tools.map((tool) => (
+                  <ToolPill key={tool.name} name={tool.name} icon={tool.icon} size="lg" />
                 ))}
               </div>
             </Reveal>

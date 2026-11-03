@@ -3,12 +3,12 @@ import { Button } from "./ui/Button";
 
 export function ContactEnding() {
   return (
-    <section className="relative left-1/2 right-1/2 -mx-[50vw] flex w-screen flex-col gap-10 bg-surface-contact px-6 py-14 md:gap-10 md:px-14 md:py-[88px]">
+    <section className="relative left-1/2 right-1/2 -mx-[50vw] flex w-screen flex-col gap-10 bg-surface-contact px-6 py-16 md:gap-10 md:px-14 md:py-[104px]">
       <div className="h-px w-full bg-surface-default-base" />
       <Reveal
         targets=":scope > *"
         y={16}
-        className="flex flex-col items-start gap-8 md:flex-row md:items-center md:gap-16"
+        className="flex flex-col items-start gap-8 md:flex-row md:items-start md:gap-16"
       >
         <p className="font-mono text-[13px] text-text-on-color">
           [ Start a conversation ]
@@ -26,7 +26,7 @@ export function ContactEnding() {
           variant="secondary"
           icon="asterisk"
           iconTone="light"
-          className="shrink-0 !text-text-on-color border-border-default"
+          className="shrink-0 border-white !text-text-on-color transition-colors duration-200 hover:bg-white hover:!text-surface-action"
         >
           Contact Me
         </Button>

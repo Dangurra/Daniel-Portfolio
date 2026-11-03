@@ -36,7 +36,6 @@ export const toolCategories: { category: string; tools: { name: string; icon: st
       { name: "Gemini", icon: "google-gemini" },
       { name: "Codex", icon: "codex" },
       { name: "GSAP", icon: "gsap" },
-      { name: "WebGL", icon: "webgl" },
     ],
   },
   {

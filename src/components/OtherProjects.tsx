@@ -52,30 +52,33 @@ export function OtherProjects({ projects }: { projects: Project[] }) {
   }
 
   return (
-    <section className="flex w-full flex-col gap-6 border-t border-border-section px-6 py-12 md:gap-8 md:px-14 md:py-16">
+    <section className="flex w-full flex-col gap-6 px-6 pb-14 pt-12 md:gap-8 md:px-14 md:pb-14 md:pt-[88px]">
       <div className="flex flex-col gap-1">
         <h2 className="font-heading text-[28px] text-text-primary md:text-[32px]">
           Other projects
         </h2>
-        <p className="font-sans text-[14px] text-text-muted">More from the archive</p>
+        <p className="font-sans text-[14px] text-text-muted">
+          Explore more work across product design, illustration, and visual systems.
+        </p>
       </div>
       <div
         ref={trackRef}
-        className="flex gap-6 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden"
+        className="relative left-1/2 right-1/2 -mx-[50vw] flex w-screen gap-6 overflow-x-auto pb-2 pl-6 [&::-webkit-scrollbar]:hidden md:pl-14"
       >
         {projects.map((p) => (
           <ProjectCarouselCard key={p.slug} project={p} />
         ))}
+        <div className="w-6 shrink-0 md:w-14" aria-hidden="true" />
       </div>
       {pageCount > 1 && (
-        <div className="flex items-center justify-between pt-2">
+        <div className="flex w-full items-center justify-between">
           <button
             type="button"
             onClick={() => go(-1)}
             disabled={page === 0}
-            className="flex items-center gap-2 font-sans text-[14px] text-text-primary disabled:opacity-30"
+            className="flex items-center gap-[6px] -mx-2 -my-1 px-2 py-1 font-mono text-[14px] text-foreground-primary transition-colors duration-200 hover:bg-[#f5f5f5] hover:text-surface-action disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-foreground-primary"
           >
-            <Icon name="arrow-right" size={14} className="rotate-180" />
+            <Icon name="arrow-left" size={16} />
             Previous
           </button>
           <p className="font-mono text-[12px] text-text-muted">
@@ -85,10 +88,10 @@ export function OtherProjects({ projects }: { projects: Project[] }) {
             type="button"
             onClick={() => go(1)}
             disabled={page === pageCount - 1}
-            className="flex items-center gap-2 font-sans text-[14px] text-text-primary disabled:opacity-30"
+            className="flex items-center gap-[6px] -mx-2 -my-1 px-2 py-1 font-mono text-[14px] text-foreground-primary transition-colors duration-200 hover:bg-[#f5f5f5] hover:text-surface-action disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-foreground-primary"
           >
             Next
-            <Icon name="arrow-right" size={14} />
+            <Icon name="arrow-right" size={16} />
           </button>
         </div>
       )}

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
 import { ContactEnding } from "@/components/ContactEnding";
+import { FadeImage } from "@/components/FadeImage";
 import { GameEmbed } from "@/components/GameEmbed";
 import { OtherProjects } from "@/components/OtherProjects";
 import { ProjectNav } from "@/components/ProjectNav";
@@ -39,14 +40,14 @@ function ResponsiveImage({
 }) {
   return (
     <div>
-      <Image
+      <FadeImage
         src={laptop}
         alt={alt}
         width={1400}
         height={800}
         className={`hidden w-full md:block ${className}`}
       />
-      <Image
+      <FadeImage
         src={mobile}
         alt={alt}
         width={700}
@@ -113,7 +114,7 @@ export default async function ProjectPage({
 function StandardProjectBody({ project }: { project: NonNullable<ReturnType<typeof getProject>> }) {
   return (
     <>
-      <Reveal as="section" y={24} className="w-full px-6 md:px-14">
+      <Reveal as="section" y={0} className="w-full px-6 md:px-14">
         <ResponsiveImage {...project.lander} alt={`${project.title} hero`} />
       </Reveal>
 
@@ -197,7 +198,7 @@ function StandardProjectBody({ project }: { project: NonNullable<ReturnType<type
           <h2 className="font-heading text-[26px] text-text-primary md:text-[32px]">
             {section.title}
           </h2>
-          <Reveal targets=":scope > div" y={20} className="flex flex-col gap-4">
+          <Reveal targets=":scope > div" y={0} className="flex flex-col gap-4">
             {section.images.map((img, i) => (
               <ResponsiveImage key={i} {...img} />
             ))}
@@ -210,12 +211,12 @@ function StandardProjectBody({ project }: { project: NonNullable<ReturnType<type
 
 function GameShell({ project }: { project: NonNullable<ReturnType<typeof getProject>> }) {
   return (
-    <section className="flex w-full flex-col gap-6 border-t border-border-section px-6 py-12 md:gap-8 md:px-14 md:py-16">
+    <section className="flex w-full flex-col gap-6 border-t border-border-section px-12 py-24 md:gap-8 md:px-28 md:py-32">
       <h2 className="font-heading text-[26px] text-text-primary md:text-[32px]">
         Playable Game (On PC/MAC)
       </h2>
       <GameEmbed
-        embedUrl="https://dangurra.itch.io/braze/embed"
+        embedUrl="https://itch.io/embed-upload/13627717?color=222024"
         posterSrc={project.lander.laptop}
         posterAlt="Braze game artwork"
         width={960}

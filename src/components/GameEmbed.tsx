@@ -1,7 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
+
+import { FadeImage } from "./FadeImage";
 
 export function GameEmbed({
   embedUrl,
@@ -21,7 +22,7 @@ export function GameEmbed({
   if (playing) {
     return (
       <div
-        className="relative mx-auto w-full overflow-hidden bg-[#151515]"
+        className="relative mx-auto w-full max-w-[900px] overflow-hidden bg-[#151515]"
         style={{ aspectRatio: `${width} / ${height}` }}
       >
         <iframe
@@ -38,11 +39,12 @@ export function GameEmbed({
     <button
       type="button"
       onClick={() => setPlaying(true)}
-      className="relative flex h-[320px] w-full items-center justify-center overflow-hidden bg-[#151515] md:h-[480px]"
+      className="relative mx-auto flex w-full max-w-[900px] items-center justify-center overflow-hidden bg-[#111]"
+      style={{ aspectRatio: `${width} / ${height}` }}
     >
-      <Image src={posterSrc} alt={posterAlt} fill className="object-cover opacity-70" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/60" />
-      <span className="relative z-10 inline-flex h-12 items-center justify-center bg-surface-action px-6 font-mono text-[14px] text-foreground-on-color hover:opacity-85">
+      <FadeImage src={posterSrc} alt={posterAlt} fill className="object-cover" />
+      <div className="absolute inset-0 bg-black/10" />
+      <span className="relative z-10 inline-flex h-12 items-center justify-center gap-2 border border-border-default bg-surface-action px-6 font-mono text-[14px] text-foreground-on-color transition-colors duration-200 hover:bg-[#111111]">
         Play Braze
       </span>
     </button>

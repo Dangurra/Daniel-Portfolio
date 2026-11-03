@@ -13,7 +13,7 @@ gsap.registerPlugin(useGSAP);
 const NAV_ITEMS = [
   { label: "About Me", href: "/about" },
   { label: "Contact", href: "/contact" },
-  { label: "Download Resume", href: "/resume.pdf" },
+  { label: "Download Resume", href: "/resume" },
 ];
 
 export function Header() {
@@ -55,7 +55,7 @@ export function Header() {
         <div className="hidden w-full items-center gap-8 px-14 py-8 md:flex">
           <Link href="/" className="shrink-0 bg-brand-highlight px-0 py-0">
             <span
-              className="font-mono text-[24px] text-text-primary"
+              className="font-mono text-[19px] text-text-primary"
               style={{ fontVariationSettings: '"ELSH" 0', lineHeight: 0.75 }}
             >
               Daniel Gur
@@ -78,7 +78,7 @@ export function Header() {
         <div className="flex w-full items-center justify-between px-4 py-[18px] md:hidden">
           <Link href="/" className="bg-brand-highlight">
             <span
-              className="font-mono text-[18px] text-text-primary"
+              className="font-mono text-[16px] text-text-primary"
               style={{ fontVariationSettings: '"ELSH" 0', lineHeight: 0.75 }}
             >
               Daniel Gur

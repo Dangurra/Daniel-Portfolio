@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { ContactEnding } from "@/components/ContactEnding";
 import { MarqueeRow } from "@/components/MarqueeRow";
@@ -10,62 +11,72 @@ import { Icon } from "@/components/ui/Icon";
 import { hero } from "@/lib/site-data";
 import { getHomeOrderedProjects } from "@/lib/projects-data";
 
-const COMPANIES_ROW_1 = [
+const COMPANIES_ROW_1: { name: string; wordmark: string | null; width?: number }[] = [
   { name: "SambaNova", wordmark: "/images/about/logos/sambanova-logo.webp" },
   { name: "Poseidon", wordmark: "/images/about/logos/poseidon-logo.webp" },
-  { name: "Tex Software", wordmark: null },
+  { name: "Tex Software", wordmark: "/images/about/logos/tex-software-logo.webp", width: 190 },
 ];
 
-const COMPANIES_ROW_2 = [
+const COMPANIES_ROW_2: { name: string; wordmark: string | null; width?: number }[] = [
   { name: "Albacore", wordmark: "/images/about/logos/albacore-logo.webp" },
   { name: "Plaid Again", wordmark: "/images/about/logos/plaid-again-logo.webp" },
-  { name: "Tara Mind", wordmark: null },
-  { name: "ConnexPay", wordmark: null },
+  { name: "Tara Mind", wordmark: "/images/about/logos/tara-mind-logo.webp" },
+  { name: "ConnexPay", wordmark: "/images/about/logos/connexpay-logo.webp" },
 ];
 
-const OTHER_WORK_RAILS = [
+type RailImage = { slug?: string; src?: string; ratio: number; video?: boolean };
+type Rail = { heightClass: string; images: RailImage[] };
+
+const OTHER_WORK_RAILS_RAW: Rail[] = [
   {
     heightClass: "h-[220px] md:h-[340px]",
     images: [
-      "plan-it-mockup",
-      "buddy-phones",
-      "buddy-dna-packaging",
-      "teros-mockup",
-      "landscape-photography",
+      { src: "/videos/other-work/plan-it.mp4", ratio: 1208 / 680, video: true },
+      { slug: "buddy-phones", ratio: 1400 / 921 },
+      { slug: "buddy-dna-packaging", ratio: 1400 / 933 },
+      { src: "/videos/other-work/space-marine.mp4", ratio: 506 / 900, video: true },
+      { slug: "teros-mockup", ratio: 1400 / 787 },
+      { src: "/videos/generated-landscape.mp4", ratio: 1052 / 700, video: true },
     ],
   },
   {
     heightClass: "h-[240px] md:h-[380px]",
     images: [
-      "privacy-poster",
-      "come-together-red",
-      "orange-landscape-illustration",
-      "screwdriver-cad",
-      "sambanova-illustration",
+      { slug: "privacy-poster", ratio: 934 / 1400 },
+      { slug: "come-together-red", ratio: 1400 / 989 },
+      { slug: "orange-landscape-illustration", ratio: 1400 / 1081 },
+      { src: "/videos/other-work/screwdriver.mp4", ratio: 1268 / 760, video: true },
+      { slug: "sambanova-illustration", ratio: 1400 / 938 },
     ],
   },
   {
     heightClass: "h-[200px] md:h-[320px]",
     images: [
-      "graphic-design-wizard",
-      "come-together-green",
-      "monsoon-beer-packaging",
-      "monsoon-beer-packaging-1",
+      { slug: "graphic-design-wizard", ratio: 1400 / 950 },
+      { slug: "come-together-green", ratio: 1400 / 933 },
+      { src: "/videos/other-work/monsoon.mp4", ratio: 1138 / 640, video: true },
+      { slug: "monsoon-beer-packaging-1", ratio: 1400 / 879 },
     ],
   },
   {
     heightClass: "h-[190px] md:h-[300px]",
     images: [
-      "buddy-cad-model",
-      "paint-bottle-organizer",
-      "buddy-finished-render",
-      "cap-illustration",
-      "long-cad-object",
+      { slug: "buddy-cad-model", ratio: 1400 / 1049 },
+      { slug: "paint-bottle-organizer", ratio: 1050 / 1400 },
+      { slug: "buddy-finished-render", ratio: 1400 / 1049 },
+      { slug: "cap-illustration", ratio: 1400 / 1400 },
+      { slug: "long-cad-object", ratio: 1400 / 1049 },
     ],
   },
-].map((rail) => ({
+];
+
+const OTHER_WORK_RAILS = OTHER_WORK_RAILS_RAW.map((rail) => ({
   ...rail,
-  images: rail.images.map((slug) => `/images/home/other-work/${slug}.webp`),
+  images: rail.images.map((img) => ({
+    src: img.src ?? `/images/home/other-work/${img.slug}.webp`,
+    ratio: img.ratio,
+    type: img.video ? ("video" as const) : undefined,
+  })),
 }));
 
 export default function Home() {
@@ -118,7 +129,7 @@ export default function Home() {
           targets=":scope > div"
           stagger={0.04}
           y={14}
-          className="flex flex-col divide-y divide-border-section border border-border-section"
+          className="flex flex-col divide-y divide-border-section border-y border-border-section"
         >
           <div className="grid grid-cols-2 divide-x divide-border-section md:grid-cols-3">
             {COMPANIES_ROW_1.map((c) => (
@@ -127,7 +138,13 @@ export default function Home() {
                 className="flex h-[90px] items-center justify-center md:h-[120px]"
               >
                 {c.wordmark ? (
-                  <Image src={c.wordmark} alt={c.name} width={144} height={30} className="object-contain" />
+                  <Image
+                    src={c.wordmark}
+                    alt={c.name}
+                    width={c.width ?? 144}
+                    height={30}
+                    className="object-contain"
+                  />
                 ) : (
                   <span className="font-sans text-[14px] text-text-muted">{c.name}</span>
                 )}
@@ -141,7 +158,13 @@ export default function Home() {
                 className="flex h-[90px] items-center justify-center md:h-[120px]"
               >
                 {c.wordmark ? (
-                  <Image src={c.wordmark} alt={c.name} width={144} height={30} className="object-contain" />
+                  <Image
+                    src={c.wordmark}
+                    alt={c.name}
+                    width={c.width ?? 144}
+                    height={30}
+                    className="object-contain"
+                  />
                 ) : (
                   <span className="font-sans text-[14px] text-text-muted">{c.name}</span>
                 )}
@@ -153,10 +176,10 @@ export default function Home() {
           <p className="font-sans text-[12px] text-text-muted">
             Selected clients &amp; collaborations
           </p>
-          <a href="/resume.pdf" className="flex items-center gap-[6px] font-sans text-[12px] text-text-muted">
+          <Link href="/resume" className="flex items-center gap-[6px] font-sans text-[12px] text-text-muted">
             Download résumé
             <Icon name="download" size={14} />
-          </a>
+          </Link>
         </div>
       </section>
 

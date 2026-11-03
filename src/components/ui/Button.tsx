@@ -1,13 +1,9 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 import Link from "next/link";
-import { useRef, useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 
 import { Icon, type IconName } from "./Icon";
-
-gsap.registerPlugin(useGSAP);
 
 type ButtonProps = {
   children: ReactNode;
@@ -22,7 +18,8 @@ type ButtonProps = {
 };
 
 const VARIANT_CLASSES: Record<NonNullable<ButtonProps["variant"]>, string> = {
-  primary: "bg-surface-action text-foreground-on-color border-border-default",
+  primary:
+    "bg-surface-action text-foreground-on-color border-border-default transition-colors duration-200 hover:bg-[#111111]",
   secondary: "bg-transparent text-foreground-primary border-border-default",
 };
 
@@ -37,67 +34,19 @@ export function Button({
   className = "",
   external = false,
 }: ButtonProps) {
-  const iconRef = useRef<HTMLSpanElement>(null);
-  const rootRef = useRef<HTMLElement | null>(null);
-  const [hoverTone, setHoverTone] = useState<"dark" | "light" | null>(null);
-
   const isPrimary = variant === "primary";
-  const resolvedTone = hoverTone ?? iconTone ?? (isPrimary ? "light" : "dark");
+  const resolvedTone = iconTone ?? (isPrimary ? "light" : "dark");
+  const invertsOnHover = !isPrimary && resolvedTone === "light";
 
-  useGSAP(() => {
-    const root = rootRef.current;
-    const icon = iconRef.current;
-    if (!root) return;
-
-    const enter = () => {
-      gsap.to(root, { scale: 1.035, duration: 0.3, ease: "power3.out" });
-      if (icon) gsap.to(icon, { x: 4, duration: 0.3, ease: "power3.out" });
-      if (isPrimary) {
-        gsap.to(root, {
-          backgroundColor: "#ffffff",
-          color: "#111111",
-          duration: 0.25,
-          ease: "power2.out",
-        });
-        setHoverTone("dark");
-      }
-    };
-    const leave = () => {
-      gsap.to(root, { scale: 1, duration: 0.3, ease: "power3.out" });
-      if (icon) gsap.to(icon, { x: 0, duration: 0.3, ease: "power3.out" });
-      if (isPrimary) {
-        gsap.to(root, {
-          backgroundColor: "#0b0dff",
-          color: "#ffffff",
-          duration: 0.25,
-          ease: "power2.out",
-        });
-        setHoverTone("light");
-      }
-    };
-    const down = () => gsap.to(root, { scale: 0.97, duration: 0.15, ease: "power2.out" });
-    const up = () => gsap.to(root, { scale: 1.035, duration: 0.2, ease: "back.out(2)" });
-
-    root.addEventListener("mouseenter", enter);
-    root.addEventListener("mouseleave", leave);
-    root.addEventListener("mousedown", down);
-    root.addEventListener("mouseup", up);
-
-    return () => {
-      root.removeEventListener("mouseenter", enter);
-      root.removeEventListener("mouseleave", leave);
-      root.removeEventListener("mousedown", down);
-      root.removeEventListener("mouseup", up);
-    };
-  }, [isPrimary]);
-
-  const classes = `inline-flex h-12 items-center justify-center gap-2 border px-4 py-[10px] font-mono text-[14px] disabled:opacity-50 ${VARIANT_CLASSES[variant]} ${className}`;
+  const classes = `group inline-flex h-12 items-center justify-center gap-2 border px-4 py-[10px] font-mono text-[14px] disabled:opacity-50 ${VARIANT_CLASSES[variant]} ${className}`;
 
   const content = (
     <>
       <span>{children}</span>
       {icon && (
-        <span ref={iconRef} className="inline-flex">
+        <span
+          className={`inline-flex ${invertsOnHover ? "transition-[filter] duration-200 group-hover:brightness-0 group-hover:invert-0" : ""}`}
+        >
           <Icon name={icon} size={18} tone={resolvedTone} />
         </span>
       )}
@@ -106,33 +55,18 @@ export function Button({
 
   if (href) {
     return external ? (
-      <a
-        ref={rootRef as React.RefObject<HTMLAnchorElement>}
-        href={href}
-        target="_blank"
-        rel="noreferrer"
-        className={classes}
-      >
+      <a href={href} target="_blank" rel="noreferrer" className={classes}>
         {content}
       </a>
     ) : (
-      <Link
-        ref={rootRef as React.RefObject<HTMLAnchorElement>}
-        href={href}
-        className={classes}
-      >
+      <Link href={href} className={classes}>
         {content}
       </Link>
     );
   }
 
   return (
-    <button
-      ref={rootRef as React.RefObject<HTMLButtonElement>}
-      type={type}
-      disabled={disabled}
-      className={classes}
-    >
+    <button type={type} disabled={disabled} className={classes}>
       {content}
     </button>
   );
@@ -149,58 +83,23 @@ export function IconLink({
   external?: boolean;
   className?: string;
 }) {
-  const iconRef = useRef<HTMLSpanElement>(null);
-  const underlineRef = useRef<HTMLSpanElement>(null);
-  const rootRef = useRef<HTMLAnchorElement>(null);
-
-  useGSAP(() => {
-    const root = rootRef.current;
-    const icon = iconRef.current;
-    const underline = underlineRef.current;
-    if (!root) return;
-
-    gsap.set(underline, { scaleX: 0, transformOrigin: "left center" });
-
-    const enter = () => {
-      if (icon) gsap.to(icon, { x: 4, duration: 0.3, ease: "power3.out" });
-      if (underline) gsap.to(underline, { scaleX: 1, duration: 0.3, ease: "power3.out" });
-    };
-    const leave = () => {
-      if (icon) gsap.to(icon, { x: 0, duration: 0.3, ease: "power3.out" });
-      if (underline) gsap.to(underline, { scaleX: 0, duration: 0.25, ease: "power3.in" });
-    };
-
-    root.addEventListener("mouseenter", enter);
-    root.addEventListener("mouseleave", leave);
-    return () => {
-      root.removeEventListener("mouseenter", enter);
-      root.removeEventListener("mouseleave", leave);
-    };
-  });
-
-  const classes = `relative inline-flex w-fit items-center gap-[6px] font-sans text-[14px] font-medium text-foreground-supporting hover:text-foreground-primary ${className}`;
+  const classes = `relative inline-flex w-fit items-center gap-[6px] font-sans text-[14px] font-medium text-foreground-supporting transition-colors duration-200 hover:text-foreground-primary ${className}`;
 
   const content = (
     <>
-      <span className="relative">
-        {children}
-        <span
-          ref={underlineRef}
-          className="absolute -bottom-[2px] left-0 h-px w-full bg-foreground-primary"
-        />
-      </span>
-      <span ref={iconRef} className="inline-flex">
+      <span className="underline-offset-4 group-hover:underline">{children}</span>
+      <span className="inline-flex">
         <Icon name="trailing-arrow" size={16} />
       </span>
     </>
   );
 
   return external ? (
-    <a ref={rootRef} href={href} target="_blank" rel="noreferrer" className={classes}>
+    <a href={href} target="_blank" rel="noreferrer" className={`group ${classes}`}>
       {content}
     </a>
   ) : (
-    <Link ref={rootRef} href={href} className={classes}>
+    <Link href={href} className={`group ${classes}`}>
       {content}
     </Link>
   );

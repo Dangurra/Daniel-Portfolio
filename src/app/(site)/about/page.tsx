@@ -1,10 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 
 import { ContactEnding } from "@/components/ContactEnding";
 import { FaqAccordion } from "@/components/FaqAccordion";
+import { GoHomeLink } from "@/components/GoHomeLink";
 import { Reveal } from "@/components/Reveal";
-import { Button, IconLink } from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { ToolPill, ToolTile } from "@/components/ToolPill";
 import {
@@ -29,7 +31,7 @@ export default function AboutPage() {
         y={16}
         className="flex w-full flex-col gap-10 px-6 pb-12 pt-10 md:px-14 md:pb-16 md:pt-12"
       >
-        <IconLink href="/">Go Home</IconLink>
+        <GoHomeLink />
         <h1 className="max-w-[1187px] font-heading text-[36px] leading-[1.15] text-text-primary md:text-[58px]">
           {aboutHeadline}
         </h1>
@@ -57,16 +59,16 @@ export default function AboutPage() {
           />
           <div className="flex items-center gap-7">
             <Button href="/contact" icon="asterisk">Contact Me</Button>
-            <a
-              href="/resume.pdf"
+            <Link
+              href="/resume"
               className="flex items-center gap-[6px] font-sans text-[14px] font-medium text-foreground-supporting"
             >
               Download résumé
               <Icon name="download" size={16} />
-            </a>
+            </Link>
           </div>
         </div>
-        <div className="relative aspect-square w-full shrink-0 bg-[#f2f2f2] md:w-[554px]">
+        <div className="relative order-first aspect-square w-full shrink-0 bg-[#f2f2f2] md:order-none md:w-[554px]">
           <Image
             src="/images/about/daniel-portrait.webp"
             alt="Daniel Gur"

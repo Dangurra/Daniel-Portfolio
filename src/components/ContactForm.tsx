@@ -59,7 +59,7 @@ export function ContactForm() {
           placeholder="Tell me a little about what you have in mind."
           required
           rows={6}
-          className={fieldClasses}
+          className={`${fieldClasses} min-h-[132px] resize-y`}
         />
       </label>
       <button

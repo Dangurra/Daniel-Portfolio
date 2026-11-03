@@ -23,8 +23,6 @@ export function BracketLink({
   revealDelay?: number;
 }) {
   const rootRef = useRef<HTMLAnchorElement>(null);
-  const leftRef = useRef<HTMLSpanElement>(null);
-  const rightRef = useRef<HTMLSpanElement>(null);
 
   useGSAP(() => {
     const root = rootRef.current;
@@ -41,24 +39,6 @@ export function BracketLink({
         ease: "power2.out",
       }
     );
-
-    if (active) return;
-
-    const enter = () => {
-      gsap.to(leftRef.current, { x: -3, duration: 0.25, ease: "power3.out" });
-      gsap.to(rightRef.current, { x: 3, duration: 0.25, ease: "power3.out" });
-    };
-    const leave = () => {
-      gsap.to(leftRef.current, { x: 0, duration: 0.25, ease: "power3.out" });
-      gsap.to(rightRef.current, { x: 0, duration: 0.25, ease: "power3.out" });
-    };
-
-    root.addEventListener("mouseenter", enter);
-    root.addEventListener("mouseleave", leave);
-    return () => {
-      root.removeEventListener("mouseenter", enter);
-      root.removeEventListener("mouseleave", leave);
-    };
   });
 
   return (
@@ -72,13 +52,7 @@ export function BracketLink({
           : "text-foreground-primary"
       } ${className}`}
     >
-      <span ref={leftRef} className="inline-block">
-        [
-      </span>{" "}
-      {label}{" "}
-      <span ref={rightRef} className="inline-block">
-        ]
-      </span>
+      [ {label} ]
     </Link>
   );
 }

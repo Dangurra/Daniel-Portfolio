@@ -13,12 +13,17 @@ export function MarqueeRow({
   direction = "left",
   speed = 40,
 }: {
-  images: string[];
+  images: { src: string; ratio: number; type?: "image" | "video" }[];
   heightClass: string;
   direction?: "left" | "right";
   speed?: number;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
+
+  // Repeated enough times that one full set always exceeds the widest
+  // realistic viewport, so the seamless-loop reset point is never visible
+  // as a gap on ultra-wide screens.
+  const REPEATS = 6;
 
   useGSAP(
     () => {
@@ -27,7 +32,7 @@ export function MarqueeRow({
 
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-      const distance = track.scrollWidth / 2;
+      const distance = track.scrollWidth / REPEATS;
       const duration = distance / speed;
 
       gsap.fromTo(
@@ -44,19 +49,37 @@ export function MarqueeRow({
     { scope: trackRef, dependencies: [direction, speed] }
   );
 
-  const doubled = [...images, ...images];
+  const repeated = Array.from({ length: REPEATS }, () => images).flat();
 
   return (
     <div className="flex w-full gap-3 overflow-hidden">
       <div ref={trackRef} className="flex gap-3 will-change-transform">
-        {doubled.map((src, i) => (
-          <div
-            key={`${src}-${i}`}
-            className={`relative aspect-[4/3] shrink-0 overflow-hidden ${heightClass}`}
-          >
-            <Image src={src} alt="" fill sizes="500px" className="object-cover" />
-          </div>
-        ))}
+        {repeated.map((img, i) =>
+          img.type === "video" ? (
+            <div
+              key={`${img.src}-${i}`}
+              className={`relative shrink-0 overflow-hidden ${heightClass}`}
+              style={{ aspectRatio: img.ratio }}
+            >
+              <video
+                src={img.src}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 size-full object-cover"
+              />
+            </div>
+          ) : (
+            <div
+              key={`${img.src}-${i}`}
+              className={`relative shrink-0 overflow-hidden ${heightClass}`}
+              style={{ aspectRatio: img.ratio }}
+            >
+              <Image src={img.src} alt="" fill sizes="500px" className="object-cover" />
+            </div>
+          )
+        )}
       </div>
     </div>
   );

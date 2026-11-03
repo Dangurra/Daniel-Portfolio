@@ -24,6 +24,10 @@ export type Project = {
   banner: string;
   /** Banner's native width/height ratio, so cards lock to it instead of cropping. */
   bannerAspect: number;
+  /** Separate 3:2 crop purpose-built for the "Other projects" carousel cards. */
+  carouselBanner: string;
+  /** Plays over the Selected-work banner on hover, revealed on mouseenter. */
+  hoverVideo?: string;
   access: "public" | "private";
   type: ProjectType;
   lander: { laptop: string; mobile: string };
@@ -80,6 +84,8 @@ export const projects: Project[] = [
     tags: ["Web design", "Development", "Design systems"],
     banner: img("samba-nova/banner.webp"),
     bannerAspect: 1800 / 985,
+    carouselBanner: img("samba-nova/carousel-banner.webp"),
+    hoverVideo: "/videos/hover/samba-nova-hover.mp4",
     access: "public",
     type: "standard",
     lander: {
@@ -155,6 +161,8 @@ export const projects: Project[] = [
     tags: ["Web design", "Development", "Design systems"],
     banner: img("poseidon/banner.webp"),
     bannerAspect: 1800 / 985,
+    carouselBanner: img("poseidon/carousel-banner.webp"),
+    hoverVideo: "/videos/hover/poseidon-hover.mp4",
     access: "public",
     type: "standard",
     lander: {
@@ -200,7 +208,7 @@ export const projects: Project[] = [
     timeline: "October - November 2025 · 4 weeks",
     role: "Contractor - Web Developer/Product Designer",
     collaborators: "Joel Rowley - Creative Director",
-    liveUrl: "https://poseidonaerospace.com",
+    liveUrl: "https://www.poseidonaero.com/",
     visitLabel: "Visit live site",
     gallery: [
       {
@@ -243,6 +251,7 @@ export const projects: Project[] = [
     tags: ["Web design", "Development"],
     banner: img("tex-software/banner.webp"),
     bannerAspect: 1800 / 985,
+    carouselBanner: img("tex-software/carousel-banner.webp"),
     access: "public",
     type: "standard",
     lander: {
@@ -331,13 +340,15 @@ export const projects: Project[] = [
   {
     slug: "albacore",
     title: "Full website rebrand & design system",
-    company: "Albacore Inc.",
+    company: "Albacore Incorporated",
     period: "2026",
     description:
       "Website design and development for a YC-backed defense startup building long-range autonomous submarines.",
     tags: ["Web design", "UX/UI", "Design systems", "Marketing"],
     banner: img("albacore/banner.webp"),
     bannerAspect: 1800 / 985,
+    carouselBanner: img("albacore/carousel-banner.webp"),
+    hoverVideo: "/videos/hover/albacore-hover.mp4",
     access: "public",
     type: "standard",
     lander: {
@@ -392,7 +403,7 @@ export const projects: Project[] = [
     timeline: "February - August 2026 · 7 months",
     role: "Contractor - Web Developer/Product Designer",
     collaborators: "Felix 1P3D - 3D Artist",
-    liveUrl: "https://albacore.com",
+    liveUrl: "https://www.albacore.inc/",
     visitLabel: "Visit live site",
     gallery: [
       {
@@ -447,6 +458,8 @@ export const projects: Project[] = [
     tags: ["Game design", "Unity", "Development"],
     banner: img("braze/banner.webp"),
     bannerAspect: 1800 / 985,
+    carouselBanner: img("braze/carousel-banner.webp"),
+    hoverVideo: "/videos/hover/braze-hover.mp4",
     access: "public",
     type: "game",
     lander: {
@@ -482,6 +495,16 @@ export const projects: Project[] = [
     visitLabel: "Visit itch.io site",
     gallery: [
       {
+        title: "Controls",
+        images: [
+          {
+            laptop: img("braze/laptop/braze_controls-laptop.webp"),
+            mobile: img("braze/laptop/braze_controls-laptop.webp"),
+            alt: "Braze controls reference",
+          },
+        ],
+      },
+      {
         title: "Level Design",
         images: [
           { key: "dusty_field", alt: "The Dusty Field stage" },
@@ -493,16 +516,6 @@ export const projects: Project[] = [
           mobile: img(`braze/mobile/braze_${key}-mobile.webp`),
           alt,
         })),
-      },
-      {
-        title: "Controls",
-        images: [
-          {
-            laptop: img("braze/laptop/braze_controls-laptop.webp"),
-            mobile: img("braze/laptop/braze_controls-laptop.webp"),
-            alt: "Braze controls reference",
-          },
-        ],
       },
     ],
   },
@@ -516,6 +529,8 @@ export const projects: Project[] = [
     tags: ["Product design", "Accessibility"],
     banner: img("plaid-again/banner.webp"),
     bannerAspect: 1800 / 900,
+    carouselBanner: img("plaid-again/carousel-banner.webp"),
+    hoverVideo: "/videos/hover/plaid-again-hover.mp4",
     access: "private",
     type: "locked",
     lander: {

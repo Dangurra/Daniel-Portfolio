@@ -1,15 +1,11 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import { PrivateNotice, Tag } from "./ui/Badge";
 import { Icon } from "./ui/Icon";
-
-gsap.registerPlugin(useGSAP);
 
 export type ProjectSummary = {
   slug: string;
@@ -20,69 +16,51 @@ export type ProjectSummary = {
   tags: string[];
   banner: string;
   bannerAspect: number;
+  carouselBanner: string;
+  hoverVideo?: string;
   access: "public" | "private";
 };
 
-function useCardHover() {
-  const rootRef = useRef<HTMLAnchorElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const arrowRef = useRef<HTMLSpanElement>(null);
-
-  useGSAP(() => {
-    const root = rootRef.current;
-    if (!root) return;
-
-    const enter = () => {
-      if (imageRef.current) {
-        gsap.to(imageRef.current, { scale: 1.06, duration: 0.6, ease: "power3.out" });
-      }
-      if (arrowRef.current) {
-        gsap.to(arrowRef.current, { x: 4, duration: 0.3, ease: "power3.out" });
-      }
-    };
-    const leave = () => {
-      if (imageRef.current) {
-        gsap.to(imageRef.current, { scale: 1, duration: 0.6, ease: "power3.out" });
-      }
-      if (arrowRef.current) {
-        gsap.to(arrowRef.current, { x: 0, duration: 0.3, ease: "power3.out" });
-      }
-    };
-
-    root.addEventListener("mouseenter", enter);
-    root.addEventListener("mouseleave", leave);
-    return () => {
-      root.removeEventListener("mouseenter", enter);
-      root.removeEventListener("mouseleave", leave);
-    };
-  });
-
-  return { rootRef, imageRef, arrowRef };
-}
-
 export function ProjectRow({ project }: { project: ProjectSummary }) {
   const isPrivate = project.access === "private";
-  const { rootRef, imageRef, arrowRef } = useCardHover();
+  const [hovering, setHovering] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   return (
     <Link
-      ref={rootRef}
       href={`/projects/${project.slug}`}
-      className="flex w-full flex-col overflow-hidden border border-border-section md:flex-row"
+      className="flex w-full flex-col overflow-hidden border border-border-section bg-white transition-colors duration-200 hover:border-foreground-primary hover:bg-[#fafafa] md:flex-row"
+      onMouseEnter={() => {
+        setHovering(true);
+        videoRef.current?.play();
+      }}
+      onMouseLeave={() => {
+        setHovering(false);
+        videoRef.current?.pause();
+        if (videoRef.current) videoRef.current.currentTime = 0;
+      }}
     >
       <div
         className="relative w-full shrink-0 overflow-hidden bg-[#111] md:w-[840px]"
         style={{ aspectRatio: project.bannerAspect }}
       >
-        <div ref={imageRef} className="absolute inset-0">
-          <Image
-            src={project.banner}
-            alt={`${project.company} banner`}
-            fill
-            sizes="(max-width: 768px) 100vw, 840px"
-            className="object-cover"
+        <Image
+          src={project.banner}
+          alt={`${project.company} banner`}
+          fill
+          sizes="(max-width: 768px) 100vw, 840px"
+          className="object-cover"
+        />
+        {project.hoverVideo && (
+          <video
+            ref={videoRef}
+            src={project.hoverVideo}
+            muted
+            loop
+            playsInline
+            className={`absolute inset-0 size-full object-cover transition-opacity duration-300 ${hovering ? "opacity-100" : "opacity-0"}`}
           />
-        </div>
+        )}
       </div>
       <div className="flex w-full flex-col gap-5 p-6 md:w-[560px] md:shrink-0 md:basis-auto md:p-12">
         <div className="flex items-center gap-2 font-mono text-[11px] text-text-muted">
@@ -116,7 +94,7 @@ export function ProjectRow({ project }: { project: ProjectSummary }) {
         ) : (
           <span className="inline-flex items-center gap-[6px] font-sans text-[14px] font-medium text-foreground-supporting">
             View project
-            <span ref={arrowRef} className="inline-flex">
+            <span className="inline-flex">
               <Icon name="trailing-arrow" size={16} />
             </span>
           </span>
@@ -127,33 +105,25 @@ export function ProjectRow({ project }: { project: ProjectSummary }) {
 }
 
 export function ProjectCarouselCard({ project }: { project: ProjectSummary }) {
-  const { rootRef, imageRef } = useCardHover();
-
   return (
     <Link
-      ref={rootRef}
       href={`/projects/${project.slug}`}
       className="flex w-[300px] shrink-0 flex-col gap-4 md:w-[420px]"
     >
-      <div
-        className="relative w-full overflow-hidden bg-[#111]"
-        style={{ aspectRatio: project.bannerAspect }}
-      >
-        <div ref={imageRef} className="absolute inset-0">
-          <Image
-            src={project.banner}
-            alt={`${project.company} banner`}
-            fill
-            sizes="(max-width: 768px) 300px, 420px"
-            className="object-cover"
-          />
-        </div>
+      <div className="relative aspect-[3/2] w-full overflow-hidden border border-[#d9d9d9] bg-[#f2f2f2]">
+        <Image
+          src={project.carouselBanner}
+          alt={`${project.company} banner`}
+          fill
+          sizes="(max-width: 768px) 300px, 420px"
+          className="object-cover"
+        />
       </div>
       <div className="flex flex-col gap-2">
-        <h4 className="font-heading text-[20px] leading-[1.3] text-text-primary">
-          {project.title}
+        <h4 className="font-heading text-[24px] leading-[1.15] text-text-primary md:text-[28px]">
+          {project.company}
         </h4>
-        <p className="font-sans text-[13px] leading-[1.4] text-text-secondary">
+        <p className="line-clamp-2 font-sans text-[13px] leading-[1.5] text-text-secondary">
           {project.description}
         </p>
       </div>

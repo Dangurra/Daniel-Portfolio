@@ -1,0 +1,117 @@
+export const resumeContact = {
+  name: "Daniel Gur",
+  tagline: "Product Design • 3D Modeling • UX/UI • Visual Design • Development",
+  phone: "650-862-8013",
+  site: "daniel-gur.com",
+  email: "dgur@me.com",
+};
+
+export const resumeEducation = {
+  school: "California Polytechnic State University",
+  degree: "BFA Art and Design with concentration in Graphic Design",
+  meta: "San Luis Obispo | 2025",
+};
+
+export const resumeRecognition = {
+  title: "Framer: The Best Startup Websites on the Internet",
+  meta: "Featured | 2025",
+  description:
+    "After launching the new website for Poseidon Aerospace, it was featured in the Framer Gallery as a showcase example for other creators.",
+};
+
+export const resumeExperience: {
+  role: string;
+  company: string;
+  meta: string;
+  bullets: string[];
+}[] = [
+  {
+    role: "UX/UI Designer",
+    company: "Albacore Incorporated",
+    meta: "Philadelphia | 2025 - 2026",
+    bullets: [
+      "Building out component systems and design elements for a full website rebrand.",
+      "Developing work for marketing assets across there reach, from a multi-purpose deck to marketing applications across the board.",
+    ],
+  },
+  {
+    role: "Product Designer",
+    company: "Plaid Again Design Agency",
+    meta: "San Jose | 2025 - 2026",
+    bullets: [
+      "Designing web, Application and printed assets for our clients, working directly with them being able keep consistency with the rest of their design systems.",
+      "Leading the the redesign of Tara Mind's Corporate health app to be aligned with WCAG 2.2 standards up to a AA standard, while updated the design language.",
+    ],
+  },
+  {
+    role: "Product Designer/Web Developer",
+    company: "Poseidon Aerospace",
+    meta: "San Francisco | 2025",
+    bullets: [
+      "Building out component systems and design elements for a website rebrand.",
+      "Working with all touch points of the company, creating a user experience for their target audience.",
+      "Developing the website and creating a robust system to be expanded as the company grows and products change.",
+    ],
+  },
+  {
+    role: "Product Design Intern",
+    company: "SambaNova Systems",
+    meta: "Palo Alto | 2024",
+    bullets: [
+      "Designed UX/UI for SambaStudio and SambaCloud, including login visuals, internal AI system workflows, and iconography.",
+      "Gained hands-on experience with enterprise AI tools, working on projects with lasting impact that continue to shape current products.",
+      "Used research-driven iterations and design frameworks.",
+    ],
+  },
+];
+
+export const resumeDesignTools: { name: string; description: string }[] = [
+  {
+    name: "Figma",
+    description:
+      "Designing user interface using library and custom elements, task flow, and interactive prototypes.",
+  },
+  {
+    name: "Shapr3D",
+    description:
+      "3D product design and prototyping using Shapr3D, turning sketches into precise, manufacturable models.",
+  },
+  {
+    name: "Adobe Photoshop",
+    description: "Photo retouching, color correction, compositing, masking, and mock-ups.",
+  },
+  {
+    name: "Adobe Illustrator",
+    description: "2D vector-based digital illustrations and graphics.",
+  },
+  {
+    name: "Adobe InDesign",
+    description: "Page layout and digital publishing using styles, parent pages, and CC libraries.",
+  },
+  {
+    name: "Adobe Premiere",
+    description: "Video editing, color correction, audio editing, and wand special effects.",
+  },
+];
+
+export const resumeDevTools: { name: string; description: string }[] = [
+  {
+    name: "HTML, React, JavaScript, and CSS",
+    description:
+      "Basic knowledge of front-end web development for building and styling responsive layouts.",
+  },
+  {
+    name: "Framer",
+    description: "Interactive websites and responsive layouts with Framer's visual and code-based tools.",
+  },
+  {
+    name: "P5.js",
+    description:
+      "Building complex visuals, generative animations, and webcam-based effects using real-time input and custom logic.",
+  },
+  {
+    name: "Unity/Python",
+    description:
+      "2D game development focused on player movement, physics, animations, and interactivity. Experienced in scripting responsive UI.",
+  },
+];

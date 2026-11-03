@@ -22,22 +22,22 @@ export function Footer() {
         <Image
           src="/images/icons/ui/portfolio-signature.svg"
           alt="Daniel Gur"
-          width={280}
-          height={40}
-          className="h-auto w-[180px] md:w-[280px]"
+          width={495}
+          height={71}
+          className="h-auto w-[260px] md:w-[495px]"
         />
       </div>
 
       <div className="flex w-full max-w-[1072px] flex-col items-center gap-8 md:flex-row md:justify-center md:gap-16">
         <div className="flex flex-col items-center gap-3 md:w-[275px]">
           <p className="font-mono text-[12px] text-text-muted">Download</p>
-          <a
-            href="/resume.pdf"
+          <Link
+            href="/resume"
             className="flex items-center gap-[6px] font-sans text-[14px] text-foreground-link"
           >
             Download résumé
             <Icon name="download" size={16} />
-          </a>
+          </Link>
         </div>
 
         <div className="flex flex-col items-center gap-3 md:w-[275px]">
@@ -49,10 +49,9 @@ export function Footer() {
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-[6px] font-sans text-[15px] text-foreground-link"
+                className="font-sans text-[15px] text-foreground-link"
               >
                 {link.label}
-                <Icon name="trailing-arrow" size={16} />
               </a>
             ))}
           </div>

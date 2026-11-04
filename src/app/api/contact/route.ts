@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { contactEmailHtml } from "@/lib/contact-email";
 import { resend } from "@/lib/resend";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -40,6 +41,7 @@ export async function POST(request: Request) {
     replyTo: email,
     subject: `Portfolio contact from ${name}`,
     text: message,
+    html: contactEmailHtml({ name, email, message }),
   });
 
   if (error) {

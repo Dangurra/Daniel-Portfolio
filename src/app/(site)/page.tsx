@@ -24,6 +24,34 @@ const COMPANIES_ROW_2: { name: string; wordmark: string | null; width?: number }
   { name: "ConnexPay", wordmark: "/images/about/logos/connexpay-logo.webp" },
 ];
 
+const ALL_COMPANIES = [...COMPANIES_ROW_1, ...COMPANIES_ROW_2];
+
+function CompanyCell({
+  company,
+  className = "",
+}: {
+  company: { name: string; wordmark: string | null; width?: number };
+  className?: string;
+}) {
+  return (
+    <div
+      className={`flex h-[90px] items-center justify-center md:h-[120px] ${className}`}
+    >
+      {company.wordmark ? (
+        <Image
+          src={company.wordmark}
+          alt={company.name}
+          width={company.width ?? 144}
+          height={30}
+          className="object-contain"
+        />
+      ) : (
+        <span className="font-sans text-[14px] text-text-muted">{company.name}</span>
+      )}
+    </div>
+  );
+}
+
 type RailImage = { slug?: string; src?: string; ratio: number; video?: boolean };
 type Rail = { heightClass: string; images: RailImage[] };
 
@@ -129,47 +157,30 @@ export default function Home() {
           targets=":scope > div"
           stagger={0.04}
           y={14}
-          className="flex flex-col divide-y divide-border-section border-y border-border-section"
+          className="flex flex-col border-y border-border-section"
         >
-          <div className="grid grid-cols-2 divide-x divide-border-section md:grid-cols-3">
-            {COMPANIES_ROW_1.map((c) => (
-              <div
+          {/* Mobile: one continuous 2-col grid so 7 logos flow 2,2,2,1 */}
+          <div className="grid grid-cols-2 md:hidden">
+            {ALL_COMPANIES.map((c, i) => (
+              <CompanyCell
                 key={c.name}
-                className="flex h-[90px] items-center justify-center md:h-[120px]"
-              >
-                {c.wordmark ? (
-                  <Image
-                    src={c.wordmark}
-                    alt={c.name}
-                    width={c.width ?? 144}
-                    height={30}
-                    className="object-contain"
-                  />
-                ) : (
-                  <span className="font-sans text-[14px] text-text-muted">{c.name}</span>
-                )}
-              </div>
+                company={c}
+                className={`border-border-section ${i % 2 === 0 ? "border-r" : ""} ${i < ALL_COMPANIES.length - 1 ? "border-b" : ""}`}
+              />
             ))}
           </div>
-          <div className="grid grid-cols-2 divide-x divide-border-section md:grid-cols-4">
-            {COMPANIES_ROW_2.map((c) => (
-              <div
-                key={c.name}
-                className="flex h-[90px] items-center justify-center md:h-[120px]"
-              >
-                {c.wordmark ? (
-                  <Image
-                    src={c.wordmark}
-                    alt={c.name}
-                    width={c.width ?? 144}
-                    height={30}
-                    className="object-contain"
-                  />
-                ) : (
-                  <span className="font-sans text-[14px] text-text-muted">{c.name}</span>
-                )}
-              </div>
-            ))}
+          {/* Desktop: original two-row layout (3-col then 4-col) */}
+          <div className="hidden flex-col divide-y divide-border-section md:flex">
+            <div className="grid grid-cols-3 divide-x divide-border-section">
+              {COMPANIES_ROW_1.map((c) => (
+                <CompanyCell key={c.name} company={c} />
+              ))}
+            </div>
+            <div className="grid grid-cols-4 divide-x divide-border-section">
+              {COMPANIES_ROW_2.map((c) => (
+                <CompanyCell key={c.name} company={c} />
+              ))}
+            </div>
           </div>
         </Reveal>
         <div className="flex items-center justify-between">

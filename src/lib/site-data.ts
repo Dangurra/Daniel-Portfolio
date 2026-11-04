@@ -1,8 +1,8 @@
 export const hero = {
   tagline:
-    "Designer who builds interfaces, websites, and visual systems from concept through development.",
-  specialties: "Product Design • 3D Modeling • UX/UI • Visual Design • Development",
-  bio: "I'm Daniel Gur, a product designer working across interfaces, websites, 3D, and code. I like to see what makes things tick. To understand how they function and how that shapes the design.",
+    "I'm a designer who builds visual and human systems for apps, websites, and internal tools from concept through development.",
+  specialties: "Full website build & digital/print design system",
+  bio: "I'm Daniel Gur, a product designer working spreads across web apps, 3D modeling, and code. I like to see what makes things tick. To understand how they function and how that shapes the design.",
 };
 
 export const toolCategories: { category: string; tools: { name: string; icon: string }[] }[] = [
@@ -64,7 +64,7 @@ export const experience: {
     title: "Product Designer",
     date: "2025–2026",
     description:
-      "I designed web, application, and print assets for clients while maintaining consistency with their existing design systems. I led the redesign of Tara Mind's corporate health app to align with WCAG 2.2 AA standards while refreshing the design language.",
+      "I designed web, application, and print assets for clients while maintaining consistency with their existing design systems. I led the redesign of Tara Mind's corporate health mobile app for android and ios to align with WCAG 2.2 AA standards while refreshing the design language.",
     logo: "/images/about/logos/plaid-again-logo.webp",
   },
   {
@@ -95,31 +95,28 @@ export const experience: {
 
 export const faq: { question: string; answer: string }[] = [
   {
-    question: "What kind of projects do you take on?",
-    answer:
-      "Mostly product design and website work — from early-stage startups needing a first site or design system, to teams that need a designer who can also build what they design.",
+    question: "Who's your favorite artist?",
+    answer: "It's a mix: Kim Jung Gi for drawing, David Carson for graphic design, and Dieter Rams for product design. Each one shaped how I think about my own work in a different way.",
   },
   {
-    question: "What tools do you use?",
-    answer:
-      "Figma for design, Illustrator and Photoshop for brand work, and Next.js, Tailwind, and GSAP on the code side — see the full toolkit above for everything else I reach for.",
+    question: "What's your favorite song?",
+    answer: "\"While My Guitar Gently Weeps\" from the Beatles' White Album. Hard to beat.",
   },
   {
-    question: "How do you collaborate?",
-    answer:
-      "Async-first with regular check-ins — I share work in progress early so there are no surprises at the end, and I'm comfortable working directly with engineering teams, not just handing off static mockups.",
+    question: "What do you do outside of work?",
+    answer: "I build keyboards and PCs, paint Warhammer miniatures, play video games, and try to make it to the gym regularly.",
   },
 ];
 
 export const aboutHeadline =
-  "Designer who builds interfaces, websites, and visual systems from concept through development.";
+  "I'm a designer who builds visual and human systems for apps, websites, and internal tools from concept through development.";
 
 export const aboutSubhead = "Who am I?";
 
 export const aboutIntroParagraphs = [
-  "I'm a product designer working across interfaces, websites, 3D, and code. I like to see what makes things tick. To understand how they function and how that shapes the design. I'll happily pick up a new tool if it helps me understand what I'm making.",
-  "My projects range from working closely with a defense-tech startup on a website launch to redesigning a corporate health app's interface with accessibility in mind. Along the way, I've placed second in a 24-hour design challenge and had my work featured in Framer's gallery of the best startup websites.",
-  "I like turning a good idea into something people can actually use.",
+  "I'm a product designer working across interfaces, websites, 3D, and code. I like seeing what makes things tick, understanding how they function, and exploring how that shapes the design. I'm always happy to pick up a new tool or add another skill to my toolbox.",
+  "My work ranges from collaborating closely with defense-tech startups on website launches to redesigning a healthcare app's interface with accessibility in mind. Along the way, I've placed second in a 24-hour UX design competition and had my work featured in Framer's gallery of the best startup websites.",
+  "At the end of the day, I enjoy turning good ideas into things people can actually see, use, and interact with.",
   "Best,",
 ];
 

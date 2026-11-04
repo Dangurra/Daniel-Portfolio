@@ -52,14 +52,45 @@ export function ProjectRow({ project }: { project: ProjectSummary }) {
           className="object-cover"
         />
         {project.hoverVideo && (
-          <video
-            ref={videoRef}
-            src={project.hoverVideo}
-            muted
-            loop
-            playsInline
-            className={`absolute inset-0 size-full object-cover transition-opacity duration-300 ${hovering ? "opacity-100" : "opacity-0"}`}
-          />
+          <>
+            <video
+              ref={videoRef}
+              src={project.hoverVideo}
+              muted
+              loop
+              playsInline
+              className={`absolute inset-0 size-full object-cover transition-opacity duration-300 ${hovering ? "opacity-100" : "opacity-0"}`}
+            />
+            <button
+              type="button"
+              aria-label={hovering ? "Pause preview" : "Play preview"}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (hovering) {
+                  setHovering(false);
+                  videoRef.current?.pause();
+                  if (videoRef.current) videoRef.current.currentTime = 0;
+                } else {
+                  setHovering(true);
+                  videoRef.current?.play();
+                }
+              }}
+              className="absolute bottom-3 right-3 flex size-9 items-center justify-center rounded-full bg-black/60 text-white md:hidden"
+            >
+              {hovering ? (
+                <span className="flex gap-[3px]">
+                  <span className="h-3 w-[3px] bg-white" />
+                  <span className="h-3 w-[3px] bg-white" />
+                </span>
+              ) : (
+                <span
+                  className="ml-[2px] size-0 border-y-[6px] border-l-[10px] border-y-transparent border-l-white"
+                  aria-hidden="true"
+                />
+              )}
+            </button>
+          </>
         )}
       </div>
       <div className="flex w-full flex-col gap-5 p-6 md:w-[560px] md:shrink-0 md:basis-auto md:p-12">

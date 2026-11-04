@@ -167,7 +167,7 @@ export default function AboutPage() {
             Common Questions
           </h2>
           <p className="max-w-[700px] font-sans text-[16px] leading-[26px] text-text-secondary">
-            A few quick answers about the work, collaboration, and how to reach me.
+            Quick answers about me, besides just design.
           </p>
         </div>
         <FaqAccordion items={faq} />

@@ -254,6 +254,7 @@ export const projects: Project[] = [
     banner: img("tex-software/banner.webp"),
     bannerAspect: 1800 / 985,
     carouselBanner: img("tex-software/carousel-banner.webp"),
+    hoverVideo: "/videos/hover/tex-software-hover.mp4",
     access: "public",
     type: "standard",
     lander: {

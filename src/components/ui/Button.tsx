@@ -15,6 +15,7 @@ type ButtonProps = {
   disabled?: boolean;
   className?: string;
   external?: boolean;
+  align?: "center" | "start";
 };
 
 const VARIANT_CLASSES: Record<NonNullable<ButtonProps["variant"]>, string> = {
@@ -33,12 +34,13 @@ export function Button({
   disabled = false,
   className = "",
   external = false,
+  align = "center",
 }: ButtonProps) {
   const isPrimary = variant === "primary";
   const resolvedTone = iconTone ?? (isPrimary ? "light" : "dark");
   const invertsOnHover = !isPrimary && resolvedTone === "light";
 
-  const classes = `group inline-flex h-12 items-center justify-center gap-2 border px-4 py-[10px] font-mono text-[14px] disabled:opacity-50 ${VARIANT_CLASSES[variant]} ${className}`;
+  const classes = `group inline-flex h-12 items-center ${align === "start" ? "justify-between" : "justify-center"} gap-2 border px-4 py-[10px] font-mono text-[14px] disabled:opacity-50 ${VARIANT_CLASSES[variant]} ${className}`;
 
   const content = (
     <>

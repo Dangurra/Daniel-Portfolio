@@ -39,6 +39,8 @@ export type Project = {
   collaborators?: string;
   liveUrl?: string;
   visitLabel: string;
+  secondaryUrl?: string;
+  secondaryLabel?: string;
   gallery: GallerySection[];
 };
 
@@ -476,7 +478,7 @@ export const projects: Project[] = [
           "Each level represented a different stage of creative block and used its own palette, scenery, pacing, and obstacles. The environments gradually developed from muted and desaturated spaces into more colorful and expressive worlds, creating a visual progression alongside the player. Jake developed the artwork and animation for the character and environments, while I translated those assets into playable levels and determined how movement, collision, triggers, and pacing would support each stage.",
           "Building the game meant learning the full structure of 2D development in Unity. I created the player-movement system, implemented sprinting, jumping, falling, wall sliding, and wall jumping, and added coyote time, a short grace period that allows players to jump just after leaving a platform. I also worked with tilemaps, Unity layers, custom hitboxes, checkpoints, dialogue triggers, scene transitions, particle effects, animation states, parallax backgrounds, and death-and-restart behavior. These systems needed to work together across four visually and mechanically distinct levels.",
           "Movement became one of the most important parts of the experience. Small timing changes could determine whether the game felt responsive or frustrating, especially during wall jumps and more precise platforming sections. We repeatedly adjusted acceleration, jump timing, collision boundaries, and animation transitions so the controls remained challenging without working against the player.",
-          "The most unexpected response came when a player began **speedrunning** the game. Some random user created a dedicated Speedrun.com page, submitted recorded attempts, and competed across full-game and individual-level categories. Seeing random people play our student project was happily unexpected.",
+          "The most unexpected response came when a player began **speedrunning** the game. Some random user created a dedicated [Speedrun.com](https://www.speedrun.com/Braze) page, submitted recorded attempts, and competed across full-game and individual-level categories. Seeing random people play our student project was happily unexpected.",
         ],
       },
       {
@@ -493,6 +495,8 @@ export const projects: Project[] = [
     collaborators: "Jake Crock - Illustrator/Designer",
     liveUrl: "https://dangurra.itch.io/braze",
     visitLabel: "Visit itch.io site",
+    secondaryUrl: "https://www.speedrun.com/Braze",
+    secondaryLabel: "Visit speedrunning Braze",
     gallery: [
       {
         title: "Controls",

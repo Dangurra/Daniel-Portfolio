@@ -181,8 +181,13 @@ function StandardProjectBody({ project }: { project: NonNullable<ReturnType<type
             </div>
           )}
           {project.liveUrl && (
-            <Button href={project.liveUrl} external className="w-full">
+            <Button href={project.liveUrl} external align="start" className="w-full">
               {project.visitLabel}
+            </Button>
+          )}
+          {project.secondaryUrl && (
+            <Button href={project.secondaryUrl} external align="start" className="w-full">
+              {project.secondaryLabel}
             </Button>
           )}
         </div>

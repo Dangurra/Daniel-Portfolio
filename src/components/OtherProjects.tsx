@@ -63,12 +63,11 @@ export function OtherProjects({ projects }: { projects: Project[] }) {
       </div>
       <div
         ref={trackRef}
-        className="relative left-1/2 right-1/2 -mx-[50vw] flex w-screen gap-6 overflow-x-auto pb-2 pl-6 [&::-webkit-scrollbar]:hidden md:pl-14"
+        className="relative left-1/2 right-1/2 -mx-[50vw] flex w-screen gap-6 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden"
       >
         {projects.map((p) => (
           <ProjectCarouselCard key={p.slug} project={p} />
         ))}
-        <div className="w-6 shrink-0 md:w-14" aria-hidden="true" />
       </div>
       {pageCount > 1 && (
         <div className="flex w-full items-center justify-between">

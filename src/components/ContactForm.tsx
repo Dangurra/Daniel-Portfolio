@@ -1,5 +1,6 @@
 "use client";
 
+import Script from "next/script";
 import { useState } from "react";
 
 import { Icon } from "./ui/Icon";
@@ -9,21 +10,38 @@ type Status = "idle" | "sending" | "sent" | "error";
 const fieldClasses =
   "w-full border border-border-default bg-transparent px-4 py-[14px] font-sans text-[15px] text-text-primary outline-none focus:border-surface-action";
 
+declare global {
+  interface Window {
+    turnstile?: { reset: (widget?: string | HTMLElement) => void };
+  }
+}
+
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState("Something went wrong. Please try again.");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("sending");
 
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
+
+    if (!data["cf-turnstile-response"]) {
+      setErrorMessage("Please complete the verification check before sending.");
+      setStatus("error");
+      return;
+    }
+
+    setErrorMessage("Something went wrong. Please try again.");
+    setStatus("sending");
 
     const res = await fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
+
+    window.turnstile?.reset();
 
     if (res.ok) {
       setStatus("sent");
@@ -35,6 +53,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex w-full max-w-[1400px] flex-col gap-8">
+      <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="afterInteractive" async defer />
       <p className="font-mono text-[12px] uppercase text-text-muted">[ Send a message ]</p>
       <div className="flex flex-col gap-6 md:flex-row">
         <label className="flex flex-1 flex-col gap-2">
@@ -62,6 +81,11 @@ export function ContactForm() {
           className={`${fieldClasses} min-h-[132px] resize-y`}
         />
       </label>
+      <div
+        className="cf-turnstile"
+        data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+        data-theme="light"
+      />
       <button
         type="submit"
         disabled={status === "sending"}
@@ -76,9 +100,7 @@ export function ContactForm() {
         </p>
       )}
       {status === "error" && (
-        <p className="font-sans text-[14px] text-red-600">
-          Something went wrong. Please try again.
-        </p>
+        <p className="font-sans text-[14px] text-red-600">{errorMessage}</p>
       )}
     </form>
   );

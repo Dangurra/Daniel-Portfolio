@@ -1,9 +1,14 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
+  const iconData = await readFile(join(process.cwd(), "src/app/apple-icon.png"));
+  const iconSrc = `data:image/png;base64,${iconData.toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -18,7 +23,14 @@ export default async function Image() {
         }}
       >
         <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+            <img
+              src={iconSrc}
+              alt=""
+              width={84}
+              height={84}
+              style={{ borderRadius: 16 }}
+            />
             <span
               style={{
                 fontSize: 30,

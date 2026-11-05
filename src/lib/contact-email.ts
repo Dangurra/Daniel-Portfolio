@@ -1,4 +1,5 @@
 import { SIGNATURE_BLACK_B64, SIGNATURE_WHITE_B64 } from "./email-assets/signature";
+import { SITE_URL } from "./site";
 
 function escapeHtml(value: string) {
   return value
@@ -9,7 +10,7 @@ function escapeHtml(value: string) {
     .replace(/'/g, "&#39;");
 }
 
-const FONT_URL = "https://daniel-gur.vercel.app/fonts/geist-pixel.woff2";
+const FONT_URL = `${SITE_URL}/fonts/geist-pixel.woff2`;
 const MONO_STACK = "'Geist Pixel Variable', 'SF Mono', 'Geist Mono', 'Courier New', monospace";
 const SERIF_STACK = "Georgia, 'Times New Roman', serif";
 const SANS_STACK = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif";

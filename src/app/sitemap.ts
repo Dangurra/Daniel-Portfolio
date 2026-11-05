@@ -1,8 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { projects } from "@/lib/projects-data";
-
-const SITE_URL = "https://daniel-gur.vercel.app";
+import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = ["", "/about", "/contact", "/resume"].map((path) => ({

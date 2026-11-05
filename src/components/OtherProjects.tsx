@@ -63,14 +63,14 @@ export function OtherProjects({ projects }: { projects: Project[] }) {
       </div>
       <div
         ref={trackRef}
-        className="relative left-1/2 right-1/2 -mx-[50vw] flex w-screen gap-6 overflow-x-auto pb-2 pl-6 pr-6 [&::-webkit-scrollbar]:hidden md:pl-14 md:pr-14 min-[1513px]:static min-[1513px]:left-auto min-[1513px]:right-auto min-[1513px]:mx-0 min-[1513px]:w-full min-[1513px]:pl-0 min-[1513px]:pr-0"
+        className="relative left-1/2 right-1/2 -mx-[50vw] flex w-screen gap-6 overflow-x-auto max-[1512px]:pb-2 max-[1512px]:pl-6 max-[1512px]:pr-6 [&::-webkit-scrollbar]:hidden md:max-[1512px]:pl-14 md:max-[1512px]:pr-14 min-[1513px]:static min-[1513px]:left-auto min-[1513px]:right-auto min-[1513px]:mx-0 min-[1513px]:w-full min-[1513px]:flex-wrap min-[1513px]:justify-center min-[1513px]:overflow-visible"
       >
         {projects.map((p) => (
           <ProjectCarouselCard key={p.slug} project={p} />
         ))}
       </div>
       {pageCount > 1 && (
-        <div className="flex w-full items-center justify-between">
+        <div className="flex w-full items-center justify-between min-[1513px]:hidden">
           <button
             type="button"
             onClick={() => go(-1)}

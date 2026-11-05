@@ -140,7 +140,7 @@ export function ProjectCarouselCard({ project }: { project: ProjectSummary }) {
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="flex w-[300px] shrink-0 flex-col gap-4 md:w-[420px]"
+      className="flex w-[300px] shrink-0 flex-col gap-4 md:w-[420px] min-[1513px]:w-auto min-[1513px]:shrink min-[1513px]:grow min-[1513px]:basis-0"
     >
       <div className="relative aspect-[3/2] w-full overflow-hidden border border-[#d9d9d9] bg-[#f2f2f2]">
         <Image

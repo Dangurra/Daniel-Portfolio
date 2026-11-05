@@ -64,7 +64,9 @@ function FaqRow({
         className="flex w-full items-center justify-between py-4 text-left"
         aria-expanded={open}
       >
-        <span className="font-sans text-[15px] text-text-primary">{question}</span>
+        <span className="font-heading text-[16px] leading-[1.15] text-text-primary md:font-sans md:text-[15px] md:leading-normal">
+          {question}
+        </span>
         <span ref={plusRef} className="inline-flex font-mono text-[16px] text-text-muted">
           +
         </span>

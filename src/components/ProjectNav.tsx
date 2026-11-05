@@ -14,7 +14,7 @@ function NavSide({
   return (
     <Link
       href={`/projects/${slug}`}
-      className="flex items-center gap-[6px] -mx-2 -my-1 px-2 py-1 font-mono text-[14px] text-foreground-primary transition-colors duration-200 hover:bg-[#f5f5f5] hover:text-surface-action"
+      className="flex items-center gap-[6px] -mx-2 -my-1 px-2 py-1 font-mono text-[12px] text-foreground-primary transition-colors duration-200 hover:bg-[#f5f5f5] hover:text-surface-action md:text-[14px]"
     >
       {direction === "previous" && (
         <span className="inline-flex">
@@ -50,7 +50,7 @@ export function ProjectNav({
         <button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="flex items-center gap-[6px] -mx-2 -my-1 px-2 py-1 font-mono text-[14px] text-foreground-primary transition-colors duration-200 hover:bg-[#f5f5f5] hover:text-surface-action"
+          className="flex items-center gap-[6px] -mx-2 -my-1 px-2 py-1 font-mono text-[12px] text-foreground-primary transition-colors duration-200 hover:bg-[#f5f5f5] hover:text-surface-action md:text-[14px]"
         >
           <Icon name="arrow-left" size={16} className="rotate-90" />
           <span className="hidden md:inline">To Top</span>

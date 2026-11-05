@@ -112,7 +112,7 @@ export function ProjectRow({ project }: { project: ProjectSummary }) {
           <h3 className="font-heading text-[22px] leading-[1.2] text-text-primary md:text-[26px]">
             {project.title}
           </h3>
-          <p className="font-sans text-[14px] leading-[22px] text-text-secondary">
+          <p className="font-sans text-[12px] leading-[18px] text-text-secondary md:text-[14px] md:leading-[22px]">
             {project.description}
           </p>
         </div>
@@ -152,10 +152,10 @@ export function ProjectCarouselCard({ project }: { project: ProjectSummary }) {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <h4 className="font-heading text-[24px] leading-[1.15] text-text-primary md:text-[28px]">
+        <h4 className="font-heading text-[22px] leading-[1.15] text-text-primary md:text-[28px]">
           {project.company}
         </h4>
-        <p className="line-clamp-2 font-sans text-[13px] leading-[1.5] text-text-secondary">
+        <p className="line-clamp-2 font-sans text-[12px] leading-[18px] text-text-secondary md:text-[13px] md:leading-[1.5]">
           {project.description}
         </p>
       </div>

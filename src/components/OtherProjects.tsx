@@ -89,7 +89,7 @@ export function OtherProjects({ projects }: { projects: Project[] }) {
         <h2 className="font-heading text-[28px] text-text-primary md:text-[32px]">
           Other projects
         </h2>
-        <p className="font-sans text-[14px] text-text-muted">
+        <p className="font-sans text-[12px] leading-[18px] text-text-muted md:text-[14px] md:leading-normal">
           Explore more work across product design, illustration, and visual systems.
         </p>
       </div>

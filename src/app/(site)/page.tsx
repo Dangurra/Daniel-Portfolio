@@ -126,13 +126,13 @@ export default function Home() {
       >
         <div className="flex flex-col items-start gap-5 md:gap-6">
           <AvailabilityBadge />
-          <h1 className="max-w-[1187px] font-heading text-[36px] leading-[1.15] text-text-primary md:text-[58px]">
+          <h1 className="max-w-[1187px] font-heading text-[32px] leading-[1.15] text-text-primary md:text-[58px]">
             {hero.tagline}
           </h1>
           <p className="font-mono text-[11px] uppercase text-black md:text-[12px]">
             {hero.specialties}
           </p>
-          <p className="max-w-[640px] font-sans text-[16px] leading-[26px] text-text-secondary">
+          <p className="max-w-[640px] font-sans text-[15px] leading-[26px] text-text-secondary md:text-[16px]">
             {hero.bio}
           </p>
         </div>
@@ -148,7 +148,7 @@ export default function Home() {
             <h2 className="font-heading text-[28px] text-text-primary md:text-[40px]">
               Selected work
             </h2>
-            <span className="font-sans text-[13px] text-text-muted">Six projects</span>
+            <span className="font-mono text-[11px] text-text-muted md:font-sans md:text-[13px]">Six projects</span>
           </div>
         </div>
         <Reveal targets=":scope > a" stagger={0.1} className="flex flex-col gap-6">

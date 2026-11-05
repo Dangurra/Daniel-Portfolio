@@ -100,10 +100,10 @@ export default async function ProjectPage({
         <ProjectNav previousSlug={previous?.slug} nextSlug={next?.slug} />
         <div className="flex w-full flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div className="flex flex-col gap-4 md:max-w-[620px]">
-            <h1 className="font-heading text-[36px] leading-[1.2] text-text-primary md:text-[48px]">
+            <h1 className="font-heading text-[32px] leading-[1.2] text-text-primary md:text-[48px]">
               {project.pageHeading ?? project.company}
             </h1>
-            <p className="font-sans text-[16px] leading-[24px] text-text-secondary">
+            <p className="font-sans text-[16px] leading-[26px] text-text-secondary md:leading-[24px]">
               {project.description}
             </p>
           </div>
@@ -148,11 +148,11 @@ function StandardProjectBody({ project }: { project: NonNullable<ReturnType<type
           {project.sections.map((section) => (
             <div key={section.title} className="flex flex-col gap-4">
               {section.title && (
-                <h2 className="font-heading text-[28px] text-text-primary md:text-[34px]">
+                <h2 className="font-heading text-[25px] leading-[1.2] text-text-primary md:text-[34px] md:leading-normal">
                   {section.title}
                 </h2>
               )}
-              <div className="flex max-w-[760px] flex-col gap-4 font-sans text-[15px] leading-[1.55] text-text-secondary">
+              <div className="flex max-w-[760px] flex-col gap-4 font-sans text-[15px] leading-[26px] text-text-secondary md:leading-[1.55]">
                 {section.paragraphs.map((p, i) => (
                   <p key={i}>
                     <RichText text={p} />
@@ -178,25 +178,25 @@ function StandardProjectBody({ project }: { project: NonNullable<ReturnType<type
           </div>
           {project.skills && (
             <div className="flex flex-col gap-[6px]">
-              <p className="font-sans text-[11px] text-text-secondary">Skills</p>
+              <p className="font-sans text-[12px] text-text-secondary md:text-[11px]">Skills</p>
               <p className="font-sans text-[14px] text-text-primary">{project.skills}</p>
             </div>
           )}
           {project.timeline && (
             <div className="flex flex-col gap-[6px]">
-              <p className="font-sans text-[11px] text-text-secondary">Timeline</p>
+              <p className="font-sans text-[12px] text-text-secondary md:text-[11px]">Timeline</p>
               <p className="font-sans text-[14px] text-text-primary">{project.timeline}</p>
             </div>
           )}
           {project.role && (
             <div className="flex flex-col gap-[6px]">
-              <p className="font-sans text-[11px] text-text-secondary">Role</p>
+              <p className="font-sans text-[12px] text-text-secondary md:text-[11px]">Role</p>
               <p className="font-sans text-[14px] text-text-primary">{project.role}</p>
             </div>
           )}
           {project.collaborators && (
             <div className="flex flex-col gap-[6px]">
-              <p className="font-sans text-[11px] text-text-secondary">Collaborators</p>
+              <p className="font-sans text-[12px] text-text-secondary md:text-[11px]">Collaborators</p>
               <p className="font-sans text-[14px] text-text-primary">{project.collaborators}</p>
             </div>
           )}

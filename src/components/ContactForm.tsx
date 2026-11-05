@@ -8,7 +8,7 @@ import { Icon } from "./ui/Icon";
 type Status = "idle" | "sending" | "sent" | "error";
 
 const fieldClasses =
-  "w-full border border-border-default bg-transparent px-4 py-[14px] font-sans text-[15px] text-text-primary outline-none focus:border-surface-action";
+  "w-full border border-border-default bg-transparent px-4 py-[14px] font-sans text-[14px] text-text-primary outline-none focus:border-surface-action md:text-[15px]";
 
 declare global {
   interface Window {
@@ -54,14 +54,14 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="flex w-full max-w-[1400px] flex-col gap-8">
       <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="afterInteractive" async defer />
-      <p className="font-mono text-[12px] uppercase text-text-muted">[ Send a message ]</p>
+      <p className="font-mono text-[13px] text-text-muted md:text-[12px] md:uppercase">[ Send a message ]</p>
       <div className="flex flex-col gap-6 md:flex-row">
         <label className="flex flex-1 flex-col gap-2">
-          <span className="font-sans text-[14px] text-text-primary">Name</span>
+          <span className="font-mono text-[13px] text-text-primary md:font-sans md:text-[14px]">Name</span>
           <input name="name" placeholder="Your name" required className={fieldClasses} />
         </label>
         <label className="flex flex-1 flex-col gap-2">
-          <span className="font-sans text-[14px] text-text-primary">Email</span>
+          <span className="font-mono text-[13px] text-text-primary md:font-sans md:text-[14px]">Email</span>
           <input
             name="email"
             type="email"
@@ -72,7 +72,7 @@ export function ContactForm() {
         </label>
       </div>
       <label className="flex flex-col gap-2">
-        <span className="font-sans text-[14px] text-text-primary">Message</span>
+        <span className="font-mono text-[13px] text-text-primary md:font-sans md:text-[14px]">Message</span>
         <textarea
           name="message"
           placeholder="Tell me a little about what you have in mind."

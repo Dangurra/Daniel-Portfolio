@@ -20,10 +20,10 @@ export default function ContactPage() {
       <div className="flex flex-col gap-10">
         <GoHomeLink />
         <div className="flex flex-col gap-4">
-          <h1 className="max-w-[1080px] font-heading text-[40px] leading-[1.15] text-text-primary md:text-[58px]">
+          <h1 className="max-w-[1080px] font-heading text-[32px] leading-[1.15] text-text-primary md:text-[58px]">
             Let&apos;s get in touch.
           </h1>
-          <p className="max-w-[660px] font-sans text-[16px] leading-[26px] text-text-secondary">
+          <p className="max-w-[660px] font-sans text-[15px] leading-[26px] text-text-secondary md:text-[16px]">
             Have a project in mind, or are you hiring? I&apos;m open to full-time design roles
             and creative collaborations. Tell me what you&apos;re working on &mdash; I&apos;d
             love to hear from you.

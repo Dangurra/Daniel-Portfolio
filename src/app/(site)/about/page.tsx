@@ -33,7 +33,7 @@ export default function AboutPage() {
         className="flex w-full flex-col gap-10 px-6 pb-12 pt-10 md:px-14 md:pb-16 md:pt-12"
       >
         <GoHomeLink />
-        <h1 className="max-w-[1187px] font-heading text-[36px] leading-[1.15] text-text-primary md:text-[58px]">
+        <h1 className="max-w-[1187px] font-heading text-[32px] leading-[1.15] text-text-primary md:text-[58px]">
           {aboutHeadline}
         </h1>
       </Reveal>
@@ -47,7 +47,7 @@ export default function AboutPage() {
           <h2 className="font-heading text-[28px] text-text-primary md:text-[32px]">
             {aboutSubhead}
           </h2>
-          <div className="flex max-w-[651px] flex-col gap-4 font-sans text-[16px] leading-[26px] text-text-secondary">
+          <div className="flex max-w-[651px] flex-col gap-4 font-sans text-[15px] leading-[26px] text-text-secondary md:text-[16px]">
             {aboutIntroParagraphs.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
@@ -85,7 +85,7 @@ export default function AboutPage() {
           <h2 className="font-heading text-[28px] text-text-primary md:text-[32px]">
             My Tool Kit
           </h2>
-          <p className="max-w-[700px] font-sans text-[16px] leading-[26px] text-text-secondary">
+          <p className="max-w-[700px] font-sans text-[15px] leading-[26px] text-text-secondary md:text-[16px]">
             {toolsIntro}
           </p>
         </div>
@@ -111,7 +111,7 @@ export default function AboutPage() {
               </div>
               <div className="flex flex-wrap gap-3 md:hidden">
                 {cat.tools.map((tool) => (
-                  <ToolPill key={tool.name} name={tool.name} icon={tool.icon} size="lg" />
+                  <ToolPill key={tool.name} name={tool.name} icon={tool.icon} />
                 ))}
               </div>
             </Reveal>
@@ -120,7 +120,11 @@ export default function AboutPage() {
       </section>
 
       <section className="flex w-full flex-col gap-8 border-t border-border-section px-6 py-12 md:gap-10 md:px-14 md:py-16">
-        <h2 className="font-heading text-[28px] text-text-primary md:text-[32px]">Experience</h2>
+        <div className="flex items-center gap-4 md:hidden">
+          <h2 className="shrink-0 font-mono text-[11px] text-text-muted">[ Experience ]</h2>
+          <div className="h-px flex-1 bg-border-section" />
+        </div>
+        <h2 className="hidden font-heading text-text-primary md:block md:text-[32px]">Experience</h2>
         <Reveal
           as="div"
           targets=":scope > div"
@@ -149,7 +153,7 @@ export default function AboutPage() {
                 <p className="font-sans text-[13px] font-semibold text-text-primary">
                   {role.company}
                 </p>
-                <p className="font-sans text-[13px] leading-[1.6] text-text-secondary">
+                <p className="font-sans text-[15px] leading-[26px] text-text-secondary md:text-[13px] md:leading-[1.6]">
                   {role.description}
                 </p>
               </div>
@@ -164,10 +168,11 @@ export default function AboutPage() {
         className="flex w-full flex-col gap-8 border-t border-border-section px-6 py-12 md:gap-10 md:px-14 md:py-16"
       >
         <div className="flex flex-col gap-3">
+          <p className="font-mono text-[11px] text-text-muted md:hidden">[ FAQ ]</p>
           <h2 className="font-heading text-[28px] text-text-primary md:text-[32px]">
             Common Questions
           </h2>
-          <p className="max-w-[700px] font-sans text-[16px] leading-[26px] text-text-secondary">
+          <p className="max-w-[700px] font-sans text-[15px] leading-[26px] text-text-secondary md:text-[16px]">
             Quick answers about me, besides just design.
           </p>
         </div>

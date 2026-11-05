@@ -69,7 +69,7 @@ export default function AboutPage() {
             </Link>
           </div>
         </div>
-        <div className="relative order-first aspect-square w-full shrink-0 bg-[#f2f2f2] md:order-none md:w-[554px]">
+        <div className="relative order-first aspect-square w-full shrink-0 bg-surface-default-base md:order-none md:w-[554px]">
           <Image
             src="/images/about/daniel-portrait.webp"
             alt="Daniel Gur"
@@ -134,13 +134,20 @@ export default function AboutPage() {
         >
           {experience.map((role) => (
             <div key={role.company} className="flex flex-col gap-6 md:flex-row">
-              <div className="flex h-[131px] w-full items-center justify-center border border-[#e0e0e0] md:w-[520px]">
+              <div className="flex h-[131px] w-full items-center justify-center border border-border-default md:w-[520px]">
                 <Image
                   src={role.logo}
                   alt={role.company}
                   width={220}
                   height={56}
-                  className="object-contain"
+                  className="object-contain dark:hidden"
+                />
+                <Image
+                  src={role.logo.replace(/\.webp$/, "-light.svg")}
+                  alt={role.company}
+                  width={220}
+                  height={56}
+                  className="hidden object-contain dark:block"
                 />
               </div>
               <div className="flex flex-1 flex-col gap-3">

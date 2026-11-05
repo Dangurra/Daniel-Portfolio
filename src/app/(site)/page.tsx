@@ -38,13 +38,22 @@ function CompanyCell({
       className={`flex h-[90px] items-center justify-center md:h-[120px] ${className}`}
     >
       {company.wordmark ? (
-        <Image
-          src={company.wordmark}
-          alt={company.name}
-          width={company.width ?? 144}
-          height={30}
-          className="object-contain"
-        />
+        <>
+          <Image
+            src={company.wordmark}
+            alt={company.name}
+            width={company.width ?? 144}
+            height={30}
+            className="object-contain dark:hidden"
+          />
+          <Image
+            src={company.wordmark.replace(/\.webp$/, "-light.svg")}
+            alt={company.name}
+            width={company.width ?? 144}
+            height={30}
+            className="hidden object-contain dark:block"
+          />
+        </>
       ) : (
         <span className="font-sans text-[14px] text-text-muted">{company.name}</span>
       )}
@@ -129,7 +138,7 @@ export default function Home() {
           <h1 className="max-w-[1187px] font-heading text-[28px] leading-[1.15] text-text-primary md:text-[58px]">
             {hero.tagline}
           </h1>
-          <p className="font-mono text-[11px] uppercase text-black md:text-[12px]">
+          <p className="font-mono text-[11px] uppercase text-text-primary md:text-[12px]">
             {hero.specialties}
           </p>
           <p className="max-w-[640px] font-sans text-[15px] leading-[26px] text-text-secondary md:text-[16px]">

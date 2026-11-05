@@ -29,7 +29,7 @@ export function Icon({
       alt=""
       width={size}
       height={size}
-      className={`${tone === "light" ? "brightness-0 invert" : ""} ${className}`}
+      className={`${tone === "light" ? "brightness-0 invert" : "dark:brightness-0 dark:invert"} ${className}`}
     />
   );
 }

@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Manual theme toggle uses data-theme="dark" on <html> (set via
+   ThemeScript/ThemeToggle), not the OS prefers-color-scheme. Rebind
+   Tailwind's `dark:` variant to that attribute so dark: utilities
+   respond to the toggle instead of the system setting. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 :root {
   --background: #ffffff;
   --foreground: #111111;
@@ -55,9 +61,32 @@
   --font-mono: var(--font-geist-pixel);
 }
 
+:root[data-theme="dark"] {
+  --background: #0b0b0c;
+  --foreground: #f2f2f2;
+
+  --color-text-primary: #f2f2f2;
+  --color-text-secondary: #a3a3a3;
+  --color-text-muted: #8a8a8a;
+  --color-text-supporting: #c4c4c4;
+  --color-text-light: #4d4d4d;
+  --color-text-quiet-alt: #8a8a8a;
+  --color-text-on-color: #ffffff;
+  --color-text-link: #e8e8e8;
+  --color-foreground-primary: #f2f2f2;
+  --color-foreground-supporting: #c4c4c4;
+  --color-foreground-on-color: #ffffff;
+  --color-foreground-link: #e8e8e8;
+  --color-brand-highlight: #e8ff00;
+  --color-surface-default-base: #2a2a2a;
+  --color-border-default: #2e2e2e;
+  --color-border-section: #222222;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* Geist Pixel's "ELSH" axis switches its glyph shape; Figma's default

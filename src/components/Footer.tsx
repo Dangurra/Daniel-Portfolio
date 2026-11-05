@@ -18,13 +18,13 @@ const SITE_LINKS = [
 export function Footer() {
   return (
     <footer className="mx-auto flex w-full max-w-[1512px] flex-col items-center gap-10 border-t border-border-section px-6 pb-6 pt-8 md:gap-[53px] md:px-14 md:pt-8">
-      <div className="bg-brand-highlight">
+      <div className="bg-brand-highlight px-2 py-[9px] md:px-3 md:py-4">
         <Image
           src="/images/icons/ui/portfolio-signature.svg"
           alt="Daniel Gur"
           width={495}
           height={71}
-          className="h-auto w-[260px] md:w-[495px]"
+          className="h-auto w-[260px] md:w-[495px] dark:brightness-0"
         />
       </div>
 

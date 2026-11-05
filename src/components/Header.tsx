@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
 
 import { BracketLink } from "./BracketLink";
+import { ThemeToggle } from "./ThemeToggle";
 
 gsap.registerPlugin(useGSAP);
 
@@ -50,12 +51,12 @@ export function Header() {
       ref={headerRef}
       className="sticky top-0 z-50 w-full border-b border-border-section"
     >
-      <div className="pointer-events-none absolute inset-0 bg-white" />
+      <div className="pointer-events-none absolute inset-0 bg-background" />
       <div className="relative w-full">
         <div className="hidden w-full items-center gap-8 px-14 py-8 md:flex">
           <Link href="/" className="shrink-0 bg-brand-highlight px-0 py-0">
             <span
-              className="font-mono text-[19px] text-text-primary"
+              className="font-mono text-[19px] text-[#111111]"
               style={{ fontVariationSettings: '"ELSH" 0', lineHeight: 0.75 }}
             >
               Daniel Gur
@@ -72,6 +73,7 @@ export function Header() {
                 revealDelay={i * 0.08}
               />
             ))}
+            <ThemeToggle />
           </nav>
         </div>
 
@@ -95,7 +97,7 @@ export function Header() {
           </button>
         </div>
         {open && (
-          <nav className="flex flex-col gap-1 border-t border-border-section bg-white px-4 py-4 md:hidden">
+          <nav className="flex flex-col gap-1 border-t border-border-section bg-background px-4 py-4 md:hidden">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
@@ -106,6 +108,7 @@ export function Header() {
                 [ {item.label} ]
               </Link>
             ))}
+            <ThemeToggle className="py-2 text-left" />
           </nav>
         )}
       </div>

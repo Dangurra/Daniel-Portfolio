@@ -16,6 +16,7 @@ type ButtonProps = {
   className?: string;
   external?: boolean;
   align?: "center" | "start";
+  onClick?: () => void;
 };
 
 const VARIANT_CLASSES: Record<NonNullable<ButtonProps["variant"]>, string> = {
@@ -35,6 +36,7 @@ export function Button({
   className = "",
   external = false,
   align = "center",
+  onClick,
 }: ButtonProps) {
   const isPrimary = variant === "primary";
   const resolvedTone = iconTone ?? (isPrimary ? "light" : "dark");
@@ -57,18 +59,18 @@ export function Button({
 
   if (href) {
     return external ? (
-      <a href={href} target="_blank" rel="noreferrer" className={classes}>
+      <a href={href} target="_blank" rel="noreferrer" className={classes} onClick={onClick}>
         {content}
       </a>
     ) : (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} onClick={onClick}>
         {content}
       </Link>
     );
   }
 
   return (
-    <button type={type} disabled={disabled} className={classes}>
+    <button type={type} disabled={disabled} className={classes} onClick={onClick}>
       {content}
     </button>
   );

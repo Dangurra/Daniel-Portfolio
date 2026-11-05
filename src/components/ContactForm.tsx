@@ -1,7 +1,8 @@
 "use client";
 
+import { sendGAEvent } from "@next/third-parties/google";
 import Script from "next/script";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Icon } from "./ui/Icon";
 
@@ -12,13 +13,48 @@ const fieldClasses =
 
 declare global {
   interface Window {
-    turnstile?: { reset: (widget?: string | HTMLElement) => void };
+    turnstile?: {
+      reset: (widget?: string | HTMLElement) => void;
+      render: (
+        container: string | HTMLElement,
+        options: { sitekey: string; theme?: "light" | "dark" | "auto" }
+      ) => string;
+      remove: (widgetId: string) => void;
+    };
   }
 }
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("Something went wrong. Please try again.");
+  const [turnstileReady, setTurnstileReady] = useState(false);
+  const turnstileContainerRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!turnstileReady) return;
+
+    const container = turnstileContainerRef.current;
+    const sitekey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+    if (!container || !sitekey || !window.turnstile) return;
+
+    function renderWidget() {
+      const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+      if (widgetIdRef.current) {
+        window.turnstile?.remove(widgetIdRef.current);
+      }
+      widgetIdRef.current = window.turnstile!.render(container!, {
+        sitekey: sitekey!,
+        theme: isDark ? "dark" : "light",
+      });
+    }
+
+    renderWidget();
+
+    const observer = new MutationObserver(renderWidget);
+    observer.observe(document.documentElement, { attributeFilter: ["data-theme"] });
+    return () => observer.disconnect();
+  }, [turnstileReady]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -46,6 +82,7 @@ export function ContactForm() {
     if (res.ok) {
       setStatus("sent");
       form.reset();
+      sendGAEvent("event", "contact_form_submit", { method: "form" });
     } else {
       setStatus("error");
     }
@@ -53,7 +90,11 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex w-full max-w-[1400px] flex-col gap-8">
-      <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="afterInteractive" async defer />
+      <Script
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+        strategy="afterInteractive"
+        onReady={() => setTurnstileReady(true)}
+      />
       <p className="font-mono text-[13px] text-text-muted md:text-[12px] md:uppercase">[ Send a message ]</p>
       <div className="flex flex-col gap-6 md:flex-row">
         <label className="flex flex-1 flex-col gap-2">
@@ -81,11 +122,7 @@ export function ContactForm() {
           className={`${fieldClasses} min-h-[132px] resize-y`}
         />
       </label>
-      <div
-        className="cf-turnstile"
-        data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
-        data-theme="light"
-      />
+      <div ref={turnstileContainerRef} />
       <button
         type="submit"
         disabled={status === "sending"}

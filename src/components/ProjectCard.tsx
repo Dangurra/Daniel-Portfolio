@@ -29,7 +29,7 @@ export function ProjectRow({ project }: { project: ProjectSummary }) {
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="flex w-full flex-col overflow-hidden border border-border-section bg-white transition-colors duration-200 hover:border-foreground-primary hover:bg-[#fafafa] md:flex-row"
+      className="flex w-full flex-col overflow-hidden border border-border-section bg-background transition-colors duration-200 hover:border-foreground-primary md:flex-row"
       onMouseEnter={() => {
         setHovering(true);
         videoRef.current?.play();
@@ -105,6 +105,7 @@ export function ProjectRow({ project }: { project: ProjectSummary }) {
               alt=""
               width={14}
               height={14}
+              className="dark:brightness-0 dark:invert"
             />
           )}
         </div>
@@ -142,7 +143,7 @@ export function ProjectCarouselCard({ project }: { project: ProjectSummary }) {
       href={`/projects/${project.slug}`}
       className="flex w-[300px] shrink-0 flex-col gap-4 md:w-[420px]"
     >
-      <div className="relative aspect-[3/2] w-full overflow-hidden border border-[#d9d9d9] bg-[#f2f2f2]">
+      <div className="relative aspect-[3/2] w-full overflow-hidden border border-border-default bg-surface-default-base">
         <Image
           src={project.carouselBanner}
           alt={`${project.company} banner`}

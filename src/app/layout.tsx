@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Lora, Manrope } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
 import "@fontsource-variable/geist-pixel";
 import "./globals.css";
 
+import { ThemeScript } from "@/components/ThemeScript";
 import { siteConfig, SITE_URL } from "@/lib/site";
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
@@ -66,11 +68,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${lora.variable} ${manrope.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-white font-sans text-text-primary">
+      <head>
+        <ThemeScript />
+      </head>
+      <body className="min-h-full flex flex-col font-sans text-text-primary" style={{ background: "var(--background)" }}>
         {children}
       </body>
       {GA_MEASUREMENT_ID && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
+      <Analytics />
     </html>
   );
 }

@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { GoHomeLink } from "@/components/GoHomeLink";
 import { Reveal } from "@/components/Reveal";
 import { ResumeDocument } from "@/components/ResumeDocument";
+import { ResumeDownloadButton } from "@/components/ResumeDownloadButton";
 import { ResumePreviewMobile } from "@/components/ResumePreviewMobile";
-import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "My Résumé",
@@ -31,9 +31,7 @@ export default function ResumePage() {
               with. Preview my résumé here, or download a copy to keep.
             </p>
           </div>
-          <Button href="/resume.pdf" external icon="download" className="w-full md:w-[300px]">
-            Download résumé
-          </Button>
+          <ResumeDownloadButton className="w-full md:w-[300px]" />
         </div>
 
         <div className="flex w-full flex-col gap-4 md:w-[720px] md:shrink-0">

@@ -73,7 +73,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <ThemeScript />
       </head>
-      <body className="min-h-full flex flex-col font-sans text-text-primary" style={{ background: "var(--background)" }}>
+      <body className="min-h-full flex flex-col font-sans text-text-primary">
         {children}
       </body>
       {GA_MEASUREMENT_ID && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}

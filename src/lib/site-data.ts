@@ -1,8 +1,7 @@
 export const hero = {
   tagline:
     "I'm a designer who builds visual and human systems for apps, websites, and internal tools from concept through development.",
-  specialties: "Full website build & digital/print design system",
-  bio: "I'm Daniel Gur, a product designer working spreads across web apps, 3D modeling, and code. I like to see what makes things tick. To understand how they function and how that shapes the design.",
+  bio: "I'm Daniel Gur, a product designer working across web apps, 3D modeling, and code. I like seeing what makes things tick: how they function and how that shapes the design.",
 };
 
 export const toolCategories: { category: string; tools: { name: string; icon: string }[] }[] = [
@@ -70,7 +69,7 @@ export const experience: {
   {
     company: "Albacore Incorporated",
     title: "UX/UI Designer",
-    date: "2025–2026",
+    date: "Feb–Aug 2026",
     description:
       "I built out component systems and design elements for a full website rebrand. I developed marketing assets across channels, including a multipurpose deck.",
     logo: "/images/about/logos/albacore-logo.webp",

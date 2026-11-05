@@ -129,9 +129,6 @@ export default function Home() {
           <h1 className="max-w-[1187px] font-heading text-[36px] leading-[1.15] text-text-primary md:text-[58px]">
             {hero.tagline}
           </h1>
-          <p className="font-mono text-[11px] uppercase text-black md:text-[12px]">
-            {hero.specialties}
-          </p>
           <p className="max-w-[640px] font-sans text-[16px] leading-[26px] text-text-secondary">
             {hero.bio}
           </p>

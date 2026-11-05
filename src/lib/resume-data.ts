@@ -28,7 +28,7 @@ export const resumeExperience: {
   {
     role: "UX/UI Designer",
     company: "Albacore Incorporated",
-    meta: "Philadelphia | 2025 - 2026",
+    meta: "Philadelphia | Feb - Aug 2026",
     bullets: [
       "Building out component systems and design elements for a full website rebrand.",
       "Developing work for marketing assets across their reach, from a multi-purpose deck to marketing applications across the board.",

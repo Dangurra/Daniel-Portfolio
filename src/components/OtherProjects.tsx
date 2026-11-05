@@ -12,6 +12,7 @@ import type { Project } from "@/lib/projects-data";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const CARD_WIDTH = 420;
+const MOBILE_CARD_WIDTH = 300;
 const GAP = 24;
 const PER_PAGE_DESKTOP = 3;
 
@@ -19,8 +20,21 @@ export function OtherProjects({ projects }: { projects: Project[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState(0);
   const [needsScroll, setNeedsScroll] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const pageCount = Math.max(1, Math.ceil(projects.length / PER_PAGE_DESKTOP));
+  const perPage = isMobile ? 1 : PER_PAGE_DESKTOP;
+  const pageCount = Math.max(1, Math.ceil(projects.length / perPage));
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => {
+      setIsMobile(mq.matches);
+      setPage(0);
+    };
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -62,8 +76,9 @@ export function OtherProjects({ projects }: { projects: Project[] }) {
     if (!track) return;
     const next = Math.min(Math.max(page + direction, 0), pageCount - 1);
     setPage(next);
+    const cardWidth = isMobile ? MOBILE_CARD_WIDTH : CARD_WIDTH;
     track.scrollTo({
-      left: next * (CARD_WIDTH + GAP) * PER_PAGE_DESKTOP,
+      left: next * (cardWidth + GAP) * perPage,
       behavior: "smooth",
     });
   }

@@ -21,7 +21,10 @@ function NavSide({
           <Icon name="arrow-left" size={16} />
         </span>
       )}
-      <span>{direction === "previous" ? "Previous project" : "Next project"}</span>
+      <span className="hidden md:inline">
+        {direction === "previous" ? "Previous project" : "Next project"}
+      </span>
+      <span className="md:hidden">{direction === "previous" ? "Previous" : "Next"}</span>
       {direction === "next" && (
         <span className="inline-flex">
           <Icon name="arrow-right" size={16} />
@@ -50,7 +53,8 @@ export function ProjectNav({
           className="flex items-center gap-[6px] -mx-2 -my-1 px-2 py-1 font-mono text-[14px] text-foreground-primary transition-colors duration-200 hover:bg-[#f5f5f5] hover:text-surface-action"
         >
           <Icon name="arrow-left" size={16} className="rotate-90" />
-          <span>To Top</span>
+          <span className="hidden md:inline">To Top</span>
+          <span className="md:hidden">Top</span>
         </button>
       )}
       {nextSlug ? <NavSide slug={nextSlug} direction="next" /> : <span />}

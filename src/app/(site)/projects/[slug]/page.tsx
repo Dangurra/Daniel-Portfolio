@@ -266,7 +266,7 @@ function LockedProjectBody({ project }: { project: NonNullable<ReturnType<typeof
             src={project.lander.mobile}
             alt={`${project.company} brand watermark`}
             fill
-            className="object-cover md:hidden"
+            className="object-contain md:hidden"
           />
         </div>
         <div className="relative z-10 flex flex-col items-center gap-3 text-center">

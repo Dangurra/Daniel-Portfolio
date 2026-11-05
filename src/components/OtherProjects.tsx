@@ -80,10 +80,8 @@ export function OtherProjects({ projects }: { projects: Project[] }) {
       </div>
       <div
         ref={trackRef}
-        className={`relative left-1/2 right-1/2 -mx-[50vw] flex w-screen gap-6 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden ${
-          needsScroll
-            ? "justify-start pl-6 pr-6 md:pl-[max(56px,calc((100vw-1512px)/2+56px))] md:pr-14"
-            : "justify-center px-6 md:px-14"
+        className={`relative left-1/2 right-1/2 -mx-[50vw] flex w-screen gap-6 overflow-x-auto pb-2 pl-6 pr-6 [&::-webkit-scrollbar]:hidden md:pl-14 md:pr-14 ${
+          needsScroll ? "justify-start" : "justify-center"
         }`}
       >
         {projects.map((p) => (

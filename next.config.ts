@@ -9,6 +9,16 @@ const swrEntry = path.resolve(__dirname, "node_modules/swr/dist/index/index.mjs"
 
 const nextConfig: NextConfig = {
   /* config options here */
+  async redirects() {
+    return [
+      {
+        // Old Framer site used /about-me; this site uses /about.
+        source: "/about-me",
+        destination: "/about",
+        permanent: true,
+      },
+    ];
+  },
   turbopack: {
     resolveAlias: {
       swr: swrEntry,

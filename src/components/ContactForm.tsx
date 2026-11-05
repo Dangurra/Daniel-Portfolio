@@ -96,19 +96,12 @@ export function ContactForm() {
       </button>
       {status === "sent" && (
         <p className="font-sans text-[14px] text-green-600">
-          Thanks — I&apos;ll get back to you soon.
+          Thanks. I&apos;ll get back to you soon.
         </p>
       )}
       {status === "error" && (
         <p className="font-sans text-[14px] text-red-600">{errorMessage}</p>
       )}
-      <p className="font-sans text-[13px] text-text-muted">
-        Prefer email? Reach me directly at{" "}
-        <a href="mailto:dgur@me.com" className="text-surface-action underline underline-offset-2">
-          dgur@me.com
-        </a>
-        .
-      </p>
     </form>
   );
 }

@@ -25,8 +25,8 @@ export default function ContactPage() {
           </h1>
           <p className="max-w-[660px] font-sans text-[15px] leading-[26px] text-text-secondary md:text-[16px]">
             Have a project in mind, or are you hiring? I&apos;m open to full-time design roles
-            and creative collaborations. Tell me what you&apos;re working on &mdash; I&apos;d
-            love to hear from you.
+            and creative collaborations. Tell me what you&apos;re working on. I&apos;d love to
+            hear from you.
           </p>
         </div>
       </div>

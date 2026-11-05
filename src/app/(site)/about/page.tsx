@@ -33,7 +33,7 @@ export default function AboutPage() {
         className="flex w-full flex-col gap-10 px-6 pb-12 pt-10 md:px-14 md:pb-16 md:pt-12"
       >
         <GoHomeLink />
-        <h1 className="max-w-[1187px] font-heading text-[32px] leading-[1.15] text-text-primary md:text-[58px]">
+        <h1 className="max-w-[1187px] font-heading text-[28px] leading-[1.15] text-text-primary md:text-[58px]">
           {aboutHeadline}
         </h1>
       </Reveal>

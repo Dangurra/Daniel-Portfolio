@@ -254,8 +254,8 @@ function GameShell({ project }: { project: NonNullable<ReturnType<typeof getProj
 function LockedProjectBody({ project }: { project: NonNullable<ReturnType<typeof getProject>> }) {
   return (
     <section className="w-full px-6 pb-12 md:px-14 md:pb-16">
-      <div className="relative flex aspect-[760/535] w-full flex-col items-center justify-center gap-4 overflow-hidden border border-border-section bg-[#ececec] md:aspect-auto md:h-[620px]">
-        <div className="absolute inset-0 flex items-center justify-center opacity-[0.07] grayscale">
+      <div className="relative flex aspect-[760/535] w-full flex-col items-center justify-center gap-4 overflow-hidden border border-border-section bg-surface-default-base md:aspect-auto md:h-[620px]">
+        <div className="absolute inset-0 flex items-center justify-center opacity-[0.07] grayscale dark:invert">
           <Image
             src={project.lander.laptop}
             alt={`${project.company} brand watermark`}
@@ -275,7 +275,7 @@ function LockedProjectBody({ project }: { project: NonNullable<ReturnType<typeof
             alt=""
             width={24}
             height={24}
-            className="brightness-0"
+            className="brightness-0 dark:invert"
           />
           <p className="font-sans text-[16px] font-medium text-text-primary">
             Private content

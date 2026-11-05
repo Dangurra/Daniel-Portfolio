@@ -57,6 +57,14 @@ export default function AboutPage() {
             alt=""
             width={54}
             height={49}
+            className="dark:hidden"
+          />
+          <Image
+            src="/images/about/daniel-signature-light.svg"
+            alt=""
+            width={54}
+            height={49}
+            className="hidden dark:block"
           />
           <div className="flex items-center gap-7">
             <Button href="/contact" icon="asterisk">Contact Me</Button>

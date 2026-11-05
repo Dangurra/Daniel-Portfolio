@@ -3,7 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import { ProjectCarouselCard } from "./ProjectCard";
 import { Icon } from "./ui/Icon";
@@ -18,21 +18,8 @@ const PER_PAGE_DESKTOP = 3;
 export function OtherProjects({ projects }: { projects: Project[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState(0);
-  const [needsScroll, setNeedsScroll] = useState(true);
 
   const pageCount = Math.max(1, Math.ceil(projects.length / PER_PAGE_DESKTOP));
-
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const check = () => setNeedsScroll(track.scrollWidth > track.clientWidth + 1);
-    check();
-
-    const observer = new ResizeObserver(check);
-    observer.observe(track);
-    return () => observer.disconnect();
-  }, [projects.length]);
 
   useGSAP(
     () => {
@@ -82,7 +69,7 @@ export function OtherProjects({ projects }: { projects: Project[] }) {
           <ProjectCarouselCard key={p.slug} project={p} />
         ))}
       </div>
-      {needsScroll && pageCount > 1 && (
+      {pageCount > 1 && (
         <div className="flex w-full items-center justify-between">
           <button
             type="button"

@@ -1,6 +1,7 @@
 export const hero = {
   tagline:
     "I'm a designer who builds visual and human systems for apps, websites, and internal tools from concept through development.",
+  specialties: "Product Design • 3D Modeling • UX/UI • Visual Design • Development",
   bio: "I'm Daniel Gur, a product designer working across web apps, 3D modeling, and code. I like seeing what makes things tick: how they function and how that shapes the design.",
 };
 

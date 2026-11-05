@@ -3,14 +3,13 @@ import type { Metadata } from "next";
 import { GoHomeLink } from "@/components/GoHomeLink";
 import { Reveal } from "@/components/Reveal";
 import { ResumeDocument } from "@/components/ResumeDocument";
+import { ResumePreviewMobile } from "@/components/ResumePreviewMobile";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "My Résumé",
   description: "Daniel Gur's résumé — experience, skills, and a downloadable PDF.",
 };
-
-const MOBILE_SCALE = 326 / 612;
 
 export default function ResumePage() {
   return (
@@ -43,18 +42,11 @@ export default function ResumePage() {
             <span>1 / 1</span>
           </div>
           <div className="flex w-full items-center justify-center border border-[#ddd] bg-[#f7f7f5] p-4 md:p-10">
-            <div
-              className="h-[421.882px] w-[326px] overflow-hidden drop-shadow-[0px_4px_8px_rgba(0,0,0,0.05)] md:h-[792px] md:w-[612px]"
-            >
-              <div
-                className="origin-top-left md:hidden"
-                style={{ transform: `scale(${MOBILE_SCALE})` }}
-              >
-                <ResumeDocument />
-              </div>
-              <div className="hidden md:block">
-                <ResumeDocument />
-              </div>
+            <div className="w-full md:hidden">
+              <ResumePreviewMobile />
+            </div>
+            <div className="hidden h-[792px] w-[612px] overflow-hidden drop-shadow-[0px_4px_8px_rgba(0,0,0,0.05)] md:block">
+              <ResumeDocument />
             </div>
           </div>
         </div>

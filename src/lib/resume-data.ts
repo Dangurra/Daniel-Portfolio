@@ -12,12 +12,20 @@ export const resumeEducation = {
   meta: "San Luis Obispo | 2025",
 };
 
-export const resumeRecognition = {
-  title: "Framer: The Best Startup Websites on the Internet",
-  meta: "Featured | 2025",
-  description:
-    "After launching the new website for Poseidon Aerospace, it was featured in the Framer Gallery as a showcase example for other creators.",
-};
+export const resumeRecognitions: { title: string; meta: string; description: string }[] = [
+  {
+    title: "Framer: The Best Startup Websites on the Internet",
+    meta: "Featured | 2025",
+    description:
+      "After launching the new website for Poseidon Aerospace, it was featured in the Framer Gallery as a showcase example for other creators.",
+  },
+  {
+    title: "UX: Fest SLO Designation",
+    meta: "Second Place | 2025",
+    description:
+      "Worked with a team of four in a 24-hour design challenge, competing against 25+ other teams.",
+  },
+];
 
 export const resumeExperience: {
   role: string;
@@ -96,7 +104,7 @@ export const resumeDesignTools: { name: string; description: string }[] = [
 
 export const resumeDevTools: { name: string; description: string }[] = [
   {
-    name: "Claude Code, Codex, Gemini, Topaz",
+    name: "Claude Code, Gemini, and Topaz",
     description:
       "Using AI-assisted tools to accelerate production workflows and bridge design and implementation.",
   },
@@ -106,7 +114,7 @@ export const resumeDevTools: { name: string; description: string }[] = [
       "Basic knowledge of front-end web development for building and styling responsive layouts.",
   },
   {
-    name: "Unity/C#",
+    name: "Unity and C#",
     description:
       "2D game development focused on player movement, physics, animations, and interactivity. Experienced in scripting responsive UI.",
   },

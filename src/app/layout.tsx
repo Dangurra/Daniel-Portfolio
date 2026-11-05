@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Lora, Manrope } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
 import "@fontsource-variable/geist-pixel";
 import "./globals.css";
 
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col bg-white font-sans text-text-primary">
         {children}
+        <Analytics />
       </body>
       {GA_MEASUREMENT_ID && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
     </html>

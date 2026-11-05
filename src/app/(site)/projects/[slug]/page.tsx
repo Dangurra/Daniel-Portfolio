@@ -142,7 +142,7 @@ function StandardProjectBody({ project }: { project: NonNullable<ReturnType<type
         as="section"
         targets=":scope > div"
         y={18}
-        className="flex w-full flex-col gap-10 border-t border-border-section px-6 py-12 md:flex-row md:gap-16 md:px-14 md:py-16"
+        className="flex flex-col gap-10 border-t border-border-section mx-6 py-12 md:flex-row md:gap-16 md:mx-14 md:py-16"
       >
         <div className="flex flex-1 flex-col gap-14">
           {project.sections.map((section) => (
@@ -218,7 +218,7 @@ function StandardProjectBody({ project }: { project: NonNullable<ReturnType<type
       {project.gallery.map((section) => (
         <section
           key={section.title}
-          className="flex w-full flex-col gap-6 border-t border-border-section px-6 py-12 md:gap-8 md:px-14 md:py-16"
+          className="flex flex-col gap-6 border-t border-border-section mx-6 py-12 md:gap-8 md:mx-14 md:py-16"
         >
           <h2 className="font-heading text-[26px] text-text-primary md:text-[32px]">
             {section.title}
@@ -236,7 +236,7 @@ function StandardProjectBody({ project }: { project: NonNullable<ReturnType<type
 
 function GameShell({ project }: { project: NonNullable<ReturnType<typeof getProject>> }) {
   return (
-    <section className="flex w-full flex-col gap-6 border-t border-border-section px-12 py-24 md:gap-8 md:px-28 md:py-32">
+    <section className="flex flex-col gap-6 border-t border-border-section mx-12 py-24 md:gap-8 md:mx-28 md:py-32">
       <h2 className="font-heading text-[26px] text-text-primary md:text-[32px]">
         Playable Game (On PC/Mac)
       </h2>

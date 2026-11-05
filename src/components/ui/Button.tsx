@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { type ReactNode } from "react";
+import { type MouseEvent, type ReactNode } from "react";
 
 import { Icon, type IconName } from "./Icon";
 
@@ -15,8 +15,9 @@ type ButtonProps = {
   disabled?: boolean;
   className?: string;
   external?: boolean;
+  download?: string;
   align?: "center" | "start";
-  onClick?: () => void;
+  onClick?: (event: MouseEvent<HTMLElement>) => void;
 };
 
 const VARIANT_CLASSES: Record<NonNullable<ButtonProps["variant"]>, string> = {
@@ -35,6 +36,7 @@ export function Button({
   disabled = false,
   className = "",
   external = false,
+  download,
   align = "center",
   onClick,
 }: ButtonProps) {
@@ -56,6 +58,14 @@ export function Button({
       )}
     </>
   );
+
+  if (href && download) {
+    return (
+      <a href={href} download={download} className={classes} onClick={onClick}>
+        {content}
+      </a>
+    );
+  }
 
   if (href) {
     return external ? (

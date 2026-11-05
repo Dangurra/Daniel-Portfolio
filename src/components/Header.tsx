@@ -4,7 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { BracketLink } from "./BracketLink";
 import { ThemeToggle } from "./ThemeToggle";
@@ -23,12 +23,25 @@ export function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const lastY = useRef(0);
   const hidden = useRef(false);
+  const menuOpen = useRef(false);
+
+  useEffect(() => {
+    menuOpen.current = open;
+  }, [open]);
 
   useGSAP(() => {
     lastY.current = window.scrollY;
 
     const onScroll = () => {
       const y = window.scrollY;
+
+      // The mobile menu lives inside the header, so hiding the header
+      // would take the open menu with it.
+      if (menuOpen.current) {
+        lastY.current = y;
+        return;
+      }
+
       const goingDown = y > lastY.current;
       const pastThreshold = y > 96;
 
@@ -97,7 +110,7 @@ export function Header() {
           </button>
         </div>
         {open && (
-          <nav className="flex flex-col gap-1 border-t border-border-section bg-background px-4 py-4 md:hidden">
+          <nav className="absolute inset-x-0 top-full flex max-h-[calc(100dvh-100%)] flex-col gap-1 overflow-y-auto border-y border-border-section bg-background px-4 py-4 md:hidden">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}

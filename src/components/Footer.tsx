@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Icon } from "./ui/Icon";
 
 const SOCIAL_LINKS = [
-  { label: "itch.io", href: "https://dangurra.itch.io/braze" },
+  { label: "itch.io", href: "https://dangurra.itch.io" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/daniel-gur-846499223/" },
   { label: "Instagram", href: "https://www.instagram.com/danlel_gur/" },
 ];
@@ -70,7 +70,7 @@ export function Footer() {
       </div>
 
       <div className="flex gap-6 font-sans text-[13px] text-text-muted md:gap-[53px]">
-        <p>USD - ENGLISH</p>
+        <p>&copy; {new Date().getFullYear()} Daniel Gur.</p>
         <p>All rights reserved.</p>
       </div>
     </footer>

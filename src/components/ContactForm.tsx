@@ -102,6 +102,13 @@ export function ContactForm() {
       {status === "error" && (
         <p className="font-sans text-[14px] text-red-600">{errorMessage}</p>
       )}
+      <p className="font-sans text-[13px] text-text-muted">
+        Prefer email? Reach me directly at{" "}
+        <a href="mailto:dgur@me.com" className="text-surface-action underline underline-offset-2">
+          dgur@me.com
+        </a>
+        .
+      </p>
     </form>
   );
 }

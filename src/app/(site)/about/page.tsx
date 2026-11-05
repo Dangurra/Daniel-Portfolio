@@ -20,7 +20,8 @@ import {
 } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: "About Me — Daniel Gur",
+  title: "About Me",
+  description: "The story, tools, and experience behind Daniel Gur's design work.",
 };
 
 export default function AboutPage() {

@@ -24,7 +24,27 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const project = getProject(slug);
-  return { title: project ? `${project.title} — Daniel Gur` : "Project — Daniel Gur" };
+  if (!project) return { title: "Project" };
+
+  const description = project.description;
+  const ogImage = project.type === "locked" ? project.banner : project.lander.laptop;
+
+  return {
+    title: project.title,
+    description,
+    openGraph: {
+      title: project.title,
+      description,
+      type: "article",
+      images: ogImage ? [{ url: ogImage }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: project.title,
+      description,
+      images: ogImage ? [ogImage] : undefined,
+    },
+  };
 }
 
 function ResponsiveImage({
@@ -218,7 +238,7 @@ function GameShell({ project }: { project: NonNullable<ReturnType<typeof getProj
   return (
     <section className="flex w-full flex-col gap-6 border-t border-border-section px-12 py-24 md:gap-8 md:px-28 md:py-32">
       <h2 className="font-heading text-[26px] text-text-primary md:text-[32px]">
-        Playable Game (On PC/MAC)
+        Playable Game (On PC/Mac)
       </h2>
       <GameEmbed
         embedUrl="https://itch.io/embed-upload/13627717?color=222024"
@@ -238,7 +258,7 @@ function LockedProjectBody({ project }: { project: NonNullable<ReturnType<typeof
         <div className="absolute inset-0 flex items-center justify-center opacity-[0.07] grayscale">
           <Image
             src={project.banner}
-            alt=""
+            alt={`${project.company} brand watermark`}
             fill
             className="object-cover"
           />

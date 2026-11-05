@@ -13,7 +13,7 @@ gsap.registerPlugin(useGSAP);
 const NAV_ITEMS = [
   { label: "About Me", href: "/about" },
   { label: "Contact", href: "/contact" },
-  { label: "Download Resume", href: "/resume" },
+  { label: "Download résumé", href: "/resume" },
 ];
 
 export function Header() {

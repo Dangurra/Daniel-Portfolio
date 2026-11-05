@@ -100,7 +100,7 @@ export const projects: Project[] = [
         paragraphs: [
           "During my 13-week internship at SambaNova Systems, I worked across two of the company's enterprise AI products: SambaStudio and SambaCloud. I joined at an interesting point for the company. SambaNova was shifting from primarily enterprise AI infrastructure toward putting its custom hardware directly in the hands of developers, with inference speed becoming a major part of its product story.",
           "For SambaStudio, I redesigned the login experience. The existing page broke in dark mode, relied on outdated iconography, and featured artwork that had little connection to the product. I explored several visual directions and took them through four rounds of design reviews, but while the concepts worked, none of them felt completely right to me. I wanted to try one more illustration-based approach before settling on a direction.",
-          "At the time, SambaNova was heavily emphasizing the inference performance of its custom hardware. That pushed me toward using server racks as the central visual metaphor. The concept was not meant to represent the product literally. Users were not connecting directly to a rack of SambaNova servers. Instead, I wanted it to feel as though SambaNova's computing power was sitting right beside their machines, giving them immediate access to that performance. After more than **56 iterations**, the server-rack direction was approved for production.",
+          "At the time, SambaNova was heavily emphasizing the inference performance of its custom hardware. That pushed me toward using server racks as the central visual metaphor. The concept was not meant to represent the product literally. Users were not connecting directly to a rack of SambaNova servers. Instead, I wanted it to feel as though SambaNova's computing power was sitting right beside their machines, giving them immediate access to that performance. After **56+ iterations**, the server-rack direction was approved for production.",
           "For SambaCloud, I was designing for a product that was still taking shape. The platform publicly launched near the end of my internship in September 2024, giving developers direct access to SambaNova's infrastructure and models such as Llama 3.1 405B. That created a different design challenge from SambaStudio. A highly technical infrastructure product now had to make sense to developers who might never think about the hardware underneath it.",
           "I designed the SambaCloud landing page and key pages within the web app, starting by mapping five core personas, from students experimenting with AI to enterprise teams building production applications. I shaped the experience around what those users needed to understand quickly: why the platform was fast, what they could build with it, which starter kits matched their use cases, and how to get started. I took the work from early wireframes through to the final UI and also created a custom icon set for the product.",
           "Across both projects, I was designing around the same broader challenge: making advanced AI infrastructure feel understandable, polished, and approachable. Several of the pieces I contributed are still in production today, even as SambaNova's broader design language has continued to evolve.",
@@ -109,7 +109,7 @@ export const projects: Project[] = [
     ],
     tools: [T.figma, T.afterEffects, T.illustrator, T.photoshop],
     skills:
-      "UI/UX design, illustration, iconography, animation, Art direction, product design, visual design",
+      "UI/UX design, illustration, iconography, animation, art direction, product design, visual design",
     timeline: "June - September 2024 · 13 weeks",
     role: "Product Designer (Internship)",
     liveUrl: "https://sambanova.ai",
@@ -175,7 +175,7 @@ export const projects: Project[] = [
       {
         title: "My time with Poseidon Aerospace.",
         paragraphs: [
-          "Founded in 2024, Poseidon is developing purpose-built unmanned cargo aircraft for both commercial and defense logistics. In November 2025, the company was preparing to publicly announce an **$11 million seed round** alongside its Egret and Heron aircraft announcement. The problem was that its existing website still felt like an early-stage startup template. It did not communicate the scale of what Poseidon was building or the credibility the company needed as they are going to get even more eyes on them from customers, investors, military, and press.",
+          "Founded in 2024, Poseidon is developing purpose-built unmanned cargo aircraft for both commercial and defense logistics. In November 2025, the company was preparing to publicly announce an **$11 million seed round** alongside its Egret and Heron aircraft announcement. The problem was that its existing website still felt like an early-stage startup template. It did not communicate the scale of what Poseidon was building or the credibility it needed as more customers, investors, military partners, and press began paying attention.",
           "Working with Joel Rowley, I had four weeks to take the site from early concepts to a live product. Before designing, I met with people across the company to understand what each part of the site actually needed to accomplish. Commercial customers needed to understand the economics of autonomous air freight. Defense users cared about operating in remote and contested environments. Recruits needed to see a serious aerospace company worth joining. Investors and press needed to quickly understand the aircraft, the business, and why Poseidon's value proposition mattered. That research became the foundation for the site's information architecture, with dedicated **Aircraft, Commercial, Defense, Careers, News, and Contact** experiences instead of trying to explain the entire company on one marketing page. The structure is still visible in the live site today.",
           "One of the biggest design challenges was that Poseidon was selling the same underlying idea to very different audiences. On the commercial side, the story centered on moving more cargo with lower operating costs, less fuel, and greater aircraft utilization. On the defense side, the same aircraft became a logistics platform for moving cargo without depending on conventional infrastructure.",
           "I also wanted the website to show the aircraft rather than bury visitors in aerospace copy. Large renders, motion, specifications, comparison points, and interactive sections became the primary way of communicating what made the aircraft different. I designed the experience in Figma, then built it in Framer, using custom React and JavaScript where the project needed more than the platform could provide. Behind the visible pages, I built the systems needed to keep the site useful after launch: separate inquiry routing for defense and commercial leads, a CMS-powered newsroom, an API-synced job board, and Cloudflare-hosted video so the site could use large aircraft footage without sacrificing performance.",
@@ -306,7 +306,7 @@ export const projects: Project[] = [
     ],
     skills:
       "Web design, UX research, information architecture, design system, web development, CMS, animation, responsive design, component system, product visualization, content strategy, design handoff, production support",
-    timeline: "January - February 2025 · 6 weeks",
+    timeline: "January - February 2026 · 6 weeks",
     role: "Contractor - Web Developer/Product Designer",
     collaborators: "Joel Rowley - Creative Director",
     liveUrl: "https://texsoftware.com",
@@ -374,7 +374,7 @@ export const projects: Project[] = [
       {
         title: "Post Launch",
         paragraphs: [
-          "This was one of the **most demanding client projects** I had led independently. It required me to manage a changing scope, external creatives, client expectations, technical limitations, and another major website project at the same time. It strengthened my ability to explain tradeoffs, document design reasoning, protect consistency, and continue moving a project forward under pressure.",
+          "This was one of the **most demanding client projects** I have led independently. It required me to manage a changing scope, external creatives, client expectations, technical limitations, and another major website project at the same time. It strengthened my ability to explain tradeoffs, document design reasoning, protect consistency, and continue moving a project forward under pressure.",
           "I later supported Albacore with investor presentations, one-pagers, advertisements, logos, stickers, and illustrations. I also returned to the website to create dedicated **defense and commercial sections** showing Ghostfin across different mission scenarios. The result was more than a single landing page. It became a flexible digital system that Albacore could continue expanding as its product, missions, and company evolved.",
         ],
       },
@@ -479,7 +479,7 @@ export const projects: Project[] = [
           "Each level represented a different stage of creative block and used its own palette, scenery, pacing, and obstacles. The environments gradually developed from muted and desaturated spaces into more colorful and expressive worlds, creating a visual progression alongside the player. Jake developed the artwork and animation for the character and environments, while I translated those assets into playable levels and determined how movement, collision, triggers, and pacing would support each stage.",
           "Building the game meant learning the full structure of 2D development in Unity. I created the player-movement system, implemented sprinting, jumping, falling, wall sliding, and wall jumping, and added coyote time, a short grace period that allows players to jump just after leaving a platform. I also worked with tilemaps, Unity layers, custom hitboxes, checkpoints, dialogue triggers, scene transitions, particle effects, animation states, parallax backgrounds, and death-and-restart behavior. These systems needed to work together across four visually and mechanically distinct levels.",
           "Movement became one of the most important parts of the experience. Small timing changes could determine whether the game felt responsive or frustrating, especially during wall jumps and more precise platforming sections. We repeatedly adjusted acceleration, jump timing, collision boundaries, and animation transitions so the controls remained challenging without working against the player.",
-          "The most unexpected response came when a player began **speedrunning** the game. Some random user created a dedicated [Speedrun.com](https://www.speedrun.com/Braze) page, submitted recorded attempts, and competed across full-game and individual-level categories. Seeing random people play our student project was happily unexpected.",
+          "The most unexpected response came when a player began **speedrunning** the game. Someone I'd never met created a dedicated [Speedrun.com](https://www.speedrun.com/Braze) page, submitted recorded attempts, and competed across full-game and individual-level categories. Seeing strangers play our student project was happily unexpected.",
         ],
       },
       {
@@ -492,7 +492,7 @@ export const projects: Project[] = [
     tools: [T.adobeSuite, T.illustrator, T.photoshop, T.afterEffects, T.fresco, T.figma, T.unity, T.csharp],
     skills: "Game development, game design, UX design, storyboarding, research, art direction",
     timeline: "February - March 2025 · 4 weeks",
-    role: "Contractor - Developer/Game Designer",
+    role: "School Project - Developer/Game Designer",
     collaborators: "Jake Crock - Illustrator/Designer",
     liveUrl: "https://dangurra.itch.io/braze",
     visitLabel: "Visit itch.io site",

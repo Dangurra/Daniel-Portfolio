@@ -3,7 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 gsap.registerPlugin(useGSAP);
 
@@ -13,12 +13,34 @@ export function MarqueeRow({
   direction = "left",
   speed = 40,
 }: {
-  images: { src: string; ratio: number; type?: "image" | "video" }[];
+  images: { src: string; ratio: number; type?: "image" | "video"; poster?: string; alt: string }[];
   heightClass: string;
   direction?: "left" | "right";
   speed?: number;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
+  const rowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const row = rowRef.current;
+    if (!row) return;
+
+    const videos = () => Array.from(row.querySelectorAll("video"));
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          videos().forEach((v) => v.play().catch(() => {}));
+        } else {
+          videos().forEach((v) => v.pause());
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(row);
+    return () => observer.disconnect();
+  }, []);
 
   // Repeated enough times that one full set always exceeds the widest
   // realistic viewport, so the seamless-loop reset point is never visible
@@ -52,7 +74,7 @@ export function MarqueeRow({
   const repeated = Array.from({ length: REPEATS }, () => images).flat();
 
   return (
-    <div className="flex w-full gap-3 overflow-hidden">
+    <div ref={rowRef} className="flex w-full gap-3 overflow-hidden">
       <div ref={trackRef} className="flex gap-3 will-change-transform">
         {repeated.map((img, i) =>
           img.type === "video" ? (
@@ -63,7 +85,9 @@ export function MarqueeRow({
             >
               <video
                 src={img.src}
-                autoPlay
+                aria-label={img.alt}
+                poster={img.poster}
+                preload="none"
                 loop
                 muted
                 playsInline
@@ -76,7 +100,7 @@ export function MarqueeRow({
               className={`relative shrink-0 overflow-hidden ${heightClass}`}
               style={{ aspectRatio: img.ratio }}
             >
-              <Image src={img.src} alt="" fill sizes="500px" className="object-cover" />
+              <Image src={img.src} alt={img.alt} fill sizes="500px" className="object-cover" />
             </div>
           )
         )}

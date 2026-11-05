@@ -41,7 +41,7 @@ export function ProjectRow({ project }: { project: ProjectSummary }) {
       }}
     >
       <div
-        className="relative w-full shrink-0 overflow-hidden bg-[#111] md:w-[840px]"
+        className="relative w-full min-w-0 shrink-0 overflow-hidden bg-[#111] md:w-auto md:max-w-[840px] md:flex-1 md:shrink"
         style={{ aspectRatio: project.bannerAspect }}
       >
         <Image
@@ -56,6 +56,7 @@ export function ProjectRow({ project }: { project: ProjectSummary }) {
             <video
               ref={videoRef}
               src={project.hoverVideo}
+              preload="none"
               muted
               loop
               playsInline

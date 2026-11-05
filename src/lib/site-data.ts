@@ -64,7 +64,7 @@ export const experience: {
     title: "Product Designer",
     date: "2025–2026",
     description:
-      "I designed web, application, and print assets for clients while maintaining consistency with their existing design systems. I led the redesign of Tara Mind's corporate health mobile app for android and ios to align with WCAG 2.2 AA standards while refreshing the design language.",
+      "I designed web, application, and print assets for clients while maintaining consistency with their existing design systems. I led the redesign of Tara Mind's corporate health mobile app for Android and iOS to align with WCAG 2.2 AA standards while refreshing the design language.",
     logo: "/images/about/logos/plaid-again-logo.webp",
   },
   {

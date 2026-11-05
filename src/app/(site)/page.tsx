@@ -52,48 +52,55 @@ function CompanyCell({
   );
 }
 
-type RailImage = { slug?: string; src?: string; ratio: number; video?: boolean };
+type RailImage = {
+  slug?: string;
+  src?: string;
+  ratio: number;
+  video?: boolean;
+  poster?: string;
+  alt: string;
+};
 type Rail = { heightClass: string; images: RailImage[] };
 
 const OTHER_WORK_RAILS_RAW: Rail[] = [
   {
     heightClass: "h-[220px] md:h-[340px]",
     images: [
-      { src: "/videos/other-work/plan-it.mp4", ratio: 1208 / 680, video: true },
-      { slug: "buddy-phones", ratio: 1400 / 921 },
-      { slug: "buddy-dna-packaging", ratio: 1400 / 933 },
-      { src: "/videos/other-work/space-marine.mp4", ratio: 506 / 900, video: true },
-      { slug: "teros-mockup", ratio: 1400 / 787 },
-      { src: "/videos/generated-landscape.mp4", ratio: 1052 / 700, video: true },
+      { src: "/videos/other-work/plan-it.mp4", poster: "/videos/posters/plan-it.jpg", ratio: 1208 / 680, video: true, alt: "Plan-It travel app interface preview" },
+      { slug: "buddy-phones", ratio: 1400 / 921, alt: "Buddy app mobile screens" },
+      { slug: "buddy-dna-packaging", ratio: 1400 / 933, alt: "Buddy pet DNA test packaging design" },
+      { src: "/videos/other-work/space-marine.mp4", poster: "/videos/posters/space-marine.jpg", ratio: 506 / 900, video: true, alt: "Hand-painted miniature figures" },
+      { slug: "teros-mockup", ratio: 1400 / 787, alt: "TEROS product website mockup" },
+      { src: "/videos/generated-landscape.mp4", poster: "/videos/posters/generated-landscape.jpg", ratio: 1052 / 700, video: true, alt: "AI-generated landscape animation" },
     ],
   },
   {
     heightClass: "h-[240px] md:h-[380px]",
     images: [
-      { slug: "privacy-poster", ratio: 934 / 1400 },
-      { slug: "come-together-red", ratio: 1400 / 989 },
-      { slug: "orange-landscape-illustration", ratio: 1400 / 1081 },
-      { src: "/videos/other-work/screwdriver.mp4", ratio: 1268 / 760, video: true },
-      { slug: "sambanova-illustration", ratio: 1400 / 938 },
+      { slug: "privacy-poster", ratio: 934 / 1400, alt: "Privacy awareness poster design" },
+      { slug: "come-together-red", ratio: 1400 / 989, alt: "Come Together campaign poster, red colorway" },
+      { slug: "orange-landscape-illustration", ratio: 1400 / 1081, alt: "Orange-toned landscape illustration" },
+      { src: "/videos/other-work/screwdriver.mp4", poster: "/videos/posters/screwdriver.jpg", ratio: 1268 / 760, video: true, alt: "Rotating screwdriver CAD render" },
+      { slug: "sambanova-illustration", ratio: 1400 / 938, alt: "SambaNova brand illustration" },
     ],
   },
   {
     heightClass: "h-[200px] md:h-[320px]",
     images: [
-      { slug: "graphic-design-wizard", ratio: 1400 / 950 },
-      { slug: "come-together-green", ratio: 1400 / 933 },
-      { src: "/videos/other-work/monsoon.mp4", ratio: 1138 / 640, video: true },
-      { slug: "monsoon-beer-packaging-1", ratio: 1400 / 879 },
+      { slug: "graphic-design-wizard", ratio: 1400 / 950, alt: "\"Graphic Design Wizard\" illustrated poster" },
+      { slug: "come-together-green", ratio: 1400 / 933, alt: "Come Together campaign poster, green colorway" },
+      { src: "/videos/other-work/monsoon.mp4", poster: "/videos/posters/monsoon.jpg", ratio: 1138 / 640, video: true, alt: "Monsoon beer can packaging video" },
+      { slug: "monsoon-beer-packaging-1", ratio: 1400 / 879, alt: "Monsoon beer can packaging design" },
     ],
   },
   {
     heightClass: "h-[190px] md:h-[300px]",
     images: [
-      { slug: "buddy-cad-model", ratio: 1400 / 1049 },
-      { slug: "paint-bottle-organizer", ratio: 1050 / 1400 },
-      { slug: "buddy-finished-render", ratio: 1400 / 1049 },
-      { slug: "cap-illustration", ratio: 1400 / 1400 },
-      { slug: "long-cad-object", ratio: 1400 / 1049 },
+      { slug: "buddy-cad-model", ratio: 1400 / 1049, alt: "Buddy product CAD model" },
+      { slug: "paint-bottle-organizer", ratio: 1050 / 1400, alt: "Paint bottle organizer product design" },
+      { slug: "buddy-finished-render", ratio: 1400 / 1049, alt: "Buddy finished product render" },
+      { slug: "cap-illustration", ratio: 1400 / 1400, alt: "Cap illustration design" },
+      { slug: "long-cad-object", ratio: 1400 / 1049, alt: "CAD model of an elongated product form" },
     ],
   },
 ];
@@ -104,6 +111,8 @@ const OTHER_WORK_RAILS = OTHER_WORK_RAILS_RAW.map((rail) => ({
     src: img.src ?? `/images/home/other-work/${img.slug}.webp`,
     ratio: img.ratio,
     type: img.video ? ("video" as const) : undefined,
+    poster: img.poster,
+    alt: img.alt,
   })),
 }));
 
@@ -161,13 +170,16 @@ export default function Home() {
         >
           {/* Mobile: one continuous 2-col grid so 7 logos flow 2,2,2,1 */}
           <div className="grid grid-cols-2 md:hidden">
-            {ALL_COMPANIES.map((c, i) => (
-              <CompanyCell
-                key={c.name}
-                company={c}
-                className={`border-border-section ${i % 2 === 0 ? "border-r" : ""} ${i < ALL_COMPANIES.length - 1 ? "border-b" : ""}`}
-              />
-            ))}
+            {ALL_COMPANIES.map((c, i) => {
+              const isLastOdd = i === ALL_COMPANIES.length - 1 && ALL_COMPANIES.length % 2 !== 0;
+              return (
+                <CompanyCell
+                  key={c.name}
+                  company={c}
+                  className={`border-border-section ${isLastOdd ? "col-span-2" : i % 2 === 0 ? "border-r" : ""} ${i < ALL_COMPANIES.length - 1 ? "border-b" : ""}`}
+                />
+              );
+            })}
           </div>
           {/* Desktop: original two-row layout (3-col then 4-col) */}
           <div className="hidden flex-col divide-y divide-border-section md:flex">

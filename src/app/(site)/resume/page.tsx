@@ -6,7 +6,8 @@ import { ResumeDocument } from "@/components/ResumeDocument";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
-  title: "My Résumé — Daniel Gur",
+  title: "My Résumé",
+  description: "Daniel Gur's résumé — experience, skills, and a downloadable PDF.",
 };
 
 const MOBILE_SCALE = 326 / 612;

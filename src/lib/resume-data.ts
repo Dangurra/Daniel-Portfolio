@@ -31,7 +31,7 @@ export const resumeExperience: {
     meta: "Philadelphia | 2025 - 2026",
     bullets: [
       "Building out component systems and design elements for a full website rebrand.",
-      "Developing work for marketing assets across there reach, from a multi-purpose deck to marketing applications across the board.",
+      "Developing work for marketing assets across their reach, from a multi-purpose deck to marketing applications across the board.",
     ],
   },
   {
@@ -39,8 +39,8 @@ export const resumeExperience: {
     company: "Plaid Again Design Agency",
     meta: "San Jose | 2025 - 2026",
     bullets: [
-      "Designing web, Application and printed assets for our clients, working directly with them being able keep consistency with the rest of their design systems.",
-      "Leading the the redesign of Tara Mind's Corporate health app to be aligned with WCAG 2.2 standards up to a AA standard, while updated the design language.",
+      "Designing web, application, and printed assets for our clients, working directly with them to keep consistency with the rest of their design systems.",
+      "Leading the redesign of Tara Mind's corporate health app to be aligned with WCAG 2.2 standards up to an AA standard, while updating the design language.",
     ],
   },
   {
@@ -90,7 +90,7 @@ export const resumeDesignTools: { name: string; description: string }[] = [
   },
   {
     name: "Adobe Premiere",
-    description: "Video editing, color correction, audio editing, and wand special effects.",
+    description: "Video editing, color correction, audio editing, and special effects.",
   },
 ];
 
@@ -110,7 +110,7 @@ export const resumeDevTools: { name: string; description: string }[] = [
       "Building complex visuals, generative animations, and webcam-based effects using real-time input and custom logic.",
   },
   {
-    name: "Unity/Python",
+    name: "Unity/C#",
     description:
       "2D game development focused on player movement, physics, animations, and interactivity. Experienced in scripting responsive UI.",
   },

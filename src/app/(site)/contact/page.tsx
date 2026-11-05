@@ -5,7 +5,8 @@ import { GoHomeLink } from "@/components/GoHomeLink";
 import { Reveal } from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "Contact — Daniel Gur",
+  title: "Contact",
+  description: "Get in touch with Daniel Gur about a project or collaboration.",
 };
 
 export default function ContactPage() {
@@ -24,8 +25,8 @@ export default function ContactPage() {
           </h1>
           <p className="max-w-[660px] font-sans text-[16px] leading-[26px] text-text-secondary">
             Have a project in mind, or are you hiring? I&apos;m open to full-time design roles
-            and creative collaborations. Tell me what you&apos;re working on, I&apos;d love to
-            hear from you.
+            and creative collaborations. Tell me what you&apos;re working on &mdash; I&apos;d
+            love to hear from you.
           </p>
         </div>
       </div>

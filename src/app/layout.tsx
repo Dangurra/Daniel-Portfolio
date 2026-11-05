@@ -3,7 +3,7 @@ import { Lora, Manrope } from "next/font/google";
 import "@fontsource-variable/geist-pixel";
 import "./globals.css";
 
-import { siteConfig } from "@/lib/site";
+import { siteConfig, SITE_URL } from "@/lib/site";
 
 const lora = Lora({
   variable: "--font-lora",
@@ -15,9 +15,15 @@ const manrope = Manrope({
   subsets: ["latin"],
 });
 
+const DESCRIPTION = `Portfolio of ${siteConfig.name} — product designer working across interfaces, websites, 3D, and code.`;
+
 export const metadata: Metadata = {
-  title: siteConfig.name,
-  description: `Portfolio of ${siteConfig.name} — product designer working across interfaces, websites, 3D, and code.`,
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: siteConfig.name,
+    template: `%s — ${siteConfig.name}`,
+  },
+  description: DESCRIPTION,
   icons: {
     icon: [
       { url: "/favicons/favicon-16x16.svg", sizes: "16x16", type: "image/svg+xml" },
@@ -25,6 +31,18 @@ export const metadata: Metadata = {
       { url: "/favicons/favicon-48x48.svg", sizes: "48x48", type: "image/svg+xml" },
     ],
     shortcut: "/favicon.ico",
+  },
+  openGraph: {
+    title: siteConfig.name,
+    description: DESCRIPTION,
+    url: SITE_URL,
+    siteName: siteConfig.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: DESCRIPTION,
   },
 };
 

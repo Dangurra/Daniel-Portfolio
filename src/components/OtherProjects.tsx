@@ -3,7 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { ProjectCarouselCard } from "./ProjectCard";
 import { Icon } from "./ui/Icon";
@@ -18,8 +18,25 @@ const PER_PAGE_DESKTOP = 3;
 export function OtherProjects({ projects }: { projects: Project[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState(0);
+  const [needsScroll, setNeedsScroll] = useState(true);
 
   const pageCount = Math.max(1, Math.ceil(projects.length / PER_PAGE_DESKTOP));
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const check = () => setNeedsScroll(track.scrollWidth > track.clientWidth + 1);
+    check();
+
+    const observer = new ResizeObserver(check);
+    observer.observe(track);
+    window.addEventListener("resize", check);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", check);
+    };
+  }, [projects.length]);
 
   useGSAP(
     () => {
@@ -63,13 +80,17 @@ export function OtherProjects({ projects }: { projects: Project[] }) {
       </div>
       <div
         ref={trackRef}
-        className="relative left-1/2 right-1/2 -mx-[50vw] flex w-screen gap-6 overflow-x-auto pb-2 pl-6 pr-6 [&::-webkit-scrollbar]:hidden md:pl-[max(56px,calc((100vw-1512px)/2+56px))] md:pr-14"
+        className={`relative left-1/2 right-1/2 -mx-[50vw] flex w-screen gap-6 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden ${
+          needsScroll
+            ? "justify-start pl-6 pr-6 md:pl-[max(56px,calc((100vw-1512px)/2+56px))] md:pr-14"
+            : "justify-center px-6 md:px-14"
+        }`}
       >
         {projects.map((p) => (
           <ProjectCarouselCard key={p.slug} project={p} />
         ))}
       </div>
-      {pageCount > 1 && (
+      {needsScroll && pageCount > 1 && (
         <div className="flex w-full items-center justify-between">
           <button
             type="button"

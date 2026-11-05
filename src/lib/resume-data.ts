@@ -96,18 +96,14 @@ export const resumeDesignTools: { name: string; description: string }[] = [
 
 export const resumeDevTools: { name: string; description: string }[] = [
   {
+    name: "Claude Code, Codex, Gemini, Topaz",
+    description:
+      "Using AI-assisted tools to accelerate production workflows and bridge design and implementation.",
+  },
+  {
     name: "HTML, React, JavaScript, and CSS",
     description:
       "Basic knowledge of front-end web development for building and styling responsive layouts.",
-  },
-  {
-    name: "Framer",
-    description: "Interactive websites and responsive layouts with Framer's visual and code-based tools.",
-  },
-  {
-    name: "P5.js",
-    description:
-      "Building complex visuals, generative animations, and webcam-based effects using real-time input and custom logic.",
   },
   {
     name: "Unity/C#",
@@ -115,8 +111,12 @@ export const resumeDevTools: { name: string; description: string }[] = [
       "2D game development focused on player movement, physics, animations, and interactivity. Experienced in scripting responsive UI.",
   },
   {
-    name: "Claude Code, Codex, Gemini, Topaz",
+    name: "P5.js",
     description:
-      "Using AI-assisted tools to accelerate production workflows and bridge design and implementation.",
+      "Building complex visuals, generative animations, and webcam-based effects using real-time input and custom logic.",
+  },
+  {
+    name: "Framer",
+    description: "Interactive websites and responsive layouts with Framer's visual and code-based tools.",
   },
 ];

@@ -80,7 +80,7 @@ export function Header() {
         <div className="flex w-full items-center justify-between px-4 py-[18px] md:hidden">
           <Link href="/" className="bg-brand-highlight">
             <span
-              className="font-mono text-[24px] text-text-primary"
+              className="font-mono text-[24px] text-[#111111]"
               style={{ fontVariationSettings: '"ELSH" 0', lineHeight: 0.75 }}
             >
               Daniel Gur

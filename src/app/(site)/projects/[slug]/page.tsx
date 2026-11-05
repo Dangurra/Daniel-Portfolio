@@ -134,7 +134,7 @@ export default async function ProjectPage({
 function StandardProjectBody({ project }: { project: NonNullable<ReturnType<typeof getProject>> }) {
   return (
     <>
-      <Reveal as="section" y={0} className="w-full px-6 md:px-14">
+      <Reveal as="section" y={0} className="w-full px-6 pb-10 md:px-14 md:pb-12">
         <ResponsiveImage {...project.lander} alt={`${project.title} hero`} />
       </Reveal>
 
@@ -253,8 +253,8 @@ function GameShell({ project }: { project: NonNullable<ReturnType<typeof getProj
 
 function LockedProjectBody({ project }: { project: NonNullable<ReturnType<typeof getProject>> }) {
   return (
-    <section className="w-full px-6 py-12 md:px-14 md:py-16">
-      <div className="relative flex h-[420px] w-full flex-col items-center justify-center gap-4 overflow-hidden border border-border-section bg-[#ececec] md:h-[620px]">
+    <section className="w-full px-6 pb-12 md:px-14 md:pb-16">
+      <div className="relative flex aspect-[760/535] w-full flex-col items-center justify-center gap-4 overflow-hidden border border-border-section bg-[#ececec] md:aspect-auto md:h-[620px]">
         <div className="absolute inset-0 flex items-center justify-center opacity-[0.07] grayscale">
           <Image
             src={project.lander.laptop}
@@ -266,7 +266,7 @@ function LockedProjectBody({ project }: { project: NonNullable<ReturnType<typeof
             src={project.lander.mobile}
             alt={`${project.company} brand watermark`}
             fill
-            className="object-contain md:hidden"
+            className="object-cover md:hidden"
           />
         </div>
         <div className="relative z-10 flex flex-col items-center gap-3 text-center">

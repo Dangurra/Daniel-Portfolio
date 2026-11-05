@@ -17,6 +17,20 @@ const nextConfig: NextConfig = {
         destination: "/about",
         permanent: true,
       },
+      {
+        // Old Framer links used capitalized paths; Next.js route matching
+        // is case-sensitive, so these 404 instead of reaching /contact.
+        source: "/Contact",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        // Old Framer site had a dedicated /Projects page; this site's
+        // projects live in the Selected Work section on the home page.
+        source: "/Projects",
+        destination: "/#work",
+        permanent: true,
+      },
     ];
   },
   turbopack: {

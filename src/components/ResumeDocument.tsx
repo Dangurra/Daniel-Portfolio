@@ -9,9 +9,9 @@ import {
 
 function ToolEntry({ name, description }: { name: string; description: string }) {
   return (
-    <div className="flex flex-col gap-[2px]">
+    <div className="flex flex-col gap-[1px]">
       <p className="text-[11px] font-semibold leading-normal text-black">{name}</p>
-      <p className="text-[9px] leading-[1.6] text-black">{description}</p>
+      <p className="text-[9px] leading-[1.45] text-black">{description}</p>
     </div>
   );
 }
@@ -99,18 +99,18 @@ export function ResumeDocument() {
 
           <div className="w-px self-stretch bg-[#ddd]" />
 
-          <div className="flex w-[188px] flex-col gap-[13px] text-black">
-            <div className="flex flex-col gap-[6.5px]">
+          <div className="flex w-[188px] flex-col gap-[8px] text-black">
+            <div className="flex flex-col gap-[5px]">
               <p className="text-[12px] font-bold leading-normal">DESIGN TOOLS</p>
-              <div className="flex flex-col gap-[7.8px]">
+              <div className="flex flex-col gap-[4px]">
                 {resumeDesignTools.map((t) => (
                   <ToolEntry key={t.name} {...t} />
                 ))}
               </div>
             </div>
-            <div className="flex flex-col gap-[6.5px]">
+            <div className="flex flex-col gap-[5px]">
               <p className="text-[12px] font-bold leading-normal">DEVELOPMENT TOOLS</p>
-              <div className="flex flex-col gap-[7.8px]">
+              <div className="flex flex-col gap-[4px]">
                 {resumeDevTools.map((t) => (
                   <ToolEntry key={t.name} {...t} />
                 ))}

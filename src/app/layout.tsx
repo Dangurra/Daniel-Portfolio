@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import { Lora, Manrope } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "@fontsource-variable/geist-pixel";
 import "./globals.css";
 
 import { siteConfig, SITE_URL } from "@/lib/site";
+
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const GOOGLE_SITE_VERIFICATION = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 const lora = Lora({
   variable: "--font-lora",
@@ -24,6 +28,16 @@ export const metadata: Metadata = {
     template: `%s — ${siteConfig.name}`,
   },
   description: DESCRIPTION,
+  keywords: [
+    "Daniel Gur",
+    "product designer",
+    "UX/UI designer",
+    "web design",
+    "design systems",
+    "3D modeling",
+    "front-end development",
+  ],
+  verification: GOOGLE_SITE_VERIFICATION ? { google: GOOGLE_SITE_VERIFICATION } : undefined,
   icons: {
     icon: [
       { url: "/favicons/favicon-16x16.svg", sizes: "16x16", type: "image/svg+xml" },
@@ -56,6 +70,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col bg-white font-sans text-text-primary">
         {children}
       </body>
+      {GA_MEASUREMENT_ID && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
     </html>
   );
 }

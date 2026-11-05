@@ -257,10 +257,16 @@ function LockedProjectBody({ project }: { project: NonNullable<ReturnType<typeof
       <div className="relative flex h-[420px] w-full flex-col items-center justify-center gap-4 overflow-hidden border border-border-section bg-[#ececec] md:h-[620px]">
         <div className="absolute inset-0 flex items-center justify-center opacity-[0.07] grayscale">
           <Image
-            src={project.banner}
+            src={project.lander.laptop}
             alt={`${project.company} brand watermark`}
             fill
-            className="object-cover"
+            className="hidden object-cover md:block"
+          />
+          <Image
+            src={project.lander.mobile}
+            alt={`${project.company} brand watermark`}
+            fill
+            className="object-cover md:hidden"
           />
         </div>
         <div className="relative z-10 flex flex-col items-center gap-3 text-center">

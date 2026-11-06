@@ -67,7 +67,7 @@ function ExperienceEntry({
 export function ResumeDocument() {
   return (
     <div className="relative h-[792px] w-[612px] bg-white">
-      <div className="flex h-full w-full flex-col justify-between p-[35px]">
+      <div className="flex h-full w-full flex-col justify-between px-[35px] py-[22px]">
         <div className="flex w-full items-start justify-between">
           <div className="flex w-[342px] flex-col gap-[10px]">
             <p className="w-fit bg-[#e8e8e8] font-heading text-[24px] font-semibold leading-none text-[#111]">
@@ -84,9 +84,25 @@ export function ResumeDocument() {
           </div>
         </div>
 
-        <div className="flex w-full items-start gap-[20px]">
-          <div className="flex w-[314px] flex-col gap-[7px]">
+        <div className="flex w-full items-start gap-[12px]">
+          <div className="flex w-[318px] flex-col gap-[7px]">
             <div className="flex flex-col gap-[4px] text-black">
+              <p className="text-[12px] font-bold leading-normal">EXPERIENCE</p>
+              {resumeExperience.map((e) => (
+                <ExperienceEntry key={e.role + e.company} {...e} />
+              ))}
+            </div>
+
+            <div className="flex flex-col gap-[3px] text-black">
+              <p className="text-[12px] font-bold uppercase leading-normal">Recognition</p>
+              {resumeRecognitions.map((r) => (
+                <RecognitionEntry key={r.title} {...r} />
+              ))}
+            </div>
+          </div>
+
+          <div className="flex w-[212px] flex-col gap-[8px] text-black">
+            <div className="flex flex-col gap-[4px]">
               <p className="text-[12px] font-bold leading-normal">EDUCATION</p>
               <div className="flex flex-col gap-[2px]">
                 <p className="text-[11px] font-semibold leading-normal">{resumeEducation.school}</p>
@@ -97,25 +113,6 @@ export function ResumeDocument() {
                 </p>
               </div>
             </div>
-
-            <div className="flex flex-col gap-[3px] text-black">
-              <p className="text-[12px] font-bold uppercase leading-normal">Recognition</p>
-              {resumeRecognitions.map((r) => (
-                <RecognitionEntry key={r.title} {...r} />
-              ))}
-            </div>
-
-            <div className="flex flex-col gap-[4px] text-black">
-              <p className="text-[12px] font-bold leading-normal">EXPERIENCE</p>
-              {resumeExperience.map((e) => (
-                <ExperienceEntry key={e.role + e.company} {...e} />
-              ))}
-            </div>
-          </div>
-
-          <div className="w-px self-stretch bg-[#ddd]" />
-
-          <div className="flex w-[188px] flex-col gap-[8px] text-black">
             <div className="flex flex-col gap-[5px]">
               <p className="text-[12px] font-bold leading-normal">DESIGN TOOLS</p>
               <div className="flex flex-col gap-[4px]">

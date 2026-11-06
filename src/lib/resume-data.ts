@@ -34,7 +34,7 @@ export const resumeExperience: {
   bullets: string[];
 }[] = [
   {
-    role: "UX/UI Designer",
+    role: "Web Developer/Product Designer (Contract)",
     company: "Albacore Incorporated",
     meta: "Philadelphia | 2026",
     bullets: [
@@ -52,7 +52,7 @@ export const resumeExperience: {
     ],
   },
   {
-    role: "Product Designer/Web Developer",
+    role: "Web Developer/Product Designer (Contract)",
     company: "Poseidon Aerospace",
     meta: "San Francisco | 2025",
     bullets: [

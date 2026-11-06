@@ -208,7 +208,7 @@ export const projects: Project[] = [
     skills:
       "Web design, UX research, information architecture, design system, web development, CMS, animation",
     timeline: "October - November 2025 · 4 weeks",
-    role: "Contractor - Web Developer/Product Designer",
+    role: "Web Developer/Product Designer",
     collaborators: "Joel Rowley - Creative Director",
     liveUrl: "https://www.poseidonaero.com/",
     visitLabel: "Visit live site",
@@ -307,7 +307,7 @@ export const projects: Project[] = [
     skills:
       "Web design, UX research, information architecture, design system, web development, CMS, animation, responsive design, component system, product visualization, content strategy, design handoff, production support",
     timeline: "January - February 2026 · 6 weeks",
-    role: "Contractor - Web Developer/Product Designer",
+    role: "Web Developer/Product Designer",
     collaborators: "Joel Rowley - Creative Director",
     liveUrl: "https://texsoftware.com",
     visitLabel: "Visit live site",
@@ -404,7 +404,7 @@ export const projects: Project[] = [
     skills:
       "Web design, UX research, information architecture, design system, web development, CMS, animation, responsive design, component system, product visualization, content strategy, design handoff, production support",
     timeline: "February - August 2026 · 7 months",
-    role: "Contractor - Web Developer/Product Designer",
+    role: "Web Developer/Product Designer",
     collaborators: "Felix 1P3D - 3D Artist",
     liveUrl: "https://www.albacore.inc/",
     visitLabel: "Visit live site",

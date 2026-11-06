@@ -69,7 +69,7 @@ export const experience: {
   },
   {
     company: "Albacore Incorporated",
-    title: "UX/UI Designer",
+    title: "Web Developer/Product Designer",
     date: "Feb–Aug 2026",
     description:
       "I built out component systems and design elements for a full website rebrand. I developed marketing assets across channels, including a multipurpose deck.",
@@ -77,7 +77,7 @@ export const experience: {
   },
   {
     company: "Poseidon Aerospace",
-    title: "Product Designer / Web Developer",
+    title: "Web Developer/Product Designer",
     date: "2025",
     description:
       "I built out component systems and design elements for a website rebrand. I worked across all company touch points, crafting a user experience for their target audience and developing the website with a robust, scalable system designed to grow with the company.",

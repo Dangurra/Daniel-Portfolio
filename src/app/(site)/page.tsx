@@ -11,13 +11,21 @@ import { Icon } from "@/components/ui/Icon";
 import { hero } from "@/lib/site-data";
 import { getHomeOrderedProjects } from "@/lib/projects-data";
 
-const COMPANIES_ROW_1: { name: string; wordmark: string | null; width?: number }[] = [
+type Company = {
+  name: string;
+  wordmark: string | null;
+  width?: number;
+  /** Overrides `width` in light mode, for wordmarks whose two files have different padding. */
+  lightThemeWidth?: number;
+};
+
+const COMPANIES_ROW_1: Company[] = [
   { name: "SambaNova", wordmark: "/images/about/logos/sambanova-logo.webp" },
   { name: "Poseidon", wordmark: "/images/about/logos/poseidon-logo.webp" },
-  { name: "Tex Software", wordmark: "/images/about/logos/tex-software-logo.webp", width: 190 },
+  { name: "Tex Software", wordmark: "/images/about/logos/tex-software-logo.webp", width: 190, lightThemeWidth: 181 },
 ];
 
-const COMPANIES_ROW_2: { name: string; wordmark: string | null; width?: number }[] = [
+const COMPANIES_ROW_2: Company[] = [
   { name: "Albacore", wordmark: "/images/about/logos/albacore-logo.webp" },
   { name: "Plaid Again", wordmark: "/images/about/logos/plaid-again-logo.webp" },
   { name: "Tara Mind", wordmark: "/images/about/logos/tara-mind-logo.webp" },
@@ -30,7 +38,7 @@ function CompanyCell({
   company,
   className = "",
 }: {
-  company: { name: string; wordmark: string | null; width?: number };
+  company: Company;
   className?: string;
 }) {
   return (
@@ -42,9 +50,16 @@ function CompanyCell({
           <Image
             src={company.wordmark}
             alt={company.name}
-            width={company.width ?? 144}
+            width={company.lightThemeWidth ?? company.width ?? 144}
             height={30}
             className="object-contain dark:hidden"
+            // Narrow grid cells cap both logos at the cell width, so the
+            // light mode ratio has to hold there too.
+            style={
+              company.lightThemeWidth && company.width
+                ? { maxWidth: `${(company.lightThemeWidth / company.width) * 100}%` }
+                : undefined
+            }
           />
           <Image
             src={company.wordmark.replace(/\.webp$/, "-light.svg")}

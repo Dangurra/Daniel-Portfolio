@@ -85,7 +85,7 @@ export const experience: {
   },
   {
     company: "SambaNova Systems",
-    title: "Product Design Intern",
+    title: "Product Designer (Internship)",
     date: "2024",
     description:
       "I designed UX/UI for SambaStudio and SambaCloud, including login visuals, internal AI system workflows, and iconography. I gained hands-on experience with enterprise AI tools on projects with lasting impact that continue to shape current products, applying research-driven iteration and design frameworks throughout the process.",

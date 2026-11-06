@@ -62,7 +62,7 @@ export const resumeExperience: {
     ],
   },
   {
-    role: "Product Design Intern",
+    role: "Product Designer (Internship)",
     company: "SambaNova Systems",
     meta: "Palo Alto | 2024",
     bullets: [

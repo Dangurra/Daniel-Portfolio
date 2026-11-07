@@ -70,7 +70,7 @@ export const experience: {
   {
     company: "Albacore Incorporated",
     title: "Web Developer/Product Designer",
-    date: "Feb–Aug 2026",
+    date: "Jan–Aug 2026",
     description:
       "I built out component systems and design elements for a full website rebrand. I developed marketing assets across channels, including a multipurpose deck.",
     logo: "/images/about/logos/albacore-logo.webp",

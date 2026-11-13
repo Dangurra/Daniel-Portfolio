@@ -29,7 +29,7 @@ export function ProjectRow({ project }: { project: ProjectSummary }) {
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="flex w-full flex-col overflow-hidden border border-border-section bg-background transition-colors duration-200 hover:border-foreground-primary md:flex-row"
+      className="flex w-full flex-col overflow-hidden border border-border-section bg-background transition-colors duration-200 hover:border-foreground-primary xl:flex-row"
       onMouseEnter={() => {
         setHovering(true);
         videoRef.current?.play();
@@ -41,14 +41,14 @@ export function ProjectRow({ project }: { project: ProjectSummary }) {
       }}
     >
       <div
-        className="relative w-full min-w-0 shrink-0 overflow-hidden bg-[#111] md:w-auto md:max-w-[840px] md:flex-1 md:shrink"
+        className="relative w-full min-w-0 shrink-0 overflow-hidden bg-[#111] xl:w-auto xl:max-w-[840px] xl:flex-1 xl:shrink"
         style={{ aspectRatio: project.bannerAspect }}
       >
         <Image
           src={project.banner}
           alt={`${project.company} banner`}
           fill
-          sizes="(max-width: 768px) 100vw, 840px"
+          sizes="(max-width: 1279px) 100vw, 840px"
           className="object-cover"
         />
         {project.hoverVideo && (
@@ -94,7 +94,7 @@ export function ProjectRow({ project }: { project: ProjectSummary }) {
           </>
         )}
       </div>
-      <div className="flex w-full flex-col gap-5 p-6 md:w-[560px] md:shrink-0 md:basis-auto md:p-12">
+      <div className="flex w-full flex-col gap-5 p-6 md:p-10 xl:w-[480px] xl:shrink-0 xl:basis-auto xl:p-10 2xl:w-[560px] 2xl:p-12">
         <div className="flex items-center gap-2 font-mono text-[11px] text-text-muted">
           <span>{project.company}</span>
           <span className="text-text-light">·</span>
